@@ -1,0 +1,45 @@
+:root {
+    --bgcolor: #444;
+    --divbg: #333;
+    --text: #fff;
+    --glow: rgba(255, 255, 255, 0.5);
+    --input: rgba(255,255,255,0.8);
+    --invisible: rgba(0,0,0,0);
+}
+
+html {
+    background-color: var(--bgcolor);
+}
+
+#root {
+    background-color: var(--bgcolor);
+    color: var(--text);
+}
+
+form {
+    background-color: var(--divbg);
+    box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.3);
+    color: var(--text);
+    border: 1px solid ;
+    border-color: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+}
+
+.logo img {
+    border-radius: 6px;
+    width: 3rem;
+}
+
+.btn:hover {
+    box-shadow: inset 0 0 0.5rem var(--glow);
+    transition: all 200ms ease;
+}
+
+input.form-control {
+    background-color: var(--input);
+    min-width: 100%;
+    padding: 0.4rem;
+    border-radius: 6px;
+    border: 1px solid var(--glow);
+    transition: all 200ms ease;
+}

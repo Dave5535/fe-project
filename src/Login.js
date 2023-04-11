@@ -10,16 +10,16 @@ const Login = () => {
         return (
             <>
                 <br />
-                <form className='rounded-4 border p-2 m-2' onSubmit={handleSubmit(saveData)}>
+                <form className='rounded-4 p-2 m-2' onSubmit={handleSubmit(saveData)}>
                    
                     
                     <div className='row'>
-                        <div className='col'>email
+                        <div className='col'>Email
                             <input type='text' className='form-control' id='email' {...register("email", { required: true })} placeholder='Enter email...' />
                             {errors.email && errors.email.type === "required" && (<span className='text-danger'>email is Required!</span>)}
                             <br />
                             Password
-                            <input type='text' className='form-control ' id='password' {...register("password", { required: true })} placeholder='Enter password...' />
+                            <input type='text' className='form-control' id='password' {...register("password", { required: true })} placeholder='Enter password...' />
                             {errors.password && errors.password.type === "required" && (<span className='text-danger'>password is Required!</span>)}
                         </div>
                         <a href='/#'>forgot password?</a>
@@ -56,7 +56,9 @@ const Login = () => {
 
     return (
         <div className="container">
-            logo
+            <div className="logo">
+            <img src="logo.png" alt="logo" />
+            </div>
             <h4>Login in Component!</h4>
             <Form />
         </div>
