@@ -117,8 +117,6 @@ const Contacts = () => {
         </div>
     );
 
-            <h4 className='text-center'>ChatDemo!</h4>
-        </div>
   
 const NotFound = () => {
     return (
