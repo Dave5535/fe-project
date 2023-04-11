@@ -56,9 +56,6 @@ const Login = () => {
 
     return (
         <div className="container">
-            <div className="logo">
-            <img src="logo.png" alt="logo" />
-            </div>
             <h4>Login!</h4>
             <Form />
         </div>

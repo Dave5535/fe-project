@@ -10,6 +10,7 @@ const App = () => {
     return (
         <div className='container'>
             <Router>
+                <Header />
                 <Switch>
                     <Route exact path="/" component={Welcome} />
                     <Route path="/info" component={Info} />
@@ -51,7 +52,6 @@ const Welcome = () => {
     return (
 
         <div className='container'>
-            <Header />
             <h4>Welcome Component!</h4>
         </div>
     );
@@ -59,7 +59,6 @@ const Welcome = () => {
 const Info = () => {
     return (
         <div className='container'>
-            <Header />
             <h4>Info Component!</h4>
         </div>
     );
@@ -68,7 +67,6 @@ const ChatDemo = () => {
     return (
 
         <div className='container'>
-            <Header />
             <h4>ChatDemo Component!</h4>
         </div>
     );
@@ -77,7 +75,6 @@ const ChatDemo = () => {
 const NotFound = () => {
     return (
         <div className='container'>
-
             <h4>Error 404: Page Not Found!</h4>
         </div>
     );
