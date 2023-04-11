@@ -1,7 +1,13 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory, useParams, useLocation, Redirect } from "react-router-dom";
-import Register from './Register';
-import Login from './Login';
+import Register from './components/Register';
+import Login from './components/Login';
+import Chat from './components/Chat';
+import Info from './components/Info';
+import Welcome from './components/Welcome';
+import Group from './components/Group';
+import Social from './components/Social';
+import Contacts from './components/Contacts';
 
 
 const App = () => {
@@ -14,7 +20,7 @@ const App = () => {
                 <Switch>
                     <Route exact path="/" component={Welcome} />
                     <Route path="/info" component={Info} />
-                    <Route path="/chat" component={ChatDemo} />
+                    <Route path="/chat" component={Chat} />
 
                     <Route path="/group" component={Group} />
                     <Route path="/social" component={Social} />
@@ -66,58 +72,7 @@ const Header = () => {
         </nav>
     );
 }
-const Welcome = () => {
-    return (
 
-        <div className='container'>
-            <h4 className='text-center'>Välkommen!</h4>
-            <div className='text-center'>Hit kommer nyanläda personer så ett Välkommande och den senaste nyheterna kan vara här.</div>
-        </div>
-    );
-}
-const Info = () => {
-    return (
-        <div className='container'>
-            <h4 className='text-center'>Info!</h4>
-           <div className='text-center'> här kan Möten och Event läggas up för att alla ska se.</div>
-        </div>
-    );
-}
-    
-const ChatDemo = () => {
-    return (
-
-        <div className='container'>
-
-            <h4 className='text-center'>Chat!</h4>
-            <div className='text-center'>Chater mellan en person eller grup av personer.</div>
-        </div>
-    );
-}
-const Group = () => {
-    return (
-        <div className='container'>
-            <h4 className='text-center'>Klasser!</h4>
-            <div className='text-center'>Klasser/grupper skapade av lärare!</div>
-        </div>
-    );
-}
-const Social = () => {
-    return (
-        <div className='container'>
-            <h4 className='text-center'>Sociala medier!</h4>
-            <div className='text-center' >här kan man länka se alla relaterade länkar till andra medier teaterstickorna har</div>
-        </div>
-    );
-}
-const Contacts = () => {
-    return (
-        <div className='container'>
-            <h4 className='text-center'>Kontakter saknas!</h4>
-        </div>
-    );
-}
-  
 const NotFound = () => {
     return (
         <div className='container'>
@@ -125,8 +80,6 @@ const NotFound = () => {
           <img  src="logo.png" className='rounded mx-auto d-block' alt='Teater stickornas loga' width="50" height="50"/>
            <br/>
             <h4 className='text-center'>Fel 404: Sidan kunde inte hittas!</h4>
-           
-
         </div>
     );
 }
