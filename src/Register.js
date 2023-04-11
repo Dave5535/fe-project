@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { set, useForm } from 'react-hook-form';
 
-const Singin = () => {
+const Register = () => {
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
@@ -76,4 +76,5 @@ const Singin = () => {
 
 
 
-export default Singin;
+
+export default Register;

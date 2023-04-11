@@ -15,9 +15,11 @@ const App = () => {
                     <Route exact path="/" component={Welcome} />
                     <Route path="/info" component={Info} />
                     <Route path="/chat" component={ChatDemo} />
+
                     <Route path="/group" component={Group} />
                     <Route path="/social" component={Social} />
                     <Route path="/contacts" component={Contacts} />
+
                     <Route path="/register" component={Register} />
                     <Route path="/login" component={Login} />
                     <Route component={NotFound} />
@@ -46,6 +48,7 @@ const Header = () => {
                     <li className="nav-item">
                         <Link className="nav-link text-white" to="/chat">Chat</Link>
                     </li>
+
                     <li className="nav-item">
                         <Link className="nav-link text-white" to="/group">Group</Link>
                     </li>
@@ -80,11 +83,12 @@ const Info = () => {
         </div>
     );
 }
-
+    
 const ChatDemo = () => {
     return (
 
         <div className='container'>
+
             <h4 className='text-center'>Chat!</h4>
             <div className='text-center'>Chater mellan en person eller grup av personer.</div>
         </div>
@@ -112,15 +116,19 @@ const Contacts = () => {
             <h4 className='text-center'>Kontakter saknas!</h4>
         </div>
     );
-}
 
+            <h4 className='text-center'>ChatDemo!</h4>
+        </div>
+  
 const NotFound = () => {
     return (
         <div className='container'>
+
           <img  src="logo.png" className='rounded mx-auto d-block' alt='Teater stickornas loga' width="50" height="50"/>
            <br/>
             <h4 className='text-center'>Fel 404: Sidan kunde inte hittas!</h4>
-        
+            <h4 className='text-center'>Fel 404: Sidan kunde inte hittas!</h4>
+
         </div>
     );
 }
