@@ -43,7 +43,7 @@ const Header = () => {
                 </ul>
 
                 <Link type='button' className='btn btn-primary m-2' to="/login">Login</Link>
-                <Link type='button' className='btn btn-primary' to="/register">Sign Up</Link>
+                <Link type='button' className='btn btn-primary' to="/register">Registrera</Link>
             </div>
         </nav>
     );
@@ -52,14 +52,14 @@ const Welcome = () => {
     return (
 
         <div className='container'>
-            <h4 className='text-center'>Welcome Component!</h4>
+            <h4 className='text-center'>Välkommen!</h4>
         </div>
     );
 }
 const Info = () => {
     return (
         <div className='container'>
-            <h4 className='text-center'>Info Component!</h4>
+            <h4 className='text-center'>Info!</h4>
         </div>
     );
 }
@@ -67,7 +67,7 @@ const ChatDemo = () => {
     return (
 
         <div className='container'>
-            <h4 className='text-center'>ChatDemo Component!</h4>
+            <h4 className='text-center'>ChatDemo!</h4>
         </div>
     );
 }
@@ -75,7 +75,7 @@ const ChatDemo = () => {
 const NotFound = () => {
     return (
         <div className='container'>
-            <h4 className='text-center'>Error 404: Page Not Found!</h4>
+            <h4 className='text-center'>Fel 404: Sidan kunde inte hittas!</h4>
         </div>
     );
 }

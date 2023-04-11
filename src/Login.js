@@ -15,14 +15,14 @@ const Login = () => {
                     
                     <div className='row'>
                         <div className='col'>Email
-                            <input type='text' className='form-control' id='email' {...register("email", { required: true })} placeholder='Enter email...' />
-                            {errors.email && errors.email.type === "required" && (<span className='text-danger'>email is Required!</span>)}
+                            <input type='text' className='form-control' id='email' {...register("email", { required: true })} placeholder='Ange email...' />
+                            {errors.email && errors.email.type === "required" && (<span className='text-danger'>Email är ett krav!</span>)}
                             <br />
                             Password
-                            <input type='text' className='form-control' id='password' {...register("password", { required: true })} placeholder='Enter password...' />
-                            {errors.password && errors.password.type === "required" && (<span className='text-danger'>password is Required!</span>)}
+                            <input type='text' className='form-control' id='password' {...register("password", { required: true })} placeholder='Ange lösenord...' />
+                            {errors.password && errors.password.type === "required" && (<span className='text-danger'>Lösenord är ett krav!</span>)}
                         </div>
-                        <a href='/#'>forgot password?</a>
+                        <a href='/#'>Glömt lösenordet?</a>
                     </div>
 
                     <br />
