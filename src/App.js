@@ -11,12 +11,12 @@ const App = () => {
         <div className='container'>
             <Router>
                 <Switch>
-                    <Route exact path="/" component={Wellcome} />
-                    <Route exact path="/info" component={Info} />
-                    <Route exact path="/chat" component={ChatDemo} />
-                    <Route exact path="/register" component={Register} />
-                    <Route exact path="/login" component={Login} />
-                    <Route exact path="" component={NotFound} />
+                    <Route exact path="/" component={Welcome} />
+                    <Route path="/info" component={Info} />
+                    <Route path="/chat" component={ChatDemo} />
+                    <Route path="/register" component={Register} />
+                    <Route path="/login" component={Login} />
+                    <Route component={NotFound} />
                 </Switch>
             </Router>
 
@@ -47,7 +47,7 @@ const Header = () => {
         </nav>
     );
 }
-const Wellcome = () => {
+const Welcome = () => {
     return (
 
         <div className='container'>
