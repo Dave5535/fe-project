@@ -10,7 +10,7 @@ const Singin = () => {
         return (
             <>
                 <br />
-                <form className='rounded-4 p-2 m-2' onSubmit={handleSubmit(saveData)}>
+                <form className='rounded-4 p-3 m-2' onSubmit={handleSubmit(saveData)}>
                     <div className='row'>
                         <div className='col'>First Name
                             <input type='text' className='form-control' id='firstName' {...register("firstName", { required: true })} placeholder='Enter first name...' />
@@ -71,7 +71,7 @@ const Singin = () => {
             <div className='logo'>
             <img src="logo.png" alt="logo" />
             </div>
-            <h4>register Component ONLY FOR ADMINS!  may be changed?</h4>
+            <h4>Register (ONLY FOR ADMINS AND TEACHERS!)</h4>
             <Form />
         </div>
     );

@@ -10,7 +10,7 @@ const Login = () => {
         return (
             <>
                 <br />
-                <form className='rounded-4 p-2 m-2' onSubmit={handleSubmit(saveData)}>
+                <form className='rounded-4 p-3 m-2' onSubmit={handleSubmit(saveData)}>
                    
                     
                     <div className='row'>
@@ -59,7 +59,7 @@ const Login = () => {
             <div className="logo">
             <img src="logo.png" alt="logo" />
             </div>
-            <h4>Login in Component!</h4>
+            <h4>Login!</h4>
             <Form />
         </div>
     );
