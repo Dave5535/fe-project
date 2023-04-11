@@ -52,14 +52,14 @@ const Welcome = () => {
     return (
 
         <div className='container'>
-            <h4>Welcome Component!</h4>
+            <h4 className='text-center'>Welcome Component!</h4>
         </div>
     );
 }
 const Info = () => {
     return (
         <div className='container'>
-            <h4>Info Component!</h4>
+            <h4 className='text-center'>Info Component!</h4>
         </div>
     );
 }
@@ -67,7 +67,7 @@ const ChatDemo = () => {
     return (
 
         <div className='container'>
-            <h4>ChatDemo Component!</h4>
+            <h4 className='text-center'>ChatDemo Component!</h4>
         </div>
     );
 }
@@ -75,7 +75,7 @@ const ChatDemo = () => {
 const NotFound = () => {
     return (
         <div className='container'>
-            <h4>Error 404: Page Not Found!</h4>
+            <h4 className='text-center'>Error 404: Page Not Found!</h4>
         </div>
     );
 }

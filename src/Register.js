@@ -68,7 +68,7 @@ const Singin = () => {
 
     return (
         <div className="container">
-            <h4>Register (ONLY FOR ADMINS AND TEACHERS!)</h4>
+            <h4 className='text-center'>Register (ONLY FOR ADMINS AND TEACHERS!)</h4>
             <Form />
         </div>
     );

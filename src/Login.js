@@ -56,7 +56,7 @@ const Login = () => {
 
     return (
         <div className="container">
-            <h4>Login!</h4>
+            <h4 className='text-center'>Login!</h4>
             <Form />
         </div>
     );
