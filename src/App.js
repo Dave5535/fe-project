@@ -80,8 +80,6 @@ const NotFound = () => {
           <img  src="logo.png" className='rounded mx-auto d-block' alt='Teater stickornas loga' width="50" height="50"/>
            <br/>
             <h4 className='text-center'>Fel 404: Sidan kunde inte hittas!</h4>
-            
-
         </div>
     );
 }
