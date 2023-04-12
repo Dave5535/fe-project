@@ -49,7 +49,7 @@ const Crud = () => {
     return (
       <>
         <br />
-        <form className='rounded p-2 m-2' onSubmit={handleSubmit(saveData)}>
+        <form className='rounded p-2 m-2 mb-5' onSubmit={handleSubmit(saveData)}>
           <div> <h4>Lägg till nya medlemar</h4></div>
           <div className='row'>
             <div className='col'>Förnamn
