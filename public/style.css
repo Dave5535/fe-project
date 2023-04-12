@@ -8,7 +8,7 @@
 }
 
 html {
-    background-color: var(--bgcolor);
+    background: linear-gradient(var(--bgcolor),var(--divbg));
 }
 
 #root {
