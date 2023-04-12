@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory, useParams, useLocation, Redirect } from "react-router-dom";
-import Register from './components/Register';
+
 import Login from './components/Login';
 import Chat from './components/Chat';
 import Info from './components/Info';
@@ -8,6 +8,8 @@ import Welcome from './components/Welcome';
 import Group from './components/Group';
 import Social from './components/Social';
 import Contacts from './components/Contacts';
+import Settings from './components/Settings';
+import Crud from './components/Crud';
 
 
 const App = () => {
@@ -25,8 +27,8 @@ const App = () => {
                     <Route path="/group" component={Group} />
                     <Route path="/social" component={Social} />
                     <Route path="/contacts" component={Contacts} />
-
-                    <Route path="/register" component={Register} />
+                    <Route path="/settings" component={Settings} />
+                    <Route path="/hantera_Anvandare" component={Crud} />
                     <Route path="/login" component={Login} />
                     <Route component={NotFound} />
                 </Switch>
@@ -41,7 +43,7 @@ const Header = () => {
     return (
         <nav className='navbar navbar-expand-sm bg-dark navbar-dark shadow rounded mb-3'>
             <div className="container-fluid">
-            <Link className="logo navbar-brand text-white d-flex justify-content-center" to="/"><img src="logo.png" alt="logo" /></Link>
+            <Link className="logo navbar-brand text-white d-flex justify-content-center" to="/"><img src="./Image/logo.png" alt="logo" /></Link>
                 <ul className="nav me-auto">
                     <li className="nav-item">
                     </li>
@@ -64,10 +66,13 @@ const Header = () => {
                     <li className="nav-item">
                         <Link className="nav-link text-white" to="/contacts">Contacts</Link>
                     </li>
+                    <li className="nav-item ">
+                        <Link className="nav-link text-white" to="/settings" ><div className='fas fa-cog'></div></Link>
+                    </li>
                 </ul>
-
+                
                 <Link type='button' className='btn btn-primary m-2' to="/login">Login</Link>
-                <Link type='button' className='btn btn-primary' to="/register">Registrera</Link>
+                <Link type='button' className='btn btn-primary' to="/hantera_Anvandare">Hantera Användare</Link>
             </div>
         </nav>
     );
