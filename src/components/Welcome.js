@@ -1,6 +1,6 @@
 import React from "react";
 
-const Welcome = ()=> {
+const Welcome = () => {
 
     return (
 
@@ -9,7 +9,7 @@ const Welcome = ()=> {
             <div className='text-center'>Hit kommer nyanläda personer så ett Välkommande och den senaste nyheterna kan vara här.</div>
         </div>
     );
-    
+
 }
 
 export default Welcome;

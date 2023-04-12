@@ -43,12 +43,12 @@ const Header = () => {
     return (
         <nav className='navbar navbar-expand-sm bg-dark navbar-dark shadow rounded mb-3'>
             <div className="container-fluid">
-            <Link className="logo navbar-brand text-white d-flex justify-content-center" to="/"><img src="./Image/logo.png" alt="logo" /></Link>
+                <Link className="logo navbar-brand text-white d-flex justify-content-center" to="/"><img src="./Image/logo.png" alt="logo" /></Link>
                 <ul className="nav me-auto">
                     <li className="nav-item">
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-white" to="/">Home</Link>
+                        <Link className="nav-link text-white" to="/">Hem</Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link text-white" to="/info">Info</Link>
@@ -58,19 +58,19 @@ const Header = () => {
                     </li>
 
                     <li className="nav-item">
-                        <Link className="nav-link text-white" to="/group">Group</Link>
+                        <Link className="nav-link text-white" to="/group">Grupper</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-white" to="/social">Social</Link>
+                        <Link className="nav-link text-white" to="/social">Socialt</Link>
                     </li>
                     <li className="nav-item">
-                        <Link className="nav-link text-white" to="/contacts">Contacts</Link>
+                        <Link className="nav-link text-white" to="/contacts">Kontakter</Link>
                     </li>
                     <li className="nav-item ">
                         <Link className="nav-link text-white" to="/settings" ><div className='fas fa-cog'></div></Link>
                     </li>
                 </ul>
-                
+
                 <Link type='button' className='btn btn-primary m-2' to="/login">Login</Link>
                 <Link type='button' className='btn btn-primary' to="/hantera_Anvandare">Hantera Användare</Link>
             </div>
@@ -82,8 +82,8 @@ const NotFound = () => {
     return (
         <div className='container'>
 
-          <img  src="logo.png" className='rounded mx-auto d-block' alt='Teater stickornas loga' width="50" height="50"/>
-           <br/>
+            <img src="logo.png" className='rounded mx-auto d-block' alt='Teater stickornas loga' width="50" height="50" />
+            <br />
             <h4 className='text-center'>Fel 404: Sidan kunde inte hittas!</h4>
         </div>
     );

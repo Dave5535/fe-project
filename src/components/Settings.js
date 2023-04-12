@@ -1,22 +1,22 @@
 import React from "react";
 
-const Settings = ()=> {
+const Settings = () => {
 
     return (
 
         <div className='container'>
 
-            <h4 className='text-center'>Settings!</h4>
-            <div className='text-center'>make changes to your account ,mm</div>
-            <br/>
-       
-      
-       
-       </div>
-       
-       
+            <h4 className='text-center'>Inställningar!</h4>
+            <div className='text-center'>make changes to account ,etc.</div>
+            <br />
+
+
+
+        </div>
+
+
     );
-    
+
 }
 
 export default Settings;

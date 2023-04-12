@@ -33,7 +33,7 @@ const Crud = () => {
   // useForm
 
   const { register, handleSubmit, formState: { errors } } = useForm();
-  
+
   // hide when editing
   const [personId, setPersonId] = useState(null);
   const [showForm, setShowForm] = useState(true);
@@ -41,49 +41,49 @@ const Crud = () => {
   const [showEdit, setShowEdit] = useState(false);
   // search bar
   const [email, setshowEmail] = useState(true);
-  const[hideseacrh, setHideSeacrh] = useState(false);
-  
-  
-  
+  const [hideseacrh, setHideSeacrh] = useState(false);
+
+
+
   const Form = () => {
     return (
       <>
         <br />
         <form className='rounded p-2 m-2' onSubmit={handleSubmit(saveData)}>
-         <div> <h4>Lägg till nya medlemar</h4></div>
+          <div> <h4>Lägg till nya medlemar</h4></div>
           <div className='row'>
-            <div className='col'>firstName
-              <input type='text' className='form-control' id='firstName' {...register("firstName", { required: true })} placeholder='Enter firstName...' />
-              {errors.firstName && errors.firstName.type === "required" && (<span className='text-danger'>firstName is Required!</span>)}
+            <div className='col'>Förnamn
+              <input type='text' className='form-control' id='firstName' {...register("firstName", { required: true })} placeholder='Ange förnamn...' />
+              {errors.firstName && errors.firstName.type === "required" && (<span className='text-danger'>Förnamn krävs!</span>)}
             </div>
-            <div className='col'>lastName
-              <input type='text' className='form-control' id='lastName' {...register("lastName", { required: true })} placeholder='Enter lastName...' />
-              {errors.lastName && errors.lastName.type === "required" && (<span className='text-danger'>lastName is Required!</span>)}
+            <div className='col'>Efternamn
+              <input type='text' className='form-control' id='lastName' {...register("lastName", { required: true })} placeholder='Ange efternamn...' />
+              {errors.lastName && errors.lastName.type === "required" && (<span className='text-danger'>Efternamn krävs!</span>)}
             </div>
           </div>
 
           <br />
 
           <div className='row'>
-            <div className='col'>email
-              <input type='text' className='form-control' id='email' {...register("email", { required: true })} placeholder='Enter email...' />
-              {errors.email && errors.email.type === "required" && (<span className='text-danger'>email is Required!</span>)}
+            <div className='col'>Email
+              <input type='text' className='form-control' id='email' {...register("email", { required: true })} placeholder='Ange email...' />
+              {errors.email && errors.email.type === "required" && (<span className='text-danger'>Email krävs!</span>)}
               <br />
-              title
-              <input type='text' className='form-control ' id='title' {...register("title", { required: true })} placeholder='Enter title... ( användare,lärare,admin )' />
+              Titel
+              <input type='text' className='form-control ' id='title' {...register("title", { required: true })} placeholder='Ange titel... ( användare,lärare,admin )' />
 
             </div>
           </div>
           <br />
           <div className='col'>
-            <button type='submit' className='btn btn-success m-2' >Add</button>
+            <button type='submit' className='btn btn-success m-2' >Lägg till</button>
             <button type='button' className='btn btn-danger m-2' onClick={() => {
-    console.log('RESET:');
-    document.getElementById('firstName').value = '';
-    document.getElementById('lastName').value = '';
-    document.getElementById('email').value = '';
-    document.getElementById('title').value = '';
-   }} >Reset</button>
+              console.log('RESET:');
+              document.getElementById('firstName').value = '';
+              document.getElementById('lastName').value = '';
+              document.getElementById('email').value = '';
+              document.getElementById('title').value = '';
+            }} >Återställ</button>
           </div>
 
         </form>
@@ -103,9 +103,9 @@ const Crud = () => {
     await axios.post(API_URL, newPerson).then(response => {
       if (response.status === 201) {
         updateList();
-        setAlert({ type: 'success', message: 'Post operation is done!' });
+        setAlert({ type: 'success', message: 'Objekt tillagd!' });
       } else {
-        setAlert({ type: 'warning', message: 'Display API Error Message...' });
+        setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
       }
 
     }).catch(error => {
@@ -136,16 +136,16 @@ const Crud = () => {
                   <span>ID : {person.id}</span>
                 </div>
                 <div className='bm-3'>
-                  <span>Name : {person.firstName + " " + person.lastName}</span>
+                  <span>Namn : {person.firstName + " " + person.lastName}</span>
                 </div>
                 <div className='bm-3'>
                   <span>Email : {person.email}</span>
                 </div>
                 <div className='bm-3'>
-                  <span>Title : {person.title}</span>
+                  <span>Titel : {person.title}</span>
                 </div>
               </div>
-              <button type='button' className='btn btn-danger' onClick={updateList}>Hide</button>
+              <button type='button' className='btn btn-danger' onClick={updateList}>Göm</button>
             </div>
 
           </div>
@@ -165,26 +165,26 @@ const Crud = () => {
   }
 
   const TableHeader = () => {
-   
-    const togleSearch= () => {
+
+    const togleSearch = () => {
       setHideSeacrh(!hideseacrh);
-     setShowForm(!showForm);
+      setShowForm(!showForm);
     }
-   
+
     return (
       <thead>
         <tr>
           <th colSpan="4" className="table-dark rounded-top">
             <div className="d-flex justify-content-between align-items-center">
-              <div>Person List <button type="button" className='' onClick={togleSearch}>search</button></div>
+              <div>Person Lista <button type="button" className='' onClick={togleSearch}>Sök</button></div>
             </div>
           </th>
         </tr>
         <tr>
           <th>ID</th>
-          <th>Name</th>
+          <th>Namn</th>
           <th>Email</th>
-          <th>Action</th>
+          <th>Åtgärd</th>
         </tr>
       </thead>
     );
@@ -196,7 +196,7 @@ const Crud = () => {
       return (
         <tbody>
           <tr>
-            <td colSpan="5">Data not Found</td>
+            <td colSpan="5">Data ej funnen</td>
           </tr>
         </tbody>
       );
@@ -230,9 +230,9 @@ const Crud = () => {
         if (response.status === 200) {
           setPerson(response.data);
           setShowDetails(true);
-          setAlert({ type: 'success', message: 'GET operation is done!' })
+          setAlert({ type: 'success', message: 'Objekt hittad!' })
         } else {
-          setAlert({ type: 'warning', message: 'Display API Error Message...' });
+          setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
         }
       }).catch(error => {
         console.log("ERROR: ", error);
@@ -246,9 +246,9 @@ const Crud = () => {
       await axios.delete(API_URL + '/' + props.person.id).then(response => {
         updateList();
         if (response.status === 204) {
-          setAlert({ type: 'success', message: 'Put operation is done!' });
+          setAlert({ type: 'success', message: 'Objekt updaterad!' });
         } else {
-          setAlert({ type: 'warning', message: 'Display API Error Message...' });
+          setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
         }
       }).catch(error => {
         console.log("ERROR: ", error);
@@ -260,9 +260,9 @@ const Crud = () => {
     const enableEdit = () => {
       setShowForm(false);
       setShowTable(false);
-      
+
       setShowEdit(true);
-      
+
     }
     const handleEditClick = async () => {
       enableEdit();
@@ -271,13 +271,13 @@ const Crud = () => {
 
     return (
       <div>
-        <button className='btn btn-primary m-2' onClick={handleDetailsClick}>Details</button>
-        <button className='btn btn-danger m-2' onClick={handleDeleteClick}>Delete</button>
-        <button className='btn btn-warning m-2' onClick={handleEditClick}>Edit</button>
+        <button className='btn btn-primary m-2' onClick={handleDetailsClick}>Detaljer</button>
+        <button className='btn btn-danger m-2' onClick={handleDeleteClick}>Ta bort</button>
+        <button className='btn btn-warning m-2' onClick={handleEditClick}>Ändra</button>
       </div>
     )
   }
- // update / save Data 
+  // update / save Data 
   const upDate = async (data) => {
     const id = personId;
     console.log(id);
@@ -293,15 +293,15 @@ const Crud = () => {
       updateList();
 
       if (response.status === 204) {
-        setAlert({ type: 'success', message: 'Put operation is done!' });
+        setAlert({ type: 'success', message: 'Objekt ändrad!' });
       } else {
-        setAlert({ type: 'warning', message: 'Display API Error Message...' });
+        setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
       }
     }).catch(error => {
       console.log("ERROR: ", error);
       setAlert({ type: 'danger', message: error.message });
     });
-  setPersonId(null);
+    setPersonId(null);
     goBack();
   }
   // after edeting you go back to list
@@ -309,7 +309,7 @@ const Crud = () => {
     console.log('GOBACK');
     setShowForm(true);
     setShowTable(true);
-   setShowEdit(false);
+    setShowEdit(false);
   }
   // empty the fields after ussage
   const empty = () => {
@@ -318,57 +318,59 @@ const Crud = () => {
     document.getElementById('editlastName').value = '';
     document.getElementById('editemail').value = '';
     document.getElementById('edittitle').value = '';
-   
+
   }
   // to update / get the new list
   const getRequestAction = async () => {
     await axios.get(API_URL).then(response => {
       if (response.status === 200) {
         setPersonList(response.data);
-        setAlert({ type: 'success', message: 'GET operation is done!' })
+        setAlert({ type: 'success', message: 'Objekt hittad!' })
       } else {
-        setAlert({ type: 'warning', message: 'Display API Error Message...' });
+        setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
       }
     }).catch(error => {
       console.log("ERROR: ", error);
       setAlert({ type: 'danger', message: error.message })
     });
   }
-// Search bar 
-const Search = ()  =>{
-   
-   const handleinput = ()=>{
-    setshowEmail(!email);
-   
-   }
-   
-    { if (email === true)return(
-   <>
-    <form className='rounded' onSubmit={handleSubmit(findbyname)}>
-       <button className='btn btn-primary' onClick={handleinput}>Ändra till Email</button> 
-       <button type='submit' className='btn btn-success m-2' >sök</button>
-       <input type='text' className='form-control' id='Email' {...register("name")} placeholder='Enter Namn...' /></form>
-   
-    </>
-    );else
-    return(<>
-        <form className='rounded'onSubmit={handleSubmit(findbyemail)}>
-        <button className='btn btn-primary' onClick={handleinput}>Ändra till Namn</button>
-        <button type='submit' className='btn btn-success m-2' >sök</button>
-            <input type='text' className='form-control' id='Name' {...register("email")}  placeholder='Enter Email...' /></form>
-           
-        </>)}
-}
-const findbyname = async (data)=>{
-const name = data.name;
-console.log(name)
+  // Search bar 
+  const Search = () => {
 
-}
-const findbyemail = async (data)=>{
-     const email = data.email;
+    const handleinput = () => {
+      setshowEmail(!email);
+
+    }
+
+
+    if (email === true) return (
+      <>
+        <form className='rounded' onSubmit={handleSubmit(findbyname)}>
+          <button className='btn btn-primary' onClick={handleinput}>Ändra till Email</button>
+          <button type='submit' className='btn btn-success m-2' >Sök</button>
+          <input type='text' className='form-control' id='Email' {...register("name")} placeholder='Ange Namn...' /></form>
+
+      </>
+    ); else
+      return (<>
+        <form className='rounded' onSubmit={handleSubmit(findbyemail)}>
+          <button className='btn btn-primary' onClick={handleinput}>Ändra till Namn</button>
+          <button type='submit' className='btn btn-success m-2' >Sök</button>
+          <input type='text' className='form-control' id='Name' {...register("email")} placeholder='Ange Email...' /></form>
+
+      </>)
+
+  }
+  const findbyname = async (data) => {
+    const name = data.name;
+    console.log(name)
+
+  }
+  const findbyemail = async (data) => {
+    const email = data.email;
     console.log(email)
-   
-}
+
+  }
 
 
   // what is seen on the page
@@ -382,13 +384,13 @@ const findbyemail = async (data)=>{
       </div>
 
       <div>
-        {showTable && 
-        <div>
-         { hideseacrh && <Search/>}
-            <Table/>
-            </div> }
+        {showTable &&
+          <div>
+            {hideseacrh && <Search />}
+            <Table />
+          </div>}
       </div>
-     
+
       <div>
         {showEdit && <>
 
@@ -396,40 +398,40 @@ const findbyemail = async (data)=>{
 
             <div className='row'>
               <div className='col-2'> id
-                <input type={'number'} className='form-control' placeholder={personId}readOnly />
-                
+                <input type={'number'} className='form-control' placeholder={personId} readOnly />
+
               </div>
             </div>
 
             <div className='row'>
-              <div className='col'> firstName
-                <input type='text' className='form-control' id='editfirstName' {...register("firstName", { required: true })} placeholder='Enter firstName...' />
-                {errors.firstName && errors.firstName.type === "required" && (<span className='text-danger'>firstName is Required!</span>)}
+              <div className='col'> Förnamn
+                <input type='text' className='form-control' id='editfirstName' {...register("firstName", { required: true })} placeholder='Ange förnamn...' />
+                {errors.firstName && errors.firstName.type === "required" && (<span className='text-danger'>Förnamn krävs!</span>)}
               </div>
-              
-              <div className='col'>lastName
-                <input type='text' className='form-control' id='editlastName' {...register("lastName", { required: true })} placeholder='Enter lastName...' />
-                {errors.lastName && errors.lastName.type === "required" && (<span className='text-danger'>lastName is Required!</span>)}
+
+              <div className='col'>Efternamn
+                <input type='text' className='form-control' id='editlastName' {...register("lastName", { required: true })} placeholder='Ange efternamn...' />
+                {errors.lastName && errors.lastName.type === "required" && (<span className='text-danger'>Efternamn krävs!</span>)}
               </div>
             </div>
 
             <br />
 
             <div className='row'>
-              <div className='col'> email
-                <input type='text' className='form-control' id='editemail' {...register("email", { required: true })} placeholder='Enter email...' />
-                {errors.email && errors.email.type === "required" && (<span className='text-danger'>email is Required!</span>)}
+              <div className='col'> Email
+                <input type='text' className='form-control' id='editemail' {...register("email", { required: true })} placeholder='Ange email...' />
+                {errors.email && errors.email.type === "required" && (<span className='text-danger'>Email krävs!</span>)}
                 <br />
                 title
-                <input type='text' className='form-control ' id='edittitle' {...register("title", { required: true })} placeholder='Enter title...' />
+                <input type='text' className='form-control ' id='edittitle' {...register("title", { required: true })} placeholder='Ange titel...' />
 
               </div>
             </div>
             <br />
             <div className='col'>
-              <button type='submit' className='btn btn-success m-2' >Add</button>
-              <button type='button' className='btn btn-danger m-2' onClick={empty} >Reset</button>
-              <button type='button ' className='btn btn-danger m-2' onClick={ goBack } >return</button>
+              <button type='submit' className='btn btn-success m-2' >Lägg till</button>
+              <button type='button' className='btn btn-danger m-2' onClick={empty} >Återställ</button>
+              <button type='button ' className='btn btn-danger m-2' onClick={goBack} >Tillbaka</button>
             </div>
 
           </form>

@@ -11,8 +11,8 @@ const Login = () => {
             <>
                 <br />
                 <form className='rounded-4 p-3 m-2' onSubmit={handleSubmit(saveData)}>
-                   
-                    
+
+
                     <div className='row'>
                         <div className='col'>Email
                             <input type='text' className='form-control' id='email' {...register("email", { required: true })} placeholder='Ange email...' />
@@ -28,9 +28,9 @@ const Login = () => {
                     <br />
                     <div className='col'>
                         <button type='submit' className='btn btn-success m-2' >Login</button>
-                    
-                      
-                        
+
+
+
                     </div>
 
                 </form>
@@ -50,7 +50,7 @@ const Login = () => {
 
         reset();
 
-        window.location.href ="http://localhost:3000/";  // link change when it is running on server
+        window.location.href = "http://localhost:3000/";  // link change when it is running on server
     }
 
 
