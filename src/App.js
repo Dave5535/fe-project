@@ -10,6 +10,7 @@ import Social from './components/Social';
 import Contacts from './components/Contacts';
 import Settings from './components/Settings';
 import Crud from './components/Crud';
+import Calendar from './components/Calendar';
 
 
 const App = () => {
@@ -23,7 +24,7 @@ const App = () => {
                     <Route exact path="/" component={Welcome} />
                     <Route path="/info" component={Info} />
                     <Route path="/chat" component={Chat} />
-
+                    <Route path="/calendar" component={Calendar} />
                     <Route path="/group" component={Group} />
                     <Route path="/social" component={Social} />
                     <Route path="/contacts" component={Contacts} />
@@ -56,7 +57,9 @@ const Header = () => {
                     <li className="nav-item">
                         <Link className="nav-link text-white" to="/chat">Chat</Link>
                     </li>
-
+                    <li className="nav item">
+                        <Link className='nav-link text-white' to="/calendar">Kalender</Link>
+                    </li>
                     <li className="nav-item">
                         <Link className="nav-link text-white" to="/group">Grupper</Link>
                     </li>
