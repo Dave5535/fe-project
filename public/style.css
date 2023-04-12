@@ -53,6 +53,6 @@ input.form-control {
 }
 
 ul li:hover {
-    background-color: #2c3136;
+    background-color: var(--bgcolor);
     border-radius: 6px;
 }
