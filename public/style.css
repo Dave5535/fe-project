@@ -51,7 +51,8 @@ input.form-control {
    text-decoration: none;
    background-color: #212529;
 }
-.icon:hover {
-   text-decoration: none;
-   background-color: #2c3136;
+
+ul li:hover {
+    background-color: #2c3136;
+    border-radius: 6px;
 }
