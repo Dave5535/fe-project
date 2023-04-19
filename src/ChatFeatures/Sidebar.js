@@ -13,7 +13,7 @@ import SidebarChannel from './SidebarChannel';
 
 const Sidebar = () => {
   return (
-    <div className='sidebar'>
+    <div className='sidebar mb-3'>
       <div className='sidebar_top'>
         <h3>Chat Room</h3>
         <ExpandMoreIcon />
@@ -39,7 +39,6 @@ const Sidebar = () => {
   <div className='sidebar_profileInfo'>
     <h6>UserName</h6>
     <p>Id</p>
-    
   </div>
 </div>
 </div>

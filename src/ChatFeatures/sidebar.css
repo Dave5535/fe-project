@@ -14,6 +14,7 @@
     background-color: var(--divbg);
     color: #fff;
     border-bottom: 3px solid rgb(45, 45, 45);
+    border-radius: 6px 6px 0 0;
 }
 .sidebar_channels{
     display: flex;
@@ -43,13 +44,13 @@
     justify-content: space-between;
     align-items: center;
     color: gray;
-    padding: 10px;
+    padding: 0 10px;
     border-top: 1px solid gray
 }
 
 .sidebar_profileInfo{
     display: 1;
-    padding: 10px;
+    padding: 0 10px;
 }
 .sidebar_profileInfo > h6{
    color: #fff;
