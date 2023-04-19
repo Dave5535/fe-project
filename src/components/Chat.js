@@ -1,27 +1,36 @@
 import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
+
+import Sidebar from '../ChatFeatures/Sidebar';
+import "./chat.css"
+import Chats from '../ChatFeatures/Chats';
+import { selectUser } from '../Store/userSlice';
+
+
 
 const Chat = () => {
 
-    const [showlist, setShowlist] = useState(false);
-
-    const update = () => {
-        setShowlist(!showlist);
-    }
+const user = useSelector(selectUser);
 
     return (
 
         <div className='container'>
 
-            <h4 className='text-center'>Chat!</h4>
-            <div className='text-center'>Chater mellan en person eller grup av personer.</div>
-            <br />
-            <div className="row">
-                <div className="col-1 "><button type="button" className="icon rounded far fa-comment-dots " onClick={update}> chat</button></div>
-                <di className="col-11 border border-dark rounded text-center">message</di>
+{user ? (<>
+    <div className='chat_container'>
+       <Sidebar/>
+       <Chats/>
 
             </div>
 
-            {showlist && <div className='bg-black col-3 border border-dark rounded'> here the list will be</div>}
+</>):(
+<>
+   <h4 className='text-center'>Chat!</h4>
+   <div className='text-center'>Logga in för att chata med en vän eller grup av Vänner.</div>
+   </>
+)}
+            
+      
 
         </div>
     );
