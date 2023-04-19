@@ -1,0 +1,42 @@
+.chats {
+    display: flex;
+    flex-direction: column;
+    flex: 0.75;
+    height: 100vh;
+}
+.chats_messages{
+ flex:1;
+}
+
+.chats_input {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: gray;
+    padding: 15px;
+    border-radius: 15px;
+    margin: 20px;
+    border-top: 1px solid gray;
+}
+
+.chats_input>form>input {
+    padding: 15px;
+    background-color: transparent;
+    width: 90%;
+    border: none;
+    outline: 0;
+    color: white;
+    font-size: large;
+}
+
+.chats_input>form {
+    flex: 1;
+}
+
+.chats_inputIcons:hover {
+    color: white;
+    padding: 5px;
+}
+.chats_input_btn {
+    display: none;
+}

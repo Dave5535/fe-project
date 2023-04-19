@@ -11,11 +11,13 @@ import Contacts from './components/Contacts';
 import Settings from './components/Settings';
 import Crud from './components/Crud';
 import Calendar from './components/Calendar';
+import { useSelector } from 'react-redux';
+import { selectUser } from './Store/userSlice';
 
 
 const App = () => {
 
-    // what is seen in the page 
+    
     return (
         <div className='container'>
             <Router>
