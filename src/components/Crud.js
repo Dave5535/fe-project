@@ -288,6 +288,7 @@ const Crud = () => {
 
     const updatedPerson = { id, firstName, lastName, email, title }
     console.log(updatedPerson);
+    
     // Call the API ( for all buttons
     await axios.put(API_URL, updatedPerson).then(response => {
       updateList();

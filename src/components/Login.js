@@ -1,16 +1,26 @@
 import React, { useEffect, useState } from 'react'
 import { set, useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import axios from 'axios';
+import { login } from '../Store/userSlice';
 
 const Login = () => {
 
+
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
+
+    // redux
+    const dispatch = useDispatch();
+    // calling Api
+    const API_URL = "http://localhost:8080/api/v1/person";
+    const [alert, setAlert] = useState({ type: '', message: '' });
 
 
     const Form = () => {
         return (
             <>
                 <br />
-                <form className='rounded-4 p-3 m-2' onSubmit={handleSubmit(saveData)}>
+                <form className='rounded-4 p-3 m-2' onSubmit={handleSubmit(checkData)}>
 
 
                     <div className='row'>
@@ -39,19 +49,28 @@ const Login = () => {
     };
 
 
-    const saveData = async (data) => {
-        const firstName = data.firstName;
-        const lastName = data.lastName;
+    const checkData = async (data) => {
+
+
         const email = data.email;
-        const title = data.title;
+        const password = data.password;
 
-        const newPerson = { firstName, lastName, email, title }
-        console.log("SAVED_PERSON", newPerson);
+        const loginPerson = { email, password }
+        console.log("INLOGED PERSON", loginPerson);
 
-        reset();
 
-        window.location.href = "http://localhost:3000/";  // link change when it is running on server
+
+
+        // send a login request for BE to check if Email and Password is simular ( AND SEND BACK USER DATA )
+        
+        dispatch(login("User"));
+
+      //  window.location.href = "http://localhost:3000/";  // link change when it is running on server updating the page ( removing the user ? )
+
     }
+
+
+
 
 
     return (
