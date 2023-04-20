@@ -2,16 +2,18 @@ import React from 'react'
 import "./message.css"
 import { Avatar } from '@mui/material'
 
-const Message = () => {
+const Message = (props) => {
+ 
+  
   return (
     <div className='message'>
-        <Avatar/>
+        <Avatar src="{user.photo}"/>
         <div className='message_info'>
-            <h6>sssssgshg
-                <span className='message_timestamp'> this is a timestamp
+            <h6>{props.user}
+                <span className='message_timestamp'>{props.timestamp}
                 </span>
             </h6>
-            <p>This is a message</p>
+            <p>{props.message} </p>
 
         </div>
 

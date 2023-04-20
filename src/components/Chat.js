@@ -27,6 +27,7 @@ const user = useSelector(selectUser);
 <>
    <h4 className='text-center'>Chat!</h4>
    <div className='text-center'>Logga in för att chata med en vän eller grup av Vänner.</div>
+   <a className='text-center' href='http://localhost:3000/login'>Logga in här</a>
    </>
 )}
             

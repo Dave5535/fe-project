@@ -1,22 +1,19 @@
 import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
+import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import "./chatHeader.css"
-const ChatHeader = () => {
+const ChatHeader = ({channelName}) => {
+   
     return (
         <div className='chatHeader'>
 
             <div className='chatHeader_left'>
                 <h4>
-                    <span className='chatHeader_hash'>#</span>
-                    Test channel Name
+                    <span className='chatHeader_hash'><ChatBubbleOutlineIcon/></span>
+                    {channelName}
                 </h4>
             </div>
-            <div className='chatHeader_right'>
-                <div className='chatHeader_search'>
-                    <input placeholder='Search' /> 
-                    <SearchIcon className='search_icon' />
-                </div>
-            </div>
+           
 
 
         </div>
