@@ -36,7 +36,7 @@ const sendMessage = e =>{
  const newMessage = {
     timestamp: timestamp,
     message: input,
-    user: user,
+    user: user.firstName,
  };
  setMessage(prevMessages => [...prevMessages, newMessage]);
  setInput("");
