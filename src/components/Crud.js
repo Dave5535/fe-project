@@ -1,9 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { set, useForm } from 'react-hook-form';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../Store/userSlice';
 
 const Crud = () => {
-
+  // to chek if user is loged in
+  const user = useSelector(selectUser);
+  if (user === null) window.location.href = "http://localhost:3000/login";
   // initializ js variables
   const persons = [];
 
@@ -46,6 +50,7 @@ const Crud = () => {
 
 
   const Form = () => {
+
     return (
       <>
         <br />
@@ -288,7 +293,7 @@ const Crud = () => {
 
     const updatedPerson = { id, firstName, lastName, email, title }
     console.log(updatedPerson);
-    
+
     // Call the API ( for all buttons
     await axios.put(API_URL, updatedPerson).then(response => {
       updateList();
@@ -375,72 +380,73 @@ const Crud = () => {
 
 
   // what is seen on the page
-  return (
-    <>
-      <div className='person-form'>
-        {showForm && <Form />}
-      </div>
-      <div className='person-details-container'>
-        <PersonDetails />
-      </div>
+  if (user !== null)
+    return (
+      <>
+        <div className='person-form'>
+          {showForm && <Form />}
+        </div>
+        <div className='person-details-container'>
+          <PersonDetails />
+        </div>
 
-      <div>
-        {showTable &&
-          <div>
-            {hideseacrh && <Search />}
-            <Table />
-          </div>}
-      </div>
+        <div>
+          {showTable &&
+            <div>
+              {hideseacrh && <Search />}
+              <Table />
+            </div>}
+        </div>
 
-      <div>
-        {showEdit && <>
+        <div>
+          {showEdit && <>
 
-          <form className='rounded-4 border p-2 m-2' onSubmit={handleSubmit(upDate)}>
+            <form className='rounded-4 border p-2 m-2' onSubmit={handleSubmit(upDate)}>
 
-            <div className='row'>
-              <div className='col-2'> id
-                <input type={'number'} className='form-control' placeholder={personId} readOnly />
+              <div className='row'>
+                <div className='col-2'> id
+                  <input type={'number'} className='form-control' placeholder={personId} readOnly />
 
-              </div>
-            </div>
-
-            <div className='row'>
-              <div className='col'> Förnamn
-                <input type='text' className='form-control' id='editfirstName' {...register("firstName", { required: true })} placeholder='Ange förnamn...' />
-                {errors.firstName && errors.firstName.type === "required" && (<span className='text-danger'>Förnamn krävs!</span>)}
+                </div>
               </div>
 
-              <div className='col'>Efternamn
-                <input type='text' className='form-control' id='editlastName' {...register("lastName", { required: true })} placeholder='Ange efternamn...' />
-                {errors.lastName && errors.lastName.type === "required" && (<span className='text-danger'>Efternamn krävs!</span>)}
+              <div className='row'>
+                <div className='col'> Förnamn
+                  <input type='text' className='form-control' id='editfirstName' {...register("firstName", { required: true })} placeholder='Ange förnamn...' />
+                  {errors.firstName && errors.firstName.type === "required" && (<span className='text-danger'>Förnamn krävs!</span>)}
+                </div>
+
+                <div className='col'>Efternamn
+                  <input type='text' className='form-control' id='editlastName' {...register("lastName", { required: true })} placeholder='Ange efternamn...' />
+                  {errors.lastName && errors.lastName.type === "required" && (<span className='text-danger'>Efternamn krävs!</span>)}
+                </div>
               </div>
-            </div>
 
-            <br />
+              <br />
 
-            <div className='row'>
-              <div className='col'> Email
-                <input type='text' className='form-control' id='editemail' {...register("email", { required: true })} placeholder='Ange email...' />
-                {errors.email && errors.email.type === "required" && (<span className='text-danger'>Email krävs!</span>)}
-                <br />
-                title
-                <input type='text' className='form-control ' id='edittitle' {...register("title", { required: true })} placeholder='Ange titel...' />
+              <div className='row'>
+                <div className='col'> Email
+                  <input type='text' className='form-control' id='editemail' {...register("email", { required: true })} placeholder='Ange email...' />
+                  {errors.email && errors.email.type === "required" && (<span className='text-danger'>Email krävs!</span>)}
+                  <br />
+                  title
+                  <input type='text' className='form-control ' id='edittitle' {...register("title", { required: true })} placeholder='Ange titel...' />
 
+                </div>
               </div>
-            </div>
-            <br />
-            <div className='col'>
-              <button type='submit' className='btn btn-success m-2' >Lägg till</button>
-              <button type='button' className='btn btn-danger m-2' onClick={empty} >Återställ</button>
-              <button type='button ' className='btn btn-danger m-2' onClick={goBack} >Tillbaka</button>
-            </div>
+              <br />
+              <div className='col'>
+                <button type='submit' className='btn btn-success m-2' >Lägg till</button>
+                <button type='button' className='btn btn-danger m-2' onClick={empty} >Återställ</button>
+                <button type='button ' className='btn btn-danger m-2' onClick={goBack} >Tillbaka</button>
+              </div>
 
-          </form>
+            </form>
 
-        </>
-        }
-      </div>
-    </>
-  );
+          </>
+          }
+        </div>
+      </>
+    );
 }
 export default Crud;

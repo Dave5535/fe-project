@@ -15,7 +15,7 @@ const Sidebar = () => {
 
 // popup for adding a channel
 const user = useSelector(selectUser);
-const [showAddChannel,setShowAddChannel ] = useState(true); 
+const [showAddChannel,setShowAddChannel ] = useState(false); 
 
   // input for AddChannel
 const [input,setInput ] = useState(""); 

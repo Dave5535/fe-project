@@ -1,13 +1,19 @@
 import React from "react";
+import { useSelector } from "react-redux";
+import { selectUser } from "../Store/userSlice";
 
 const Info = () => {
 
-    return (
-        <div className='container'>
-            <h4 className='text-center'>Info!</h4>
-            <div className='text-center'> här kan Möten och Event läggas up för att alla ska se.</div>
-        </div>
-    );
+    const user = useSelector(selectUser);
+    if (user === null) window.location.href = "http://localhost:3000/login";
+
+    if (user !== null)
+        return (
+            <div className='container'>
+                <h4 className='text-center'>Info!</h4>
+                <div className='text-center'> här kan Möten och Event läggas up för att alla ska se.</div>
+            </div>
+        );
 }
 
 export default Info;
