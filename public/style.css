@@ -56,3 +56,14 @@ ul li:hover {
     background-color: var(--bgcolor);
     border-radius: 6px;
 }
+
+input.calendarInput {
+   background-color: var(--input);
+   min-width: 20%;
+   padding: 0.4rem;
+   border-radius: 6px;
+   border: 1px solid var(--glow);
+   transition: all 200ms ease;
+   margin: 0.2rem;
+   box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.3);
+}
