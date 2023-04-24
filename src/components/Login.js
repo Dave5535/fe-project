@@ -50,8 +50,8 @@ const Login = () => {
 
 
     const checkData = async (data) => {
-        
-        
+
+
         const testLoginPerson = {
             id: "12345",
             firstName: "David",
@@ -60,32 +60,33 @@ const Login = () => {
             title: "FOR TESTING", // role in
             userName: "Dave 5535",
             password: "pass",
-            conversations:{},
-            events:{}}
-        
-        
+            conversations: {},
+            events: {}
+        }
+
+
 
         const email = data.email;
         const password = data.password;
 
         const loginPerson = { email, password }
-       
+
 
 
 
 
         // send a login request for BE to check if Email and Password is simular ( AND SEND BACK USER DATA )
-        if (loginPerson.email === testLoginPerson.email){
-            if(loginPerson.password === testLoginPerson.password) { 
+        if (loginPerson.email === testLoginPerson.email) {
+            if (loginPerson.password === testLoginPerson.password) {
                 dispatch(login(testLoginPerson))
                 console.log("Hello User");
-            }; 
-            
-        }else return console.log("Wrong password or email ");  
-        
-        
+            };
 
-      //  window.location.href = "http://localhost:3000/";  // link change when it is running on server updating the page ( removing the user ? )
+        } else return console.log("Wrong password or email ");
+
+
+
+        //  window.location.href = "http://localhost:3000/";  // link change when it is running on server updating the page ( removing the user ? )
 
     }
 

@@ -4,27 +4,35 @@ import { useDispatch, useSelector } from "react-redux";
 
 const Settings = () => {
 
-    const user =  useSelector(selectUser);
+    const user = useSelector(selectUser);
+    if (user === null) window.location.href = "http://localhost:3000/login";
+
+
     const dispatch = useDispatch();
-const handellogout = () => {
-   dispatch(logout());
-}
+    const handellogout = () => {
+        dispatch(logout());
+    }
+    if (user !== null)
+        return (
 
-    return (
+            <div className='container'>
 
-        <div className='container'>
+                <h4 className='text-center'>Inställningar!</h4>
+                <div className='text-center'>make changes to account ,etc.</div>
+                <br />
+                <h1>{user.firstName} {user.lastName}</h1>
+                <h6># {user.id} { }</h6>
 
-            <h4 className='text-center'>Inställningar!</h4>
-            <div className='text-center'>make changes to account ,etc.</div>
-            <br />
-            <h1>{user}</h1>
-<button type="button" className="btn btn-danger" onClick={handellogout} >logout</button>
-
-
-        </div>
+                <div>change password ? // change email ?</div>
 
 
-    );
+                <button type="button" className="btn btn-danger" onClick={handellogout} >logout</button>
+
+
+            </div>
+
+
+        );
 
 }
 

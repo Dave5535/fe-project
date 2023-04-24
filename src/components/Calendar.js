@@ -7,6 +7,8 @@ import startOfWeek from "date-fns/startOfWeek";
 import getDay from "date-fns/getDay";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import { useSelector } from 'react-redux';
+import { selectUser } from '../Store/userSlice';
 
 const locales = {
     "sv": require("date-fns/locale/sv")
@@ -35,29 +37,34 @@ const events = [
 ]
 
 const CalendarApp = () => {
+
+    const user = useSelector(selectUser);
+    if (user === null) window.location.href = "http://localhost:3000/login";
+
+
     const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" })
     const [allEvents, setAllEvents] = useState(events)
 
     const handleAddEvent = () => {
         setAllEvents([...allEvents, newEvent])
     }
-
-    return (
-        <div className='container'>
-            <h4 className='text-center'>Kalender</h4><br />
-            <h5 className='text-center'>Lägg Till Inlägg</h5>
-            <div className='text-center'>
-                <input type="text" placeholder='Titel' className='calendarInput'
-                    value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
-                <DatePicker placeholderText="Startdatum" className='calendarInput'
-                    selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
-                <DatePicker placeholderText="Slutdatum"
-                    selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} className='calendarInput' />
-                <button onClick={handleAddEvent} className='btn btn-primary mt-3'>Lägg Till</button>
+    if (user !== null)
+        return (
+            <div className='container'>
+                <h4 className='text-center'>Kalender</h4><br />
+                <h5 className='text-center'>Lägg Till Inlägg</h5>
+                <div className='text-center'>
+                    <input type="text" placeholder='Titel' className='calendarInput'
+                        value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })} />
+                    <DatePicker placeholderText="Startdatum" className='calendarInput'
+                        selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
+                    <DatePicker placeholderText="Slutdatum"
+                        selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} className='calendarInput' />
+                    <button onClick={handleAddEvent} className='btn btn-primary mt-3'>Lägg Till</button>
+                </div>
+                <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 500 }} className='bg-light text-dark mt-3 rounded' />
             </div>
-            <Calendar localizer={localizer} events={allEvents} startAccessor="start" endAccessor="end" style={{ height: 500}} className='bg-light text-dark mt-3 rounded' />
-        </div>
-    );
+        );
 };
 
 export default CalendarApp;

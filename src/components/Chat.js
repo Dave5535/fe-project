@@ -10,31 +10,22 @@ import { selectUser } from '../Store/userSlice';
 
 const Chat = () => {
 
-const user = useSelector(selectUser);
+    const user = useSelector(selectUser);
+    if (user === null) window.location.href = "http://localhost:3000/login";
 
-    return (
+    if (user !== null)
+        return (
 
-        <div className='container'>
+            <div className='container'>
 
-{user ? (<>
-    <div className='chat_container'>
-       <Sidebar/>
-       <Chats/>
 
+                <div className='chat_container'>
+                    <Sidebar />
+                    <Chats />
+                </div>
             </div>
+        )
 
-</>):(
-<>
-   <h4 className='text-center'>Chat!</h4>
-   <div className='text-center'>Logga in för att chata med en vän eller grup av Vänner.</div>
-   <a className='text-center' href='http://localhost:3000/login'>Logga in här</a>
-   </>
-)}
-            
-      
-
-        </div>
-    );
 
 }
 
