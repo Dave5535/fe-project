@@ -8,16 +8,16 @@ import { setChannelInfo } from '../Store/AppSlice';
 
 
 const SidebarChannel = (props) => {
- // when DB is in place We could get the created Channel and put its name here to render the right one.
- const dispatch = useDispatch();
- 
- 
+  // when DB is in place We could get the created Channel and put its name here to render the right one.
+  const dispatch = useDispatch();
+
+
   return (
     <div className='sidebarChannel' onClick={() => dispatch(setChannelInfo({
-      id: props.id, 
+      id: props.id,
       channelName: props.channelName,
     }))}>
-        <h5><span className='sidebarChannel_hash'><ChatBubbleOutlineIcon/></span>{props.channelName}</h5>
+      <h5><span className='sidebarChannel_hash'><ChatBubbleOutlineIcon /></span>{props.channelName}</h5>
     </div>
   )
 }

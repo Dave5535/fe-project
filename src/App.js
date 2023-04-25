@@ -17,7 +17,7 @@ import { selectUser } from './Store/userSlice';
 
 const App = () => {
 
-    
+
     return (
         <div className='container'>
             <Router>
