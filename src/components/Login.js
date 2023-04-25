@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { set, useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { login } from '../Store/userSlice';
+import { login, selectUser } from '../Store/userSlice';
 
 const Login = () => {
 
@@ -20,7 +20,7 @@ const Login = () => {
         return (
             <>
                 <br />
-                <form className='rounded-4 p-3 m-2' onSubmit={handleSubmit(checkData)}>
+                <form className='rounded-4 p-3 m-2' style={{maxWidth: "500px" }} onSubmit={handleSubmit(checkData)}>
 
 
                     <div className='row'>
@@ -90,7 +90,11 @@ const Login = () => {
 
     }
 
-
+    const user = useSelector(selectUser);
+    if(user !== null) 
+    return(
+        <div className="text-success">Du har loggat in</div>
+    );
 
 
 
