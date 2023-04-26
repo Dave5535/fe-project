@@ -6,7 +6,6 @@ import { login, selectUser } from '../Store/userSlice';
 
 const Login = () => {
 
-
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     // redux
@@ -15,16 +14,14 @@ const Login = () => {
     const API_URL = "http://localhost:8080/api/v1/person";
     const [alert, setAlert] = useState({ type: '', message: '' });
 
-
     const Form = () => {
         return (
             <>
                 <br />
-                <form className='rounded-4 p-3 m-2' style={{maxWidth: "500px" }} onSubmit={handleSubmit(checkData)}>
-
-
+                <form className='rounded-4 p-3 m-2' style={{ maxWidth: "500px" }} onSubmit={handleSubmit(checkData)}>
                     <div className='row'>
-                        <div className='col'>Email
+                        <div className='col'>
+                            Email
                             <input type='text' className='form-control' id='email' {...register("email", { required: true })} placeholder='Ange email...' />
                             {errors.email && errors.email.type === "required" && (<span className='text-danger'>Email är ett krav!</span>)}
                             <br />
@@ -38,9 +35,6 @@ const Login = () => {
                     <br />
                     <div className='col'>
                         <button type='submit' className='btn btn-success m-2' >Login</button>
-
-
-
                     </div>
 
                 </form>
@@ -50,7 +44,6 @@ const Login = () => {
 
 
     const checkData = async (data) => {
-
 
         const testLoginPerson = {
             id: "12345",
@@ -64,16 +57,9 @@ const Login = () => {
             events: {}
         }
 
-
-
         const email = data.email;
         const password = data.password;
-
         const loginPerson = { email, password }
-
-
-
-
 
         // send a login request for BE to check if Email and Password is simular ( AND SEND BACK USER DATA )
         if (loginPerson.email === testLoginPerson.email) {
@@ -84,19 +70,15 @@ const Login = () => {
 
         } else return console.log("Wrong password or email ");
 
-
-
         //  window.location.href = "http://localhost:3000/";  // link change when it is running on server updating the page ( removing the user ? )
 
     }
 
     const user = useSelector(selectUser);
-    if(user !== null) 
-    return(
-        <div className="text-success">Du har loggat in</div>
-    );
-
-
+    if (user !== null)
+        return (
+            <div className="text-success">Du har loggat in</div>
+        );
 
     return (
         <div className="container">
