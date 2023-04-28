@@ -5,17 +5,22 @@ const Documents = () => {
       <div className='container'>
          <h3 className='text-center'>Dokument</h3><br />
 
+         {/* Card */}
          <div className="card bg-dark shadow text-center" style={{ width: "15rem" }}>
-
+            {/* Header */}
             <div className="card-header">
-               <h3 className="card-title">Titel</h3>
+               <h5 className="card-title">Titel</h5>
             </div>
-
+            {/* Body */}
             <div className="card-body">
-               <a href="./Image/Big-Sur-Shore-Rocks.png"><img src="./Image/Big-Sur-Shore-Rocks.png" target="_blank" alt="document_img" className='rounded shadow' style={{ width: "12rem" }} /></a>
+               <a href="./Image/Big-Sur-Shore-Rocks.png">
+                  <img src="./Image/Big-Sur-Shore-Rocks.png" target="_blank" alt="document_img" className='rounded shadow' style={{ width: "12rem" }} />
+               </a>
             </div>
-
-            <div className="card-footer"><a href="#" download>Ladda ner</a></div>
+            {/* Footer */}
+            <div className="card-footer">
+               <a href="#" download>Ladda ner</a>     {/* Remember to change the "#" */}
+            </div>
          </div>
       </div>
    );
