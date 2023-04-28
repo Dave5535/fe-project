@@ -9,7 +9,7 @@ const Documents = () => {
          <div className="card bg-dark shadow text-center" style={{ width: "15rem" }}>
             {/* Header */}
             <div className="card-header">
-               <h5 className="card-title">Titel</h5>
+               <h5 className="card-title">Dokument 1</h5>
             </div>
             {/* Body */}
             <div className="card-body">
