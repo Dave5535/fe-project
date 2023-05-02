@@ -11,6 +11,11 @@ html {
    background-color: var(--divbg);
 }
 
+div a {
+   color: #fff;
+   text-decoration: none;
+}
+
 #root {
    height: 100vh;
    height: 100dvh;
@@ -53,8 +58,8 @@ input.form-control {
 }
 
 ul li:hover {
-    background-color: var(--bgcolor);
-    border-radius: 6px;
+   background-color: var(--bgcolor);
+   border-radius: 6px;
 }
 
 input.calendarInput {
