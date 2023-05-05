@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory, useParams, useLocation, Redirect } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import { selectUser } from './Store/userSlice';
 
 import Login from './components/Login';
 import Chat from './components/Chat';
