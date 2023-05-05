@@ -13,3 +13,8 @@
     font-size: x-small;
  }
 
+ .orginMessage{
+    display: flex;
+    margin-left: 25%;
+    padding: 10px;
+ }

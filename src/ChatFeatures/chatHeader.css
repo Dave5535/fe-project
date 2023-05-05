@@ -20,7 +20,7 @@
     
  }
 
- .chatHeader_search{
+ .chatHeader_right{
     display: flex;
    align-items:center;
    color: gray;
@@ -28,14 +28,67 @@
    border-radius: 3px;
    padding: 3px; 
 }
-.chatHeader_search > input{
-   background: transparent;
-   outline: 0;
-   color: white;
-   border: none;
-   
-}
- .search_icon:hover{
-padding: 5px;
+
+ .chatHeader_right:hover{
 cursor: pointer; 
+transition: all 200ms ease;
+box-shadow: 3px 3px 9px rgba(24, 148, 206, 0.577);
+}
+.friend_box{
+   width: 300px;
+   height: 400px;
+   position:absolute;
+   right: 30%;
+   top: 20%; 
+   
+   justify-content: center;
+   align-items: center;
+   background-color: #3f474e;
+   border-radius: 5px;
+}
+
+.friend_headText {
+   border-radius: 5px;
+   color: white;
+   display: flex;
+   justify-content: center;
+}
+.friend_List{
+   display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 300px;
+  overflow: scroll;
+  flex: 1;
+}
+.user:hover{
+  background-color: rgb(108, 112, 114);
+}
+.user img {
+   height: 30px;
+   width: 30px;
+   border-radius: 50%;
+   margin-right: 10px;
+ }
+.friend_List::-webkit-scrollbar {
+   display: none;
+}
+.friend_List{
+   -ms-overflow-style: none;
+   scrollbar-width: none;
+}
+
+.btn_style{
+    border-radius: 5px;
+  width: 100%;
+   color: rgb(124, 122, 122);
+   display: flex;
+   justify-content: center;
+}
+.user{
+   height: 50px;
+  width: 200px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
 }
