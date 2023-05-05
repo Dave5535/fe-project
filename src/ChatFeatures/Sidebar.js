@@ -10,11 +10,8 @@ import SidebarChannel from './SidebarChannel';
 import { selectUser } from '../Store/userSlice';
 import { setChannelInfo } from '../Store/AppSlice';
 
-
-
-
 const Sidebar = () => {
-// used to store things
+  // used to store things
   const dispatch = useDispatch();
 
   // popup for adding a channel
@@ -26,67 +23,63 @@ const Sidebar = () => {
 
   const [channel, setChannel] = useState([]);
 
-// settings if you want to see klass or Friends 
-const [chatHeaderbtn, setChatHeaderbtn] = useState("Friends");
-const [chatHeader, setChatHeader] = useState("Klass");
+  // settings if you want to see klass or Friends 
+  const [chatHeaderbtn, setChatHeaderbtn] = useState("Friends");
+  const [chatHeader, setChatHeader] = useState("Klass");
 
 
   // adding Channel
-  
+
   const addChannel = (e) => {
     e.preventDefault();
 
 
-    const c3 = { 
-      id: "3", 
+    const c3 = {
+      id: "3",
       channelName: input,
-      channelType: chatHeader, 
+      channelType: chatHeader,
       channelMessages: {
-        user:{ firstName: "System", photo: "https://th.bing.com/th/id/OIP.6rBuDJx97j2yiZ8Bdi9tMwHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"},
-        id: "System_id", 
+        user: { firstName: "System", photo: "https://th.bing.com/th/id/OIP.6rBuDJx97j2yiZ8Bdi9tMwHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
+        id: "System_id",
         timestamp: "date from Api",
         message: "Start your conversation today",
       },
-       } 
+    }
 
     const newChannel = {
       id: c3.id,
       channelName: c3.channelName,
       channelType: c3.channelType,
-      channelMessages:[c3.channelMessages],
+      channelMessages: [c3.channelMessages],
     };
-      setChannel(prevchannel => [...prevchannel, newChannel]);
+    setChannel(prevchannel => [...prevchannel, newChannel]);
     setInput("");
     handelAddChannel();
   }
-
-
- 
-
 
   const handelAddChannel = () => {
     setShowAddChannel(!showAddChannel);
     setInput("");
   }
 
-// Change between klass and Friend
+  // Change between klass and Friend
 
-const handleChatHeader = () => {
-if( chatHeader === "Friends") setChatHeader("Klass");else setChatHeader("Friends");
-if(chatHeaderbtn === "Klass") setChatHeaderbtn("Friends");else setChatHeaderbtn("Klass");
+  const handleChatHeader = () => {
+    if (chatHeader === "Friends") setChatHeader("Klass"); else setChatHeader("Friends");
+    if (chatHeaderbtn === "Klass") setChatHeaderbtn("Friends"); else setChatHeaderbtn("Klass");
 
 
-}
+  }
 
   return (
     <div className='sidebar mb-3'>
       <div className='sidebar_top'>
         <h3>{chatHeader} </h3>
         <ExpandMoreIcon />
-        
+
         <div className="btn-group">
-    <button type="button" className="btn btn-primary" onClick={handleChatHeader}>{chatHeaderbtn}</button>
-    
+          <button type="button" className="btn btn-primary" onClick={handleChatHeader}>{chatHeaderbtn}</button>
+
         </div>
 
       </div>
@@ -94,7 +87,7 @@ if(chatHeaderbtn === "Klass") setChatHeaderbtn("Friends");else setChatHeaderbtn(
       <div className='sidebar_channels'>
         <div className='sidebar_channelsHeader'>
           <div className='sidebar_header'></div>
-          <ExpandMoreIcon/>
+          <ExpandMoreIcon />
           <h4>{chatHeader} channels</h4>
           <AddIcon type="button" onClick={handelAddChannel} className='sidebar_addchannels' />
 
@@ -116,24 +109,24 @@ if(chatHeaderbtn === "Klass") setChatHeaderbtn("Friends");else setChatHeaderbtn(
       </div>
 
       <div className='sidebar_channelList'>
-  {channel.map((channel, index) => {
-    if (channel.channelType === chatHeader) {
-      return (
-        <div key={index} className='sidebarChannel' onClick={() => dispatch(setChannelInfo({
-          key: index,
-          channelId: channel.channelId,
-          channelName: channel.channelName,
-          channelType: channel.channelType,
-          channelMessages: channel.channelMessages,
-        }))}>
-          <h5><span className='sidebarChannel_hash'></span>{channel.channelName}</h5>
-        </div>
-      );
-    }
-    return null;
-  })}
-  <SidebarChannel channelHeader={chatHeader}/>
-</div>
+        {channel.map((channel, index) => {
+          if (channel.channelType === chatHeader) {
+            return (
+              <div key={index} className='sidebarChannel' onClick={() => dispatch(setChannelInfo({
+                key: index,
+                channelId: channel.channelId,
+                channelName: channel.channelName,
+                channelType: channel.channelType,
+                channelMessages: channel.channelMessages,
+              }))}>
+                <h5><span className='sidebarChannel_hash'></span>{channel.channelName}</h5>
+              </div>
+            );
+          }
+          return null;
+        })}
+        <SidebarChannel channelHeader={chatHeader} />
+      </div>
 
       <div className='sidebar_profile'>
         <Avatar src={user.photo} />
@@ -146,10 +139,5 @@ if(chatHeaderbtn === "Klass") setChatHeaderbtn("Friends");else setChatHeaderbtn(
     </div>
   )
 }
-
-
-
-
-
 
 export default Sidebar

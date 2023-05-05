@@ -6,7 +6,6 @@ import { login, selectUser } from '../Store/userSlice';
 
 const Login = () => {
 
-
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
 
     // redux
@@ -14,7 +13,6 @@ const Login = () => {
     // calling Api
     const API_URL = "http://localhost:8080/api/v1/person";
     const [alert, setAlert] = useState({ type: '', message: '' });
-
 
     const Form = () => {
         return (
@@ -47,7 +45,6 @@ const Login = () => {
 
     const checkData = async (data) => {
 
-
         const testLoginPerson = {
             id: "12345",
             firstName: "David",
@@ -74,16 +71,10 @@ const Login = () => {
             events: [],
         }
 
-
-
         const email = data.email;
         const password = data.password;
 
         const loginPerson = { email, password }
-
-
-
-
 
         // send a login request for BE to check if Email and Password is simular ( AND SEND BACK USER DATA )
         if (loginPerson.email === testLoginPerson.email) {
@@ -106,7 +97,6 @@ const Login = () => {
             <div className="text-success">Du har loggat in</div>
 
         );
-
 
     return (
         <div className="container">
