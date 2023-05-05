@@ -6,8 +6,6 @@ import "./chat.css"
 import Chats from '../ChatFeatures/Chats';
 import { selectUser } from '../Store/userSlice';
 
-
-
 const Chat = () => {
 
     const user = useSelector(selectUser);
@@ -17,8 +15,6 @@ const Chat = () => {
         return (
 
             <div className='container'>
-
-
                 <div className='chat_container'>
                     <Sidebar />
                     <Chats />

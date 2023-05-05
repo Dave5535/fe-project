@@ -24,10 +24,7 @@ const Settings = () => {
                 <h6># {user.id} { }</h6>
 
                 <div>change password ? // change email ?</div>
-
-
                 <button type="button" className="btn btn-danger" onClick={handellogout} >logout</button>
-
 
             </div>
 

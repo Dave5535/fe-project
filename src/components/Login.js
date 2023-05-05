@@ -20,8 +20,7 @@ const Login = () => {
         return (
             <>
                 <br />
-                <form className='rounded-4 p-3 m-2' style={{maxWidth: "500px" }} onSubmit={handleSubmit(checkData)}>
-
+                <form className='rounded-4 p-3 m-2' style={{ maxWidth: "500px" }} onSubmit={handleSubmit(checkData)}>
 
                     <div className='row'>
                         <div className='col'>Email
@@ -38,9 +37,6 @@ const Login = () => {
                     <br />
                     <div className='col'>
                         <button type='submit' className='btn btn-success m-2' >Login</button>
-
-
-
                     </div>
 
                 </form>
@@ -57,12 +53,12 @@ const Login = () => {
             firstName: "David",
             lastName: "Svantesson",
             email: "easy",
-            role: "admin", 
+            role: "admin",
             userName: "Dave 5535",
             password: "pass",
             photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUGXkn6Eo8eeiFv7O-1QEaenXwr_EcqmxtnQ&usqp=CAU",
-            conversations:[],
-              
+            conversations: [],
+
             events: [],
         }
         const testLoginPerson2 = {
@@ -70,15 +66,15 @@ const Login = () => {
             firstName: "Mikael",
             lastName: "Svennson",
             email: "email",
-            role: "teacher", 
+            role: "teacher",
             userName: "M,S",
             password: "login",
             photo: "https://avatars.githubusercontent.com/u/113359307?s=120&v=4",
-            conversations:[],
+            conversations: [],
             events: [],
         }
 
-        
+
 
         const email = data.email;
         const password = data.password;
@@ -93,7 +89,7 @@ const Login = () => {
         if (loginPerson.email === testLoginPerson.email) {
             if (loginPerson.password === testLoginPerson.password) {
                 dispatch(login(testLoginPerson))
-                
+
             };
 
         } else return console.log("Wrong password or email ");
@@ -105,11 +101,11 @@ const Login = () => {
     }
 
     const user = useSelector(selectUser);
-    if(user !== null) 
-    return(
-        <div className="text-success">Du har loggat in</div>
-        
-    );
+    if (user !== null)
+        return (
+            <div className="text-success">Du har loggat in</div>
+
+        );
 
 
     return (
