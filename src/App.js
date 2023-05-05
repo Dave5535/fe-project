@@ -12,7 +12,9 @@ import Contacts from './components/Contacts';
 import Settings from './components/Settings';
 import Crud from './components/Crud';
 import Calendar from './components/Calendar';
-
+import Documents from './components/Documents';
+import { useSelector } from 'react-redux';
+import { selectUser } from './Store/userSlice';
 
 
 
@@ -30,7 +32,7 @@ const App = () => {
                     <Route path="/info" component={Info} />
                     <Route path="/chat" component={Chat} />
                     <Route path="/calendar" component={Calendar} />
-                    
+                    <Route path="/documents" component={Documents} />
                     <Route path="/social" component={Social} />
                     <Route path="/contacts" component={Contacts} />
                     <Route path="/settings" component={Settings} />
@@ -74,6 +76,9 @@ const Header = () => {
                     </li>
                     <li className="nav item">
                         <Link className='nav-link text-white' to="/calendar">Kalender</Link>
+                    </li>
+                    <li className="nav item">
+                        <Link className='nav-link text-white' to="/documents">Dokument</Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link text-white" to="/social">Socialt</Link>
