@@ -2,10 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import { selectUser } from "../Store/userSlice";
 
-
-
-
-
 const Contacts = () => {
 
     const user = useSelector(selectUser);

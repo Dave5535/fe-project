@@ -11,11 +11,6 @@ import Settings from './components/Settings';
 import Crud from './components/Crud';
 import Calendar from './components/Calendar';
 import Documents from './components/Documents';
-import { useSelector } from 'react-redux';
-import { selectUser } from './Store/userSlice';
-
-
-
 
 const App = () => {
 
@@ -39,7 +34,6 @@ const App = () => {
                     <Route component={NotFound} />
                 </Switch>
             </Router>
-
 
         </div>
     )
