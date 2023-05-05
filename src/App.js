@@ -1,8 +1,8 @@
-import React,{ useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory, useParams, useLocation, Redirect } from "react-router-dom";
 import { useSelector } from 'react-redux';
-
 import { selectUser } from './Store/userSlice';
+
 import Login from './components/Login';
 import Chat from './components/Chat';
 import Info from './components/Info';
@@ -12,14 +12,9 @@ import Contacts from './components/Contacts';
 import Settings from './components/Settings';
 import Crud from './components/Crud';
 import Calendar from './components/Calendar';
-
-
-
-
+import Documents from './components/Documents';
 
 const App = () => {
- 
-
 
     return (
         <div className='container'>
@@ -30,31 +25,29 @@ const App = () => {
                     <Route path="/info" component={Info} />
                     <Route path="/chat" component={Chat} />
                     <Route path="/calendar" component={Calendar} />
-                    
+                    <Route path="/documents" component={Documents} />
                     <Route path="/social" component={Social} />
                     <Route path="/contacts" component={Contacts} />
                     <Route path="/settings" component={Settings} />
-                    <Route path="/hantera_Anvandare" component={Crud}/>
+                    <Route path="/hantera_Anvandare" component={Crud} />
                     <Route path="/login" component={Login} />
                     <Route component={NotFound} />
                 </Switch>
             </Router>
-
 
         </div>
     )
 
 }
 const Header = () => {
-    const [admin, setAdmin]= useState(false);
+    const [admin, setAdmin] = useState(false);
     const user = useSelector(selectUser);
 
-    
     useEffect(() => {
         if (user !== null && user.role === "admin") {
-          setAdmin(true);
+            setAdmin(true);
         }
-      }, [user]);
+    }, [user]);
 
     return (
         <nav className='navbar navbar-expand-sm bg-dark navbar-dark shadow rounded mb-3'>
@@ -75,6 +68,9 @@ const Header = () => {
                     <li className="nav item">
                         <Link className='nav-link text-white' to="/calendar">Kalender</Link>
                     </li>
+                    <li className="nav item">
+                        <Link className='nav-link text-white' to="/documents">Dokument</Link>
+                    </li>
                     <li className="nav-item">
                         <Link className="nav-link text-white" to="/social">Socialt</Link>
                     </li>
@@ -85,12 +81,10 @@ const Header = () => {
                         <Link className="nav-link text-white" to="/settings" ><div className='fas fa-cog'></div></Link>
                     </li>
                 </ul>
-{admin && <>
-                
-                
-                <Link type='button' className='btn btn-primary'  to="/hantera_Anvandare">Hantera Användare</Link>
-               </> }
-                
+                {admin && <>
+                    <Link type='button' className='btn btn-primary' to="/hantera_Anvandare">Hantera Användare</Link>
+                </>}
+
             </div>
         </nav>
     );

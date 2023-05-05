@@ -7,7 +7,6 @@ const Settings = () => {
     const user = useSelector(selectUser);
     if (user === null) window.location.href = "http://localhost:3000/login";
 
-
     const dispatch = useDispatch();
     const handellogout = () => {
         dispatch(logout());
@@ -24,10 +23,7 @@ const Settings = () => {
                 <h6># {user.id} { }</h6>
 
                 <div>change password ? // change email ?</div>
-
-
                 <button type="button" className="btn btn-danger" onClick={handellogout} >logout</button>
-
 
             </div>
 
