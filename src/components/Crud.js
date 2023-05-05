@@ -55,41 +55,86 @@ const Crud = () => {
       <>
         <br />
         <form className='rounded p-2 m-2 mb-5' onSubmit={handleSubmit(saveData)}>
-          <div> <h4>Lägg till nya medlemar</h4></div>
-          <div className='row'>
-            <div className='col'>Förnamn
-              <input type='text' className='form-control' id='firstName' {...register("firstName", { required: true })} placeholder='Ange förnamn...' />
-              {errors.firstName && errors.firstName.type === "required" && (<span className='text-danger'>Förnamn krävs!</span>)}
-            </div>
-            <div className='col'>Efternamn
-              <input type='text' className='form-control' id='lastName' {...register("lastName", { required: true })} placeholder='Ange efternamn...' />
-              {errors.lastName && errors.lastName.type === "required" && (<span className='text-danger'>Efternamn krävs!</span>)}
-            </div>
-          </div>
-
-          <br />
-
-          <div className='row'>
-            <div className='col'>Email
-              <input type='text' className='form-control' id='email' {...register("email", { required: true })} placeholder='Ange email...' />
-              {errors.email && errors.email.type === "required" && (<span className='text-danger'>Email krävs!</span>)}
-              <br />
-              Titel
-              <input type='text' className='form-control ' id='title' {...register("title", { required: true })} placeholder='Ange titel... ( användare,lärare,admin )' />
-
-            </div>
-          </div>
-          <br />
+        <div>
+          <h4>Lägg till nya medlemar</h4>
+        </div>
+        <div className='row'>
           <div className='col'>
-            <button type='submit' className='btn btn-success m-2' >Lägg till</button>
-            <button type='button' className='btn btn-danger m-2' onClick={() => {
+            Förnamn
+            <input
+              type='text'
+              className='form-control'
+              id='firstName'
+              {...register('firstName', { required: true })}
+              placeholder='Ange förnamn...'
+            />
+            {errors.firstName && errors.firstName.type === 'required' && (
+              <span className='text-danger'>Förnamn krävs!</span>
+            )}
+          </div>
+          <div className='col'>
+            Efternamn
+            <input
+              type='text'
+              className='form-control'
+              id='lastName'
+              {...register('lastName', { required: true })}
+              placeholder='Ange efternamn...'
+            />
+            {errors.lastName && errors.lastName.type === 'required' && (
+              <span className='text-danger'>Efternamn krävs!</span>
+            )}
+          </div>
+        </div>
+
+        <br />
+
+        <div className='row'>
+          <div className='col'>
+            Email
+            <input
+              type='text'
+              className='form-control'
+              id='email'
+              {...register('email', { required: true })}
+              placeholder='Ange email...'
+            />
+            {errors.email && errors.email.type === 'required' && (
+              <span className='text-danger'>Email krävs!</span>
+            )}
+            <br />
+            Role
+            <select
+              className='form-control'
+              id='title'
+              {...register('title', { required: true })}
+              defaultValue='user'
+            placeholder='user'>
+              <option value='user'>Användare</option>
+              <option value='teacher'>Lärare</option>
+              <option value='admin'>Admin</option>
+            </select>
+          </div>
+        </div>
+        <br />
+        <div className='col'>
+          <button type='submit' className='btn btn-success m-2'>
+            Lägg till
+          </button>
+          <button
+            type='button'
+            className='btn btn-danger m-2'
+            onClick={() => {
               console.log('RESET:');
               document.getElementById('firstName').value = '';
               document.getElementById('lastName').value = '';
               document.getElementById('email').value = '';
-              document.getElementById('title').value = '';
-            }} >Återställ</button>
-          </div>
+              document.getElementById('title').value = 'user';
+            }}
+          >
+            Återställ
+          </button>
+        </div>
 
         </form>
       </>
@@ -410,29 +455,65 @@ const Crud = () => {
                 </div>
               </div>
 
-              <div className='row'>
-                <div className='col'> Förnamn
-                  <input type='text' className='form-control' id='editfirstName' {...register("firstName", { required: true })} placeholder='Ange förnamn...' />
-                  {errors.firstName && errors.firstName.type === "required" && (<span className='text-danger'>Förnamn krävs!</span>)}
-                </div>
+              
+        <div className='row'>
+          <div className='col'>
+            Förnamn
+            <input
+              type='text'
+              className='form-control'
+              id='firstName'
+              {...register('firstName', { required: true })}
+              placeholder='Ange förnamn...'
+            />
+            {errors.firstName && errors.firstName.type === 'required' && (
+              <span className='text-danger'>Förnamn krävs!</span>
+            )}
+          </div>
+          <div className='col'>
+            Efternamn
+            <input
+              type='text'
+              className='form-control'
+              id='lastName'
+              {...register('lastName', { required: true })}
+              placeholder='Ange efternamn...'
+            />
+            {errors.lastName && errors.lastName.type === 'required' && (
+              <span className='text-danger'>Efternamn krävs!</span>
+            )}
+          </div>
+        </div>
 
-                <div className='col'>Efternamn
-                  <input type='text' className='form-control' id='editlastName' {...register("lastName", { required: true })} placeholder='Ange efternamn...' />
-                  {errors.lastName && errors.lastName.type === "required" && (<span className='text-danger'>Efternamn krävs!</span>)}
-                </div>
-              </div>
+        <br />
 
-              <br />
-
-              <div className='row'>
-                <div className='col'> Email
-                  <input type='text' className='form-control' id='editemail' {...register("email", { required: true })} placeholder='Ange email...' />
-                  {errors.email && errors.email.type === "required" && (<span className='text-danger'>Email krävs!</span>)}
-                  <br />
-                  title
-                  <input type='text' className='form-control ' id='edittitle' {...register("title", { required: true })} placeholder='Ange titel...' />
-
-                </div>
+        <div className='row'>
+          <div className='col'>
+            Email
+            <input
+              type='text'
+              className='form-control'
+              id='email'
+              {...register('email', { required: true })}
+              placeholder='Ange email...'
+            />
+            {errors.email && errors.email.type === 'required' && (
+              <span className='text-danger'>Email krävs!</span>
+            )}
+            <br />
+            Role
+            <select
+              className='form-control'
+              id='title'
+              {...register('title', { required: true })}
+              defaultValue='user'
+            placeholder='user'>
+              <option value='user'>Användare</option>
+              <option value='teacher'>Lärare</option>
+              <option value='admin'>Admin</option>
+            </select>
+          </div>
+        
               </div>
               <br />
               <div className='col'>
