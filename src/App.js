@@ -16,8 +16,6 @@ import Documents from './components/Documents';
 
 const App = () => {
 
-
-
     return (
         <div className='container'>
             <Router>
@@ -44,7 +42,6 @@ const App = () => {
 const Header = () => {
     const [admin, setAdmin] = useState(false);
     const user = useSelector(selectUser);
-
 
     useEffect(() => {
         if (user !== null && user.role === "admin") {
@@ -85,8 +82,6 @@ const Header = () => {
                     </li>
                 </ul>
                 {admin && <>
-
-
                     <Link type='button' className='btn btn-primary' to="/hantera_Anvandare">Hantera Användare</Link>
                 </>}
 

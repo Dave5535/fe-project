@@ -7,7 +7,6 @@ const Settings = () => {
     const user = useSelector(selectUser);
     if (user === null) window.location.href = "http://localhost:3000/login";
 
-
     const dispatch = useDispatch();
     const handellogout = () => {
         dispatch(logout());
