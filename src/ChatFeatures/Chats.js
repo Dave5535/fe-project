@@ -27,13 +27,13 @@ const Chats = () => {
     }, [channelMessages]);
 
 
-
+    let dateTime = new Date().toString();
 
     const sendMessage = e => {
         e.preventDefault();
         const newMessage = {
             user: user,
-            timestamp: "date from Api",
+            timestamp: dateTime,
             message: input,
 
         };
