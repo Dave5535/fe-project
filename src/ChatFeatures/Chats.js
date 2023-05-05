@@ -8,7 +8,6 @@ import ChatHeader from './ChatHeader'
 import "./chats.css";
 import Message from './Message';
 
-
 const Chats = () => {
     const user = useSelector(selectUser);
     const channelId = useSelector(selectChannelId);
@@ -20,7 +19,6 @@ const Chats = () => {
     // for message and input
     const [input, setInput] = useState("");
     const [message, setMessages] = useState([]);
-
 
     useEffect(() => {
         setMessages(channelMessages);
@@ -56,12 +54,7 @@ const Chats = () => {
             <div className='chats_input'>
                 <form>
                     <input type="text" value={input} onChange={e => setInput(e.target.value)} disabled={!channelId} placeholder={'Message  #' + channelName} />
-
                     <button className='chats_input_btn' type='submit' onClick={sendMessage} >Send message</button>
-
-
-
-
                 </form>
 
             </div>

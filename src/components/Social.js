@@ -7,8 +7,6 @@ const Social = () => {
     const user = useSelector(selectUser);
     if (user === null) window.location.href = "http://localhost:3000/login";
 
-
-
     if (user !== null)
         return (
             <div className='container'>
