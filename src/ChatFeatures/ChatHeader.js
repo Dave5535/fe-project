@@ -4,14 +4,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import "./chatHeader.css"
 
-import { addFriendToChannel, selectChannelUsers, addChannelMessage } from '../Store/AppSlice';
+import { addFriendToChannel, selectChannelUsers, addChannelMessage  } from '../Store/AppSlice';
 import { Avatar } from '@mui/material';
 import { selectUser } from '../Store/userSlice';
 
+
+
+
+
 const ChatHeader = ({ channelName }) => {
-    // const channelUserList = useSelector(selectChannelUsers);
+   // const channelUserList = useSelector(selectChannelUsers);
     const [users, setUsers] = useState([]);
-    // const dispatch = useDispatch();
+   // const dispatch = useDispatch();
     const [showUsers, setShowUsers] = useState(false);
     const dispatch = useDispatch();
 
@@ -48,9 +52,8 @@ const ChatHeader = ({ channelName }) => {
 
 
     const showListOfUsers = () => {
-        setShowUsers(!showUsers);
+       setShowUsers(!showUsers);
     }
-
       const handelUserClicked = (user) => {
       
 // add the person to the channelUserList
@@ -64,26 +67,13 @@ dispatch(addFriendToChannel({
     id: "System_id", 
     timestamp: "date from Api",
     message: user.firstName +" "+ user.lastName + " have been added by " + channelUser.firstName + " " + channelUser.lastName,
-    const handelUserClicked = (user) => {
-
-        // add the person to the channelUserList
-        dispatch(addFriendToChannel({
-            user: user,
-        }
-        ));
-
-        // send a message from system that the person is added and by who? 
-        dispatch(addChannelMessage({
-            user: { firstName: "System", photo: "https://th.bing.com/th/id/OIP.6rBuDJx97j2yiZ8Bdi9tMwHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-            id: "System_id",
-            timestamp: "date from Api",
-            message: user.firstName + " " + user.lastName + " have been added by " + channelUser.firstName + " " + channelUser.lastName,
-        }
-        ));
-        setShowUsers(!showUsers)
     }
+ ));
+setShowUsers(!showUsers)
+     
+}
 
-    if (channelName !== null)
+    if(channelName !== null)
         return (
             <div className='chatHeader'>
 
@@ -96,20 +86,20 @@ dispatch(addFriendToChannel({
                 <div className='chatHeader_right' onClick={handelAddFriend}>Add Friends</div>
 
                 {showUsers && <div className='friend_box'>
-                    <div className='friend_content'>
-
+                <div className='friend_content'>
+                        
                         <div className='friend_headText border-bottom'>Friends List</div>
                         <div className='friend_List'>
-                            {users.map((users) => (
-                                <div className='user' key={users.user.id} onClick={() => handelUserClicked(users.user)}>
-                                    <Avatar src={users.user.photo} />
-                                    <div className='user_name'>{users.user.firstName} {users.user.lastName}  </div>
-                                </div>
-                            ))
-                            }
+                          {users.map((users) => (
+                           <div className='user' key={users.user.id} onClick={() => handelUserClicked(users.user)}>
+                            <Avatar src={users.user.photo}/>
+                            <div className='user_name'>{users.user.firstName} {users.user.lastName }  </div>
+                           </div>
+ ))
+}
                         </div>
                         <div className='border-top btn_style'>
-                            <button type='button' className=' btn btn-danger m-3 ' onClick={showListOfUsers}>Avbryt</button>
+                        <button type='button' className=' btn btn-danger m-3 ' onClick={showListOfUsers}>Avbryt</button>
                         </div>
                     </div>
                 </div>
