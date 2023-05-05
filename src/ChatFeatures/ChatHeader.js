@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import SearchIcon from '@mui/icons-material/Search';
+
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import "./chatHeader.css"
 
@@ -24,7 +24,9 @@ const ChatHeader = ({ channelName }) => {
     const channelUser = useSelector(selectUser);
 
     const handelAddFriend = () => {
-        const newUser = {
+       
+          
+          const newUser = {
 
             user: {
                 id: "43573",
@@ -39,8 +41,13 @@ const ChatHeader = ({ channelName }) => {
                 events: [],
             }
         };
-        setUsers(prevUsers => [...prevUsers, newUser]);
+          if(channelUser.role !== "user"){
+             setUsers(prevUsers => [...prevUsers, newUser]);
         showListOfUsers();
+          }else{
+            alert("Only teachers and admin are allowed to create classChatt");
+          }; 
+       
     }
 
 
@@ -48,7 +55,7 @@ const ChatHeader = ({ channelName }) => {
        setShowUsers(!showUsers);
     }
       const handelUserClicked = (user) => {
-
+      
 // add the person to the channelUserList
 dispatch(addFriendToChannel({
     user: user,}

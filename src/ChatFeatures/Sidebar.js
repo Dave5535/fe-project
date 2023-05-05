@@ -65,10 +65,14 @@ const [chatHeader, setChatHeader] = useState("Klass");
 
 
   const handelAddChannel = () => {
+    if(user.role !== "user"){
     setShowAddChannel(!showAddChannel);
     setInput("");
-  }
+  }else{
+    alert("Only teachers and admin are allowed to create classChatt");
+  };
 
+}
 // Change between klass and Friend
 
 const handleChatHeader = () => {
