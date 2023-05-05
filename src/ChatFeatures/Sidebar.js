@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 import { Avatar } from '@mui/material';
@@ -6,12 +8,14 @@ import { Avatar } from '@mui/material';
 import "./sidebar.css"
 import SidebarChannel from './SidebarChannel';
 import { selectUser } from '../Store/userSlice';
-import { useSelector } from 'react-redux';
+import { setChannelInfo } from '../Store/AppSlice';
 
 
 
 
 const Sidebar = () => {
+// used to store things
+  const dispatch = useDispatch();
 
   // popup for adding a channel
   const user = useSelector(selectUser);
@@ -22,33 +26,42 @@ const Sidebar = () => {
 
   const [channel, setChannel] = useState([]);
 
+// settings if you want to see klass or Friends 
+const [chatHeaderbtn, setChatHeaderbtn] = useState("Friends");
+const [chatHeader, setChatHeader] = useState("Klass");
+
 
   // adding Channel
+  
   const addChannel = (e) => {
     e.preventDefault();
 
-    const c1 = { id: "1", channelName: "testName" }
-    const c2 = { id: "2", channelName: "new project" }
 
-
-    const c3 = { id: "3", channelName: input } // want to try to add this "got this from BE"
+    const c3 = { 
+      id: "3", 
+      channelName: input,
+      channelType: chatHeader, 
+      channelMessages: {
+        user:{ firstName: "System", photo: "https://th.bing.com/th/id/OIP.6rBuDJx97j2yiZ8Bdi9tMwHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"},
+        id: "System_id", 
+        timestamp: "date from Api",
+        message: "Start your conversation today",
+      },
+       } 
 
     const newChannel = {
       id: c3.id,
       channelName: c3.channelName,
+      channelType: c3.channelType,
+      channelMessages:[c3.channelMessages],
     };
-
-    const createdChannel =
       setChannel(prevchannel => [...prevchannel, newChannel]);
     setInput("");
     handelAddChannel();
   }
 
 
-  useEffect(() => {
-    // update Users Channels when a new one is added
-
-  }, []);
+ 
 
 
   const handelAddChannel = () => {
@@ -56,21 +69,33 @@ const Sidebar = () => {
     setInput("");
   }
 
-  // Hardcodet Test Channels
+// Change between klass and Friend
 
+const handleChatHeader = () => {
+if( chatHeader === "Friends") setChatHeader("Klass");else setChatHeader("Friends");
+if(chatHeaderbtn === "Klass") setChatHeaderbtn("Friends");else setChatHeaderbtn("Klass");
+
+
+}
 
   return (
     <div className='sidebar mb-3'>
       <div className='sidebar_top'>
-        <h3>Chat Room</h3>
+        <h3>{chatHeader} </h3>
         <ExpandMoreIcon />
+        
+        <div className="btn-group">
+    <button type="button" className="btn btn-primary" onClick={handleChatHeader}>{chatHeaderbtn}</button>
+    
+        </div>
+
       </div>
 
       <div className='sidebar_channels'>
         <div className='sidebar_channelsHeader'>
           <div className='sidebar_header'></div>
-          <ExpandMoreIcon />
-          <h4>Text channels</h4>
+          <ExpandMoreIcon/>
+          <h4>{chatHeader} channels</h4>
           <AddIcon type="button" onClick={handelAddChannel} className='sidebar_addchannels' />
 
           {showAddChannel && <div className='addChannel_form'>
@@ -91,15 +116,27 @@ const Sidebar = () => {
       </div>
 
       <div className='sidebar_channelList'>
-
-        {channel.map((channel, index) => (
-          <SidebarChannel key={index} id={channel.id} channelName={channel.channelName} />
-        ))}
-
-      </div>
+  {channel.map((channel, index) => {
+    if (channel.channelType === chatHeader) {
+      return (
+        <div key={index} className='sidebarChannel' onClick={() => dispatch(setChannelInfo({
+          key: index,
+          channelId: channel.channelId,
+          channelName: channel.channelName,
+          channelType: channel.channelType,
+          channelMessages: channel.channelMessages,
+        }))}>
+          <h5><span className='sidebarChannel_hash'></span>{channel.channelName}</h5>
+        </div>
+      );
+    }
+    return null;
+  })}
+  <SidebarChannel channelHeader={chatHeader}/>
+</div>
 
       <div className='sidebar_profile'>
-        <Avatar src='add an image' />
+        <Avatar src={user.photo} />
 
         <div className='sidebar_profileInfo'>
           <h6>{user.firstName}</h6>

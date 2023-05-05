@@ -5,7 +5,6 @@ import Login from './components/Login';
 import Chat from './components/Chat';
 import Info from './components/Info';
 import Welcome from './components/Welcome';
-import Group from './components/Group';
 import Social from './components/Social';
 import Contacts from './components/Contacts';
 import Settings from './components/Settings';
@@ -14,6 +13,7 @@ import Calendar from './components/Calendar';
 import Documents from './components/Documents';
 import { useSelector } from 'react-redux';
 import { selectUser } from './Store/userSlice';
+
 
 
 const App = () => {
@@ -29,7 +29,6 @@ const App = () => {
                     <Route path="/chat" component={Chat} />
                     <Route path="/calendar" component={Calendar} />
                     <Route path="/documents" component={Documents} />
-                    <Route path="/group" component={Group} />
                     <Route path="/social" component={Social} />
                     <Route path="/contacts" component={Contacts} />
                     <Route path="/settings" component={Settings} />
@@ -66,9 +65,6 @@ const Header = () => {
                     </li>
                     <li className="nav item">
                         <Link className='nav-link text-white' to="/documents">Dokument</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link text-white" to="/group">Grupper</Link>
                     </li>
                     <li className="nav-item">
                         <Link className="nav-link text-white" to="/social">Socialt</Link>
