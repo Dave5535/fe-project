@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import SearchIcon from '@mui/icons-material/Search';
+
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import "./chatHeader.css"
 
@@ -20,7 +20,9 @@ const ChatHeader = ({ channelName }) => {
     const channelUser = useSelector(selectUser);
 
     const handelAddFriend = () => {
-        const newUser = {
+       
+          
+          const newUser = {
 
             user: {
                 id: "43573",
@@ -35,14 +37,33 @@ const ChatHeader = ({ channelName }) => {
                 events: [],
             }
         };
-        setUsers(prevUsers => [...prevUsers, newUser]);
+          if(channelUser.role !== "user"){
+             setUsers(prevUsers => [...prevUsers, newUser]);
         showListOfUsers();
+          }else{
+            alert("Only teachers and admin are allowed to create classChatt");
+          }; 
+       
     }
 
 
     const showListOfUsers = () => {
         setShowUsers(!showUsers);
     }
+
+      const handelUserClicked = (user) => {
+      
+// add the person to the channelUserList
+dispatch(addFriendToChannel({
+    user: user,}
+ ));
+
+ // send a message from system that the person is added and by who? 
+ dispatch(addChannelMessage({
+    user:{ firstName: "System", photo: "https://th.bing.com/th/id/OIP.6rBuDJx97j2yiZ8Bdi9tMwHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"},
+    id: "System_id", 
+    timestamp: "date from Api",
+    message: user.firstName +" "+ user.lastName + " have been added by " + channelUser.firstName + " " + channelUser.lastName,
     const handelUserClicked = (user) => {
 
         // add the person to the channelUserList
@@ -60,7 +81,6 @@ const ChatHeader = ({ channelName }) => {
         }
         ));
         setShowUsers(!showUsers)
-
     }
 
     if (channelName !== null)
