@@ -1,0 +1,21 @@
+.settings_profile_pic{
+    height: 100px;
+    width: 100px;
+   
+}
+.profile_pic_container{
+   background-color: rgb(27, 27, 27);
+   padding: 10px;
+   border-radius: 10px;
+   justify-content: center;
+   display: flex;
+}
+.edit_pic:hover{
+color: rgb(0, 98, 255);
+cursor: pointer;
+}
+.edit_pic_input{
+   background-color: rgb(76, 74, 74);
+   border-radius: 5px;
+   color: rgb(126, 170, 232);
+    }
