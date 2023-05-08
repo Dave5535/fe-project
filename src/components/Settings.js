@@ -9,6 +9,7 @@ const Settings = () => {
 
     const user = useSelector(selectUser);
     if (user === null) window.location.href = "http://localhost:3000/login";
+
     const dispatch = useDispatch();
     const [showEdit, setShowEdit] = useState(false);
     const handellogout = () => {
@@ -48,11 +49,10 @@ setShowEdit(!showEdit);
                <h3>{user.role}</h3>
                 <h6># {user.id} </h6>
 
+
                 <div>change password (send a request, user get a email and then change the password) ? <br/> change email (only admin can do if user needs to) ?</div>
 
-
                 <button type="button" className="btn btn-danger" onClick={handellogout} >logout</button>
-
 
             </div>
 
