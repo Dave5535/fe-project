@@ -1,0 +1,15 @@
+.plays_list{
+    background-color: rgb(35, 34, 34);
+    padding: 10px;
+    border-radius: 5px;
+}
+.plays_time{
+  color: rgb(239, 236, 236);
+margin-left: 10%;
+font-size: small; 
+
+}
+.plays_description{
+   font-size: medium;
+  }
+
