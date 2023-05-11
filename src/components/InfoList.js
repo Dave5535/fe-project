@@ -22,7 +22,7 @@ const InfoList = () => {
                         <span className='plays_time'>{plays.time}</span>
                         <br /><br />
                         <span className='plays_description'> {plays.description}</span>
-                        <button className='btn btn-primary plays_btn '> till dukument  </button>
+                        <button className='btn btn-primary plays_btn '> Till Dokument  </button>
                     </h4>
 
                 </div>);
