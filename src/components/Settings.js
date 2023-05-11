@@ -17,10 +17,10 @@ const Settings = () => {
     }
 
     const handeleditbtn = () => {
-setShowEdit(!showEdit);
+        setShowEdit(!showEdit);
     }
-    const editSubmit= () => {
-// send request about to change the profile pic 
+    const editSubmit = () => {
+        // send request about to change the profile pic 
     }
 
 
@@ -37,20 +37,20 @@ setShowEdit(!showEdit);
                     <Avatar src={user.photo} className="settings_profile_pic" />
                     <EditIcon className="edit_pic" onClick={handeleditbtn} />
                     {showEdit && <div>
-                       
-                        <input className="edit_pic_input" placeholder="link till en bild" onSubmit={editSubmit}/>
-                         <br/>
-                         ex : https//www.någon.bild.du.valt
-                        </div>}
+
+                        <input className="edit_pic_input" placeholder="link till en bild" onSubmit={editSubmit} />
+                        <br />
+                        ex : https//www.någon.bild.du.valt
+                    </div>}
                 </div>
 
                 <br />
                 <h1>{user.firstName} {user.lastName}</h1>
-               <h3>{user.role}</h3>
+                <h3>{user.role}</h3>
                 <h6># {user.id} </h6>
 
 
-                <div>change password (send a request, user get a email and then change the password) ? <br/> change email (only admin can do if user needs to) ?</div>
+                <div className="mb-3">change password (send a request, user get an email and then change the password) ? <br /> change email (only admin can do if user needs to) ?</div>
 
                 <button type="button" className="btn btn-danger" onClick={handellogout} >logout</button>
 
