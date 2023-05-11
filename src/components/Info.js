@@ -89,7 +89,6 @@ const Info = () => {
                 {userRole && <button className="btn btn-success" onClick={handelswitch}>lägg till event</button>}
                 <div className="mb-3">  <button className="btn btn-primary" onClick={handelAddPlay}>Set Plays (array of items) </button> {"<- is going to be replaced with array from BE "}</div>
                 <div className="info_event_list"> <InfoList /> </div>
-                <div className="info_event_list"> <InfoList /> </div>
             </div>}
             {showForm && <div className="form_container">
                 <form onSubmit={handleSubmit(savePlay)}> <h4>Lägg till ett event</h4>
