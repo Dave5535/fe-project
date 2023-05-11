@@ -11,21 +11,21 @@ const InfoList = () => {
         setAllPlays(plays);
     }, [plays]);
 
-    console.log(allplays)
+
     return (
         <div>
             {allplays.map((plays) => {
-                return (<div key={plays.playId}
-                    className='plays_list'>
+                return (
+                    <div key={plays.playId} className='plays_list'>
+                        <h4>
+                            {plays.playName}
+                            <span className='plays_time'>{plays.time}</span>
+                            <br /><br />
+                            <span className='plays_description'> {plays.description}</span>
+                            <button className='btn btn-primary plays_btn '> till dukument  </button>
+                        </h4>
 
-                    <h4>{plays.playName}
-                        <span className='plays_time'>{plays.time}</span>
-                        <br /><br />
-                        <span className='plays_description'> {plays.description}</span>
-                        <button className='btn btn-primary plays_btn '> till dukument  </button>
-                    </h4>
-
-                </div>);
+                    </div>);
 
             })}
         </div>

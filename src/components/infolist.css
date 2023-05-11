@@ -12,4 +12,19 @@ font-size: small;
 .plays_description{
    font-size: medium;
   }
+  .form_container{
+    background-color: rgb(35, 34, 34);
+    padding: 10px;
+    border-radius: 5px;
+   }
+.info_input{
+margin: 5px;
+border-radius: 5px;
+border: none;
+outline: 0;
+color: rgb(0, 0, 0);
+font-size: large;
+cursor: pointer;
+   }
+
 
