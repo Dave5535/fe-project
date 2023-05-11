@@ -15,18 +15,17 @@ const InfoList = () => {
     return (
         <div>
             {allplays.map((plays) => {
-                return (
-                    <div key={plays.playId} className='plays_list'>
-                        <h4>
-                            {plays.playName}
-                            <span className='plays_time'>{plays.time}</span>
-                            <br /><br />
-                            <span className='plays_description'> {plays.description}</span>
-                            <button className='btn btn-primary plays_btn '> till dukument  </button>
-                        </h4>
+                return (<div key={plays.playId}
+                    className='plays_list'>
 
-                    </div>);
+                    <h4>{plays.playName}
+                        <span className='plays_time'>{plays.time}</span>
+                        
+                        <span className='plays_description mb-3'> {plays.description}</span>
+                        <button className='btn btn-primary plays_btn '> Till Dokument  </button>
+                    </h4>
 
+                </div>);
             })}
         </div>
     );

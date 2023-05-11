@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 
 const Info = () => {
 
+
     const [showForm, setShowForm] = useState(false);
     const [showPage, setShowPage] = useState(true);
     const dispatch = useDispatch();
@@ -25,8 +26,6 @@ const Info = () => {
                 script: "Hello Everyone and wellcome",
                 plays: [],
             },
-
-
         }
         dispatch(setPlayinfo(play));
     };
@@ -38,15 +37,11 @@ const Info = () => {
                 playName: "Möte eller en pjäs ",
                 description: "Här går det att beskriva lite kort vad det är för något event ",
                 time: "t,ex 20 / 05 / 2023 ",
-                script: "Hello Everyone and wellcome",
-
+                script: "Hello Everyone and wellcome",    
             }],
         }
         dispatch(setPlaysInfo(play));
     }
-
-
-
     const handelswitch = () => {
         setShowForm(!showForm);
         setShowPage(!showPage);
@@ -64,7 +59,6 @@ const Info = () => {
         // Save Play to BE 
 
     }
-
 
     const user = useSelector(selectUser);
     const [userRole, setUserRole] = useState(false);
@@ -93,18 +87,9 @@ const Info = () => {
                 <h4 className='text-center'>Info!</h4>
                 <div className='text-center'> här kan Möten och Event läggas up för att alla ska se. även script till de som ska vara med i pjäser</div>
                 {userRole && <button className="btn btn-success" onClick={handelswitch}>lägg till event</button>}
-
-
-                <br />
-
-
-
-
+                <div className="mb-3">  <button className="btn btn-primary" onClick={handelAddPlay}>Set Plays (array of items) </button> {"<- is going to be replaced with array from BE "}</div>
                 <div className="info_event_list"> <InfoList /> </div>
-
-
-
-
+                <div className="info_event_list"> <InfoList /> </div>
             </div>}
             {showForm && <div className="form_container">
                 <form onSubmit={handleSubmit(savePlay)}> <h4>Lägg till ett event</h4>
