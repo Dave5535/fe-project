@@ -11,7 +11,7 @@ const InfoList = () => {
         setAllPlays(plays);
     }, [plays]);
 
-    console.log(allplays)
+
     return (
         <div>
             {allplays.map((plays) => {
@@ -20,13 +20,12 @@ const InfoList = () => {
 
                     <h4>{plays.playName}
                         <span className='plays_time'>{plays.time}</span>
-                        <br /><br />
-                        <span className='plays_description'> {plays.description}</span>
+                        
+                        <span className='plays_description mb-3'> {plays.description}</span>
                         <button className='btn btn-primary plays_btn '> Till Dokument  </button>
                     </h4>
 
                 </div>);
-
             })}
         </div>
     );
