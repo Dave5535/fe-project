@@ -23,10 +23,21 @@ const Sidebar = () => {
 
   const [channel, setChannel] = useState([]);
 
+  const [userPhoto, setUserPhoto] = useState(true);
+
   // settings if you want to see klass or Friends 
   const [chatHeaderbtn, setChatHeaderbtn] = useState("Friends");
   const [chatHeader, setChatHeader] = useState("Klass");
 
+  useEffect(() => {
+   if(user.photo.charAt(0) !== "#") {
+      setUserPhoto(false)
+    }
+    if(user.photo.charAt(0) === "#") {
+      setUserPhoto(true)
+    }
+  }, [user]);
+//  
 
   // adding Channel
 
@@ -128,21 +139,31 @@ const Sidebar = () => {
               </div>
             );
           }
+          
+          
           return null;
         })}
         <SidebarChannel channelHeader={chatHeader} />
       </div>
-
-      <div className='sidebar_profile'>
-        <Avatar src={user.photo} />
+      { userPhoto &&  <div className='sidebar_profile'>
+      <Avatar sx={{ bgcolor: user.photo }}>{user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}</Avatar>
 
         <div className='sidebar_profileInfo'>
-          <h6>{user.firstName}</h6>
+          <h6>{user.firstName +" "+ user.lastName}</h6>
           <p>{user.id}</p>
         </div>
-      </div>
+      </div> }
+      { !userPhoto &&  <div className='sidebar_profile'>
+      <Avatar src={user.photo} />
+
+        <div className='sidebar_profileInfo'>
+          <h6>{user.firstName +" "+ user.lastName}</h6>
+          <p>{user.id}</p>
+        </div>
+      </div> }
+      
     </div>
-  )
+  );
 }
 
 export default Sidebar
