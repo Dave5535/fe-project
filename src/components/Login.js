@@ -3,19 +3,30 @@ import { useHistory } from 'react-router-dom';
 import { set, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
-import { login, selectUser } from '../Store/userSlice';
+import { login, selectUser, updatePhoto } from '../Store/userSlice';
 import "./infolist.css";
 
 
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-
+   // user info 
+    const user = useSelector(selectUser);
     // redux
     const dispatch = useDispatch();
     // calling Api
     const API_URL = "http://localhost:8080/api/v1/person";
     const [alert, setAlert] = useState({ type: '', message: '' });
+
+    // needed if user need a update
+    useEffect(() => {
+        if (user && user.photo === null) {
+          giveDefaultProfilePic();
+        }
+      }, [user]);
+      
+
+
 
     // pushing to main page 
     const history = useHistory();
@@ -47,7 +58,20 @@ const Login = () => {
             </>
         )
     };
+    // giva a profile pic if you new 
+    const giveDefaultProfilePic = () =>  {
+const color = getRandomColor();
+        dispatch(updatePhoto(color));
 
+        
+
+    };
+
+    const getRandomColor = () => {
+        const colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#00BCD4', '#009688', '#4CAF50', '#FFC107', '#FF5722', '#795548', '#607D8B'];
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        return colors[randomIndex];
+      };
 
     const checkData = async (data) => {
 
@@ -59,7 +83,7 @@ const Login = () => {
             role: "admin",
             userName: "Dave 5535",
             password: "pass",
-            photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUGXkn6Eo8eeiFv7O-1QEaenXwr_EcqmxtnQ&usqp=CAU",
+            photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUGXkn6Eo8eeiFv7O-1QEaenXwr_EcqmxtnQ&usqp=CAU", // 
             conversations: [],
 
             events: [],
@@ -90,10 +114,13 @@ const Login = () => {
             };
 
         } else return console.log("Wrong password or email ");
-         history.push('/')
+
+        setTimeout(() => {
+            history.push('/');
+          }, 10);
     }
 
-    const user = useSelector(selectUser);
+    
     if (user !== null)
         return (
             <div className="text-success">Du har loggat in</div>
@@ -102,8 +129,11 @@ const Login = () => {
 
     return (
         <div className="container">
-            <h4 className='text-center'>Login!</h4>
+            
+            <h4 className='text-center p-5'>Login!</h4>
+            <div className='form_box'>
             <Form className="form_box"/>
+            </div>
         </div>
     );
 }

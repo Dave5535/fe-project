@@ -1,5 +1,5 @@
 .plays_list{
-    background-color: rgb(35, 34, 34);
+    background-color: rgb(101, 45, 180);
     padding: 10px;
     border-radius: 5px;
 }
@@ -27,6 +27,6 @@ font-size: large;
 cursor: pointer;
    }
 .form_box{
-  align-content: center;
+  justify-content: center;
   display: flex;
  }

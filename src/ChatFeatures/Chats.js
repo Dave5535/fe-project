@@ -48,7 +48,7 @@ const Chats = () => {
                 key={index}
                 timestamp={message.timestamp}
                 messages={message.message}
-                user={message.user}
+                userprop={message.user}
             />))}</div>
 
             <div className='chats_input'>
