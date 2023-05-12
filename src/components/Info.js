@@ -86,10 +86,10 @@ const Info = () => {
             {showPage && <div className='container'>
                 <h4 className='text-center'>Info!</h4>
                 <div className='text-center'> här kan Möten och Event läggas up för att alla ska se. även script till de som ska vara med i pjäser</div>
-                {userRole && <button className="btn btn-success" onClick={handelswitch}>lägg till event</button>}
-                <div className="mb-3">  <button className="btn btn-primary" onClick={handelAddPlay}>Set Plays (array of items) </button> {"<- is going to be replaced with array from BE "}</div>
-                <div className="info_event_list"> <InfoList /> </div>
-                <div className="info_event_list"> <InfoList /> </div>
+                {userRole && <button className="btn btn-success mb-4" onClick={handelswitch}>lägg till event</button>}
+                
+                <div className="info_event_list" > <InfoList /> </div>
+                
             </div>}
             {showForm && <div className="form_container">
                 <form onSubmit={handleSubmit(savePlay)}> <h4>Lägg till ett event</h4>
@@ -132,7 +132,7 @@ const Info = () => {
                     <div className='col'>   <input
                         type="text"
                         className="info_input"
-                        placeholder="manus ( dok? ).."
+                        placeholder=" ( docs / pdf ).."
                         id="script"
                         {...register('script', { required: false })} />
                         {errors.firstName && errors.firstName.type !== 'required' && (

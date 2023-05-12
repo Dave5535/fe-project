@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import { set, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { login, selectUser } from '../Store/userSlice';
+import "./infolist.css";
+
 
 const Login = () => {
 
@@ -13,6 +16,9 @@ const Login = () => {
     // calling Api
     const API_URL = "http://localhost:8080/api/v1/person";
     const [alert, setAlert] = useState({ type: '', message: '' });
+
+    // pushing to main page 
+    const history = useHistory();
 
     const Form = () => {
         return (
@@ -84,11 +90,7 @@ const Login = () => {
             };
 
         } else return console.log("Wrong password or email ");
-
-
-
-        //  window.location.href = "http://localhost:3000/";  // link change when it is running on server updating the page ( removing the user ? )
-
+         history.push('/')
     }
 
     const user = useSelector(selectUser);
@@ -101,7 +103,7 @@ const Login = () => {
     return (
         <div className="container">
             <h4 className='text-center'>Login!</h4>
-            <Form />
+            <Form className="form_box"/>
         </div>
     );
 }

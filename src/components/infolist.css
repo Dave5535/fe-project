@@ -26,5 +26,7 @@ color: rgb(0, 0, 0);
 font-size: large;
 cursor: pointer;
    }
-
-
+.form_box{
+  align-content: center;
+  display: flex;
+ }
