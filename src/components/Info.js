@@ -37,7 +37,7 @@ const Info = () => {
                 playName: "Möte eller en pjäs ",
                 description: "Här går det att beskriva lite kort vad det är för något event ",
                 time: "t,ex 20 / 05 / 2023 ",
-                script: "Hello Everyone and wellcome",    
+                script: "Hello Everyone and wellcome",
             }],
         }
         dispatch(setPlaysInfo(play));
@@ -86,14 +86,12 @@ const Info = () => {
             {showPage && <div className='container'>
                 <h4 className='text-center'>Info!</h4>
                 <div className='text-center'> här kan Möten och Event läggas up för att alla ska se. även script till de som ska vara med i pjäser</div>
-                {userRole && <button className="btn btn-success mb-4" onClick={handelswitch}>lägg till event</button>}
-                
+                {userRole && <button className="btn btn-success mb-4" onClick={handelswitch}>lägg till event</button>}               
                 <div className="info_event_list" > <InfoList /> </div>
-                
             </div>}
             {showForm && <div className="form_container">
                 <form onSubmit={handleSubmit(savePlay)}> <h4>Lägg till ett event</h4>
-                    Event Namn
+                    Eventets Namn
                     <div className='col'>   <input
                         type="text"
                         className="info_input"
@@ -117,22 +115,24 @@ const Info = () => {
                         )}
                     </div>
 
-                    beskrivning
+                    Beskrivning
                     <div className='col'>  <input
                         type="text"
                         className="info_input"
-                        placeholder=" beskrivning.."
+                        placeholder="Beskrivning.."
                         id="description"
                         {...register('description', { required: false })} />
                         {errors.description && errors.description.type !== 'required' && (
-                            <span className='text-danger'>beskrivning krävs!</span>
+                            <span className='text-danger'>Beskrivning krävs!</span>
                         )}
                     </div>
                     Manus
                     <div className='col'>   <input
                         type="text"
                         className="info_input"
+
                         placeholder=" ( docs / pdf ).."
+
                         id="script"
                         {...register('script', { required: false })} />
                         {errors.firstName && errors.firstName.type !== 'required' && (
@@ -140,13 +140,13 @@ const Info = () => {
                         )}
                     </div>
                     <div className='col'>
-                        <button className="btn btn-danger" onClick={handelswitch}>canel</button>
-                        <button type="submit" className="btn btn-success m-2" >apply</button>
+                        <button className="btn btn-danger" onClick={handelswitch}>Avbryt</button>
+                        <button type="submit" className="btn btn-success m-2" >Verkställ</button>
                         <button
                             type='button'
                             className='btn btn-danger m-2'
                             onClick={() => {
-                    
+
                                 document.getElementById('playName').value = '';
                                 document.getElementById('time').value = '';
                                 document.getElementById('description').value = '';
