@@ -24,26 +24,29 @@ const Login = () => {
         return (
             <>
                 <br />
-                <form className='rounded-4 p-3 m-2' style={{ maxWidth: "500px" }} onSubmit={handleSubmit(checkData)}>
+                <div className='login'>
+                    <form className='rounded-4 p-3 m-2' style={{ maxWidth: "500px" }} onSubmit={handleSubmit(checkData)}>
 
-                    <div className='row'>
-                        <div className='col'>Email
-                            <input type='text' className='form-control' id='email' {...register("email", { required: true })} placeholder='Ange email...' />
-                            {errors.email && errors.email.type === "required" && (<span className='text-danger'>Email är ett krav!</span>)}
-                            <br />
-                            Password
-                            <input type='text' className='form-control' id='password' {...register("password", { required: true })} placeholder='Ange lösenord...' />
-                            {errors.password && errors.password.type === "required" && (<span className='text-danger'>Lösenord är ett krav!</span>)}
+                        <div className='row'>
+                            <div className='col'>Email
+                                <input type='text' className='form-control' id='email' {...register("email", { required: true })} placeholder='Ange email...' />
+                                {errors.email && errors.email.type === "required" && (<span className='text-danger'>Email är ett krav!</span>)}
+                                <br />
+                                Password
+                                <input type='text' className='form-control' id='password' {...register("password", { required: true })} placeholder='Ange lösenord...' />
+                                {errors.password && errors.password.type === "required" && (<span className='text-danger'>Lösenord är ett krav!</span>)}
+                            </div>
+                            <a href='/#'>Glömt lösenordet?</a>
                         </div>
-                        <a href='/#'>Glömt lösenordet?</a>
-                    </div>
 
-                    <br />
-                    <div className='col'>
-                        <button type='submit' className='btn btn-success m-2' >Login</button>
-                    </div>
+                        <br />
+                        <div className='col'>
+                            <button type='submit' className='btn btn-success m-2' >Login</button>
+                        </div>
 
-                </form>
+                    </form>
+                </div>
+
             </>
         )
     };
@@ -90,7 +93,7 @@ const Login = () => {
             };
 
         } else return console.log("Wrong password or email ");
-         history.push('/')
+        history.push('/')
     }
 
     const user = useSelector(selectUser);
@@ -103,7 +106,7 @@ const Login = () => {
     return (
         <div className="container">
             <h4 className='text-center'>Login!</h4>
-            <Form className="form_box"/>
+            <Form className="form_box" />
         </div>
     );
 }
