@@ -49,6 +49,8 @@ const Header = () => {
         }
     }, [user]);
 
+    if(user !== null)
+
     return (
         <nav className='navbar navbar-expand-sm bg-dark navbar-dark shadow rounded mb-3'>
             <div className="container-fluid">
