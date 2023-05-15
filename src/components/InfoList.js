@@ -10,28 +10,26 @@ const InfoList = () => {
     const history = useHistory();
 
     useEffect(() => {
+        console.log(plays);
         setAllPlays(plays);
     }, [plays]);
-    
+
     const handelClickOnDocumentBtn = () => {
-    history.push('/documents');
+        history.push('/documents');
     }
 
     return (
         <div>
-            {allplays.map((plays) => {
-                return (<div key={plays.playId}
-                    className='plays_list'>
-
-                    <h4>{plays.playName}
-                        <span className='plays_time'>{plays.time}</span>
-                        
-                        <span className='plays_description mb-3'> {plays.description}</span>
-                        <button className='btn btn-primary plays_btn ' onClick={handelClickOnDocumentBtn}> Till Dokument  </button>
-                    </h4>
-
-                </div>);
-            })}
+            {allplays.map((play) => (
+                <div key={play.playId} className='plays_list'>
+                    <h4>{play.playName} <span className='plays_time'>{play.time}</span> </h4>
+                    
+                    <span className='plays_description mb-3'>{play.description}</span>
+                    <button className='btn btn-primary plays_btn' onClick={handelClickOnDocumentBtn}>
+                        Till Dokument
+                    </button>
+                </div>
+            ))}
         </div>
     );
 

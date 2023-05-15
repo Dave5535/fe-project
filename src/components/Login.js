@@ -86,7 +86,7 @@ const color = getRandomColor();
             role: "admin",
             userName: "Dave 5535",
             password: "pass",
-            photo: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUGXkn6Eo8eeiFv7O-1QEaenXwr_EcqmxtnQ&usqp=CAU", // 
+            photo: null, //"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUGXkn6Eo8eeiFv7O-1QEaenXwr_EcqmxtnQ&usqp=CAU" 
             conversations: [],
 
             events: [],
