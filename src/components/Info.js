@@ -17,21 +17,12 @@ const Info = () => {
 
     const handelSetPlay = () => { // maybe good for kalender
 
-        const play = {
-            play: {
-                playId: "3",
-                playName: "PlayName ",
-                description: "This is the description! It sould have a max and a minimun number of characters",
-                time: "time ",
-                script: "Hello Everyone and wellcome",
-                plays: [],
-            },
-        }
-        dispatch(setPlayinfo(play));
+       
     };
 
     const handelAddPlay = () => {
-        const play = {
+
+ const play = {
             plays: [{
                 playId: "2",
                 playName: "Möte eller en pjäs ",
@@ -40,12 +31,18 @@ const Info = () => {
                 script: "Hello Everyone and wellcome",
             }],
         }
-        dispatch(setPlaysInfo(play));
+        dispatch(setPlaysInfo(play)); 
     }
+
     const handelswitch = () => {
         setShowForm(!showForm);
         setShowPage(!showPage);
+       
+        if(showPage === true)
+        setTimeout(clearForm, 1);
     }
+
+
     const savePlay = async (data) => {
 
         const playName = data.playName;
@@ -54,11 +51,38 @@ const Info = () => {
         const script = data.script;
 
 
-        const newPlay = { playName, description, time, script }
+        const plays = {
+            plays: [{
+                  playId:"6" ,
+            playName: playName ,
+            description: description,
+            time: time ,
+            script: script ,
+        }],
+         }
+
+         const play1 = {
+            plays: [{
+                 playId: "3",
+                 playName: "PlayName ",
+                 description: "This is the description! It sould have a max and a minimun number of characters",
+                 time: "t,ex 25 / 05 / 2023  ",
+                 script: "Hello Everyone and wellcome",
+             }],
+             
+         }
 
         // Save Play to BE 
-
+        dispatch(addPlays(plays));
+        handelswitch();
     }
+
+    const clearForm = () => {
+        document.getElementById('playName').value = '';
+        document.getElementById('time').value = '';
+        document.getElementById('description').value = '';
+        document.getElementById('script').value = '';
+      };
 
     const user = useSelector(selectUser);
     const [userRole, setUserRole] = useState(false);
@@ -141,17 +165,11 @@ const Info = () => {
                     </div>
                     <div className='col'>
                         <button className="btn btn-danger" onClick={handelswitch}>Avbryt</button>
-                        <button type="submit" className="btn btn-success m-2" >Verkställ</button>
+                        <button type="submit" className="btn btn-success m-2" >Skapa</button>
                         <button
                             type='button'
                             className='btn btn-danger m-2'
-                            onClick={() => {
-
-                                document.getElementById('playName').value = '';
-                                document.getElementById('time').value = '';
-                                document.getElementById('description').value = '';
-                                document.getElementById('script').value = '';
-                            }}
+                            onClick={clearForm}
                         >
                             Återställ
                         </button>

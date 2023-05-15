@@ -4,12 +4,7 @@ export const PlaySlice = createSlice({
 
     name: "play",
     initialState: {
-        key: null,
-        playId: null,
-        playName: null,
-        description: null,
-        time: null,
-        script: null,
+      
         plays: [] // initialize to an empty array
     },
     reducers: {
@@ -27,8 +22,8 @@ export const PlaySlice = createSlice({
             state.plays = action.payload.plays;
         },
         addPlays: (state, action) => {
-            state.plays.push(action.payload);
-        },
+            state.plays.push(...action.payload.plays);
+          },
     }
 
 });
