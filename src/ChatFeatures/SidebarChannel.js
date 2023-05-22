@@ -85,7 +85,7 @@ const SidebarChannel = (props) => {
   ];
 
   useEffect(() => {
-    setAllChannels(premadeChannels);
+    setAllChannels(premadeChannels); // get all channels
   }, []);
 
   const handleChannelClick = (channel) => {

@@ -10,7 +10,7 @@ const InfoList = () => {
     const history = useHistory();
 
     useEffect(() => {
-        console.log(plays);
+        // need to get Api Here get all plays / events
         setAllPlays(plays);
     }, [plays]);
 

@@ -8,7 +8,7 @@ import { Avatar } from '@mui/material';
 import "./sidebar.css"
 import SidebarChannel from './SidebarChannel';
 import { selectUser } from '../Store/userSlice';
-import { setChannelInfo } from '../Store/AppSlice';
+import { addChannelMessage, setChannelInfo } from '../Store/AppSlice';
 
 const Sidebar = () => {
   // used to store things
@@ -64,20 +64,22 @@ const Sidebar = () => {
       channelMessages: [c3.channelMessages],
     };
     setChannel(prevchannel => [...prevchannel, newChannel]);
+    // save to BE 
     setInput("");
     handelAddChannel();
+  
   }
 
   const handelAddChannel = () => {
-    if(user.role !== "user"){
+  if(chatHeader === "Friends"){
     setShowAddChannel(!showAddChannel);
     setInput("");
-  }else{
-    alert("Only teachers and admin are allowed to create classChatt");
   };
-
+ if(chatHeader === "klass" && user.role === "admin" || user.role === "teacher"){
+    setShowAddChannel(!showAddChannel);
+    setInput("");
+  }
 }
-
 
 
   const handleChatHeader = () => {

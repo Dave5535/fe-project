@@ -6,6 +6,7 @@ export const PlaySlice = createSlice({
     initialState: {
       
         plays: [] // initialize to an empty array
+        
     },
     reducers: {
         setPlayinfo: (state, action) => {

@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import "./chatHeader.css"
 
-import { addFriendToChannel, selectChannelUsers, addChannelMessage  } from '../Store/AppSlice';
+import { addFriendToChannel, addChannelMessage, selectChannelType  } from '../Store/AppSlice';
 import { Avatar } from '@mui/material';
 import { selectUser } from '../Store/userSlice';
 
@@ -19,7 +19,7 @@ const ChatHeader = ({ channelName }) => {
     const [showUsers, setShowUsers] = useState(false);
     const dispatch = useDispatch();
 
-    const channelUsers = useSelector(selectChannelUsers);
+    const channelType = useSelector(selectChannelType);
 
     const channelUser = useSelector(selectUser);
 
@@ -41,12 +41,19 @@ const ChatHeader = ({ channelName }) => {
                 events: [],
             }
         };
-          if(channelUser.role !== "user"){
-             setUsers(prevUsers => [...prevUsers, newUser]);
+        if(channelType === "Friends"){
+            setUsers(prevUsers => [...prevUsers, newUser]);
         showListOfUsers();
-          }else{
-            alert("Only teachers and admin are allowed to create classChatt");
-          }; 
+          };
+         if(channelType === "klass" && channelUser.role === "admin" || channelUser.role === "teacher"){
+            setUsers(prevUsers => [...prevUsers, newUser]);
+            showListOfUsers();
+          }
+        
+        
+        
+        
+       
        
     }
 
