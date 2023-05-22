@@ -22,6 +22,17 @@ export const AppSlice = createSlice({
         addChannelMessage: (state, action) => {
             state.channelMessages.push(action.payload);
           },
+          editChannelMessage: (state, action) => {
+            const { messageId, content } = action.payload;
+            const message = state.messages.find((msg) => msg.id === messageId);
+            if (message) {
+              message.content = content;
+            }
+          },
+          deleteMessage: (state, action) => {
+            const messageId = action.payload;
+            state.messages = state.messages.filter((msg) => msg.id !== messageId);
+          },
         addFriendToChannel: (state,action) =>  {
             state.channelUsers.push(action.payload);
           },
@@ -29,7 +40,7 @@ export const AppSlice = createSlice({
     },
 });
 
-export const{setChannelInfo,addChannelMessage,addFriendToChannel} = AppSlice.actions;
+export const{setChannelInfo,addChannelMessage,addFriendToChannel,editChannelMessage,deleteMessage} = AppSlice.actions;
 
 export const selectkey = (state) => state.app.key;
 export const selectChannelId = (state) => state.app.channelId;
