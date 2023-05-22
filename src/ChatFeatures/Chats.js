@@ -5,8 +5,9 @@ import { selectChannelId, selectChannelName, selectChannelMessages, setChannelIn
 import { selectUser } from '../Store/userSlice';
 import { addChannelMessage, } from '../Store/AppSlice';
 import ChatHeader from './ChatHeader'
-import "./chats.css";
+
 import Message from './Message';
+import "./chats.css";
 
 const Chats = () => {
     const user = useSelector(selectUser);
@@ -18,9 +19,10 @@ const Chats = () => {
 
     // for message and input
     const [input, setInput] = useState("");
-    const [message, setMessages] = useState([]);
+    const [messages, setMessages] = useState([]);
 
     useEffect(() => {
+        // get messages from BE 
         setMessages(channelMessages);
     }, [channelMessages]);
 
@@ -30,11 +32,14 @@ const Chats = () => {
     const sendMessage = e => {
         e.preventDefault();
         const newMessage = {
+            MessageId: Math.random(11),
             user: user,
             timestamp: dateTime,
             message: input,
 
         };
+
+        // send to BE for storing 
         dispatch(addChannelMessage(newMessage));
         setInput("");
     }
@@ -44,8 +49,9 @@ const Chats = () => {
 
         <div className='chats'>
             <ChatHeader channelName={channelName} />
-            <div className='chats_messages'>{message.map((message, index) => (<Message
+            <div className='chats_messages'>{messages.map((message, index) => (<Message
                 key={index}
+                id={message.user.id}
                 timestamp={message.timestamp}
                 messages={message.message}
                 userprop={message.user}

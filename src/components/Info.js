@@ -16,8 +16,6 @@ const Info = () => {
     const dispatch = useDispatch();
 
     const handelSetPlay = () => { // maybe good for kalender
-
-       
     };
 
     const handelAddPlay = () => {
@@ -50,6 +48,7 @@ const Info = () => {
         const time = data.time;
         const script = data.script;
 
+        console.log(script);
 
         const plays = {
             plays: [{
@@ -150,9 +149,9 @@ const Info = () => {
                             <span className='text-danger'>Beskrivning krävs!</span>
                         )}
                     </div>
-                    Manus
+                    Manus (pdf)
                     <div className='col'>   <input
-                        type="text"
+                        type="file"
                         className="info_input"
 
                         placeholder=" ( docs / pdf ).."

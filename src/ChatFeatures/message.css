@@ -1,11 +1,12 @@
 .message{
     display: flex;
     align-items: center;
-    padding: 10px;
+    margin: 10px;
+    
 }
 
-.message_info{
-    margin: 5px;
+.picture{
+   margin-right: 10px;
  }
  .message_timestamp{
     color: gray;
