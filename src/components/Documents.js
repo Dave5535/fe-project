@@ -22,7 +22,7 @@ const Documents = () => {
                </div>
 
             </div>             {/* Add */}
-            <div className="card bg-dark shadow text-center me-3" style={{ width: "15rem", display: "inline-block" }}>
+            <div className="card bg-dark shadow text-center me-3" style={{ width: "15rem", display: "none" }}>
                <div className="card-body">
                   <input type="file" className="fas fa-plus-circle text-info" style={{ fontSize: "2rem" }} />
                </div>
