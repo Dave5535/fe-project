@@ -10,7 +10,7 @@ import "./infolist.css";
 const Login = () => {
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
-   // user info 
+    // user info 
     const user = useSelector(selectUser);
     // redux
     const dispatch = useDispatch();
@@ -21,10 +21,10 @@ const Login = () => {
     // needed if user need a update
     useEffect(() => {
         if (user && user.photo === null) {
-          giveDefaultProfilePic();
+            giveDefaultProfilePic();
         }
-      }, [user]);
-      
+    }, [user]);
+
 
 
 
@@ -62,11 +62,11 @@ const Login = () => {
         )
     };
     // giva a profile pic if you new 
-    const giveDefaultProfilePic = () =>  {
-const color = getRandomColor();
+    const giveDefaultProfilePic = () => {
+        const color = getRandomColor();
         dispatch(updatePhoto(color));
 
-        
+
 
     };
 
@@ -74,7 +74,7 @@ const color = getRandomColor();
         const colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#00BCD4', '#009688', '#4CAF50', '#FFC107', '#FF5722', '#795548', '#607D8B'];
         const randomIndex = Math.floor(Math.random() * colors.length);
         return colors[randomIndex];
-      };
+    };
 
     const checkData = async (data) => {
 
@@ -94,12 +94,12 @@ const color = getRandomColor();
         const testLoginPerson2 = {
             id: "43573",
             firstName: "Mikael",
-            lastName: "Svennson",
+            lastName: "Svensson",
             email: "email",
             role: "teacher",
             userName: "M,S",
             password: "login",
-            photo: "https://avatars.githubusercontent.com/u/113359307?s=120&v=4",
+            photo: null, //"https://avatars.githubusercontent.com/u/113359307?s=120&v=4"
             conversations: [],
             events: [],
         }
@@ -119,10 +119,10 @@ const color = getRandomColor();
         } else return console.log("Wrong password or email ");
         setTimeout(() => {
             history.push('/');
-          }, 10);
+        }, 10);
     }
 
-    
+
     if (user !== null)
         return (
             <div className="text-success">Du har loggat in</div>
