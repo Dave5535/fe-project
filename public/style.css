@@ -57,7 +57,17 @@ input.form-control {
    background-color: #212529;
 }
 
-ul li:hover {
+.nav-link:hover {
+   background-color: var(--bgcolor);
+   border-radius: 6px;
+}
+
+.nav-link:focus {
+   background-color: var(--bgcolor);
+   border-radius: 6px;
+}
+
+.nav-link:active {
    background-color: var(--bgcolor);
    border-radius: 6px;
 }
