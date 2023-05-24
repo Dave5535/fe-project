@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../Store/userSlice';
+import ControlPointIcon from '@mui/icons-material/ControlPoint';
+
 
 const Documents = () => {
 
    const user = useSelector(selectUser);
 
    if (user === null) window.location.href = "http://localhost:3000/login";
+   
+   const fileInputRef = useRef(null);
+
+   const handleFileSelect = (e) => {
+     // Handle the selected file(s) here
+     const selectedFile = e.target.files[0];
+     console.log(selectedFile);
+   };
+
    if (user !== null)
       return (
          <div className='container'>
@@ -24,7 +35,17 @@ const Documents = () => {
             </div>             {/* Add */}
             <div className="card bg-dark shadow text-center me-3" style={{ width: "15rem", display: "inline-block" }}>
                <div className="card-body">
-                  <input type="file" className="fas fa-plus-circle text-info" style={{ fontSize: "2rem" }} />
+               <input
+  type="file"
+  ref={fileInputRef}
+  style={{ display: 'none' }}
+  onChange={handleFileSelect}
+  id="file-upload"
+/>
+<input type="file" className="fas fa-plus-circle text-info" style={{ display: 'none',fontSize: "2rem" }} />
+<label htmlFor="file-upload">
+  <ControlPointIcon style={{ fontSize: '2rem', cursor: 'pointer' }} />
+</label>
                </div>
             </div>
          </div>

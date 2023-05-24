@@ -40,27 +40,38 @@ const Sidebar = () => {
 //  
 
   // adding Channel
+  let dateTime = new Date();
+  let timeString = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  let dateString = dateTime.toDateString().slice(4); // Remove the day of the week
+  let formattedTimestamp = `${timeString} ${dateString}`;
+  
 
   const addChannel = (e) => {
     e.preventDefault();
 
 
     const c3 = {
-      id: "3",
+      channelId: "3",
       channelName: input,
       channelType: chatHeader,
       channelMessages: {
+        MessageId: Math.random(11),
         user: { firstName: "System", photo: "https://th.bing.com/th/id/OIP.6rBuDJx97j2yiZ8Bdi9tMwHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-        id: "System_id",
-        timestamp: "date from Api",
+        timestamp: formattedTimestamp,
         message: "Start your conversation today",
       },
     }
 
     const newChannel = {
-      id: c3.id,
+      channelId: c3.channelId,
       channelName: c3.channelName,
       channelType: c3.channelType,
+      channelUsers : [{
+        user: {
+          user,
+        },
+      }
+      ],
       channelMessages: [c3.channelMessages],
     };
     setChannel(prevchannel => [...prevchannel, newChannel]);
@@ -71,14 +82,19 @@ const Sidebar = () => {
   }
 
   const handelAddChannel = () => {
+    console.log(chatHeader);
   if(chatHeader === "Friends"){
     setShowAddChannel(!showAddChannel);
     setInput("");
-  };
- if(chatHeader === "klass" && user.role === "admin" || user.role === "teacher"){
+  }
+  
+ if(chatHeader === "Klass" ){
+  if (user.role === "admin" || user.role === "teacher"){
     setShowAddChannel(!showAddChannel);
     setInput("");
-  }
+  };
+}
+  
 }
 
 
@@ -135,6 +151,7 @@ const Sidebar = () => {
                 channelId: channel.channelId,
                 channelName: channel.channelName,
                 channelType: channel.channelType,
+                channelUsers: channel.channelUsers,
                 channelMessages: channel.channelMessages,
               }))}>
                 <h5><span className='sidebarChannel_hash'></span>{channel.channelName}</h5>

@@ -41,19 +41,14 @@ const ChatHeader = ({ channelName }) => {
                 events: [],
             }
         };
-        if(channelType === "Friends"){
-            setUsers(prevUsers => [...prevUsers, newUser]);
-        showListOfUsers();
-          };
-         if(channelType === "klass" && channelUser.role === "admin" || channelUser.role === "teacher"){
-            setUsers(prevUsers => [...prevUsers, newUser]);
-            showListOfUsers();
+
+         setUsers(prevUsers => [...prevUsers, newUser]);
+
+        if(channelType === "Friends") showListOfUsers();
+            
+         if(channelType === "Klass"){ 
+           if(channelUser.role === "admin" || channelUser.role === "teacher")showListOfUsers();    
           }
-        
-        
-        
-        
-       
        
     }
 
@@ -67,12 +62,15 @@ const ChatHeader = ({ channelName }) => {
 dispatch(addFriendToChannel({
     user: user,}
  ));
-
+ let dateTime = new Date();
+ let timeString = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+ let dateString = dateTime.toDateString().slice(4); // Remove the day of the week
+ let formattedTimestamp = `${timeString} ${dateString}`;
  // send a message from system that the person is added and by who? 
  dispatch(addChannelMessage({
-    user:{ firstName: "System", photo: "https://th.bing.com/th/id/OIP.6rBuDJx97j2yiZ8Bdi9tMwHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"},
-    id: "System_id", 
-    timestamp: "date from Api",
+    MessageId: Math.random(11),
+    user:{ firstName: "System", photo: "https://th.bing.com/th/id/OIP.6rBuDJx97j2yiZ8Bdi9tMwHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7"}, 
+    timestamp: formattedTimestamp,
     message: user.firstName +" "+ user.lastName + " have been added by " + channelUser.firstName + " " + channelUser.lastName,
     }
  ));

@@ -43,10 +43,10 @@ const Message = (props) => {
 
 
   const handleEditMessage = (messageId, newContent) => { 
-      dispatch(editChannelMessage({ messageId, content: newContent }));
+      // edit message from API whit messageId
   };
   const handleDeleteMessage = (messageId) => {
-      dispatch(deleteMessage(messageId)); 
+     // delete message from API whit messageId
   };
 
   const handleContextMenu = (messageUser) => {
@@ -60,10 +60,6 @@ const Message = (props) => {
 
     };
   };
-
-  useEffect(() => {
-    console.log(channelMessages);
-  }, [channelMessages]);
 
   return (
     <div
