@@ -14,7 +14,6 @@ const Chats = () => {
     const channelId = useSelector(selectChannelId);
     const channelName = useSelector(selectChannelName);
     const channelMessages = useSelector(selectChannelMessages);
-
     const dispatch = useDispatch();
 
     // for message and input
@@ -27,14 +26,17 @@ const Chats = () => {
     }, [channelMessages]);
 
 
-    let dateTime = new Date().toString();
+    let dateTime = new Date();
+    let timeString = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    let dateString = dateTime.toDateString().slice(4); // Remove the day of the week
+    let formattedTimestamp = `${timeString} ${dateString}`;
 
     const sendMessage = e => {
         e.preventDefault();
         const newMessage = {
             MessageId: Math.random(11),
             user: user,
-            timestamp: dateTime,
+            timestamp: formattedTimestamp,
             message: input,
 
         };

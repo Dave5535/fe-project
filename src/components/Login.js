@@ -83,7 +83,7 @@ const color = getRandomColor();
             firstName: "David",
             lastName: "Svantesson",
             email: "easy",
-            role: "user",
+            role: "admin",
             userName: "Dave 5535",
             password: "pass",
             photo: null, //"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUGXkn6Eo8eeiFv7O-1QEaenXwr_EcqmxtnQ&usqp=CAU" 
