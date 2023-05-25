@@ -57,6 +57,10 @@ input.form-control {
    background-color: #212529;
 }
 
+ul li:hover {
+   text-shadow: 0 0 0.2rem white;
+}
+
 .selected {
    background-color: var(--bgcolor);
    border-radius: 6px;
