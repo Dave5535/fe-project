@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link, useHistory, useParams, useLocation, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, NavLink, useHistory, useParams, useLocation, Redirect } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { selectUser } from './Store/userSlice';
 
@@ -55,22 +55,22 @@ const Header = () => {
                         <li className="nav-item">
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-white link" to="/">Hem</Link>
+                            <NavLink activeClassName="selected" className="nav-link text-white" to="/" exact={true}>Hem</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-white link" to="/info">Info</Link>
+                            <NavLink activeClassName="selected" className="nav-link text-white link" to="/info">Info</NavLink>
                         </li>
                         <li className="nav-item">
-                            <Link className="nav-link text-white link" to="/chat">Chat</Link>
+                            <NavLink activeClassName="selected" k className="nav-link text-white link" to="/chat">Chat</NavLink>
                         </li>
                         <li className="nav item">
-                            <Link className='nav-link text-white link' to="/calendar">Kalender</Link>
+                            <NavLink activeClassName="selected" className='nav-link text-white link' to="/calendar">Kalender</NavLink>
                         </li>
                         <li className="nav item">
-                            <Link className='nav-link text-white link' to="/documents">Dokument</Link>
+                            <NavLink activeClassName="selected" className='nav-link text-white link' to="/documents">Dokument</NavLink>
                         </li>
                         <li className="nav-item" >
-                            <Link className="nav-link text-white link" to="/settings" ><div className='fas fa-cog'></div></Link>
+                            <NavLink activeClassName="selected" className="nav-link text-white link" to="/settings" ><div className='fas fa-cog'></div></NavLink>
                         </li>
                     </ul>
                     {admin && <>

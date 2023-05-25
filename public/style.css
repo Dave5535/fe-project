@@ -57,7 +57,7 @@ input.form-control {
    background-color: #212529;
 }
 
-.nav-link:hover {
+/* .nav-link:hover {
    background-color: var(--bgcolor);
    border-radius: 6px;
 }
@@ -68,6 +68,11 @@ input.form-control {
 }
 
 .nav-link:active {
+   background-color: var(--bgcolor);
+   border-radius: 6px;
+} */
+
+.selected {
    background-color: var(--bgcolor);
    border-radius: 6px;
 }
