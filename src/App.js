@@ -61,7 +61,7 @@ const Header = () => {
                             <NavLink activeClassName="selected" className="nav-link text-white link" to="/info">Info</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink activeClassName="selected" k className="nav-link text-white link" to="/chat">Chat</NavLink>
+                            <NavLink activeClassName="selected" className="nav-link text-white link" to="/chat">Chat</NavLink>
                         </li>
                         <li className="nav item">
                             <NavLink activeClassName="selected" className='nav-link text-white link' to="/calendar">Kalender</NavLink>
