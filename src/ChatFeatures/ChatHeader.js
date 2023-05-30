@@ -23,9 +23,7 @@ const ChatHeader = ({ channelName }) => {
 
     const channelUser = useSelector(selectUser);
 
-    const handelAddFriend = () => {
-       
-          
+    const addUserToList = () => {
           const newUser = {
 
             user: {
@@ -43,25 +41,19 @@ const ChatHeader = ({ channelName }) => {
         };
 
          setUsers(prevUsers => [...prevUsers, newUser]);
-
-        if(channelType === "Friends") showListOfUsers();
-            
-         if(channelType === "Klass"){ 
-           if(channelUser.role === "admin" || channelUser.role === "teacher")showListOfUsers();    
-          }
-       
     }
 
 
     const showListOfUsers = () => {
+        addUserToList();
        setShowUsers(!showUsers);
     }
       const handelUserClicked = (user) => {
-      
 // add the person to the channelUserList
 dispatch(addFriendToChannel({
     user: user,}
  ));
+
  let dateTime = new Date();
  let timeString = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
  let dateString = dateTime.toDateString().slice(4); // Remove the day of the week
@@ -88,14 +80,14 @@ setShowUsers(!showUsers)
                         {channelName}
                     </h4>
                 </div>
-                <div className='chatHeader_right' onClick={handelAddFriend}>Add Friends</div>
+                <div className='chatHeader_right' onClick={showListOfUsers}>Lägg till användare</div>
 
                 {showUsers && <div className='friend_box'>
                 <div className='friend_content'>
                         
-                        <div className='friend_headText border-bottom'>Friends List</div>
+                        <div className='friend_headText border-bottom'>Medlemar</div>
                         <div className='friend_List'>
-                          {users.map((users) => (
+                          {users.sort((a, b) => a.user.firstName.localeCompare(b.user.firstName)).map((users) => (
                            <div className='user' key={users.user.id} onClick={() => handelUserClicked(users.user)}>
                             <Avatar src={users.user.photo}/>
                             <div className='user_name'>{users.user.firstName} {users.user.lastName }  </div>

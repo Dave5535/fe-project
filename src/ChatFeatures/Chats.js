@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-
 import { selectChannelId, selectChannelName, selectChannelMessages, setChannelInfo } from '../Store/AppSlice';
 import { selectUser } from '../Store/userSlice';
 import { addChannelMessage, } from '../Store/AppSlice';
@@ -19,7 +18,7 @@ const Chats = () => {
     // for message and input
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState([]);
-
+    
     useEffect(() => {
         // get messages from BE 
         setMessages(channelMessages);

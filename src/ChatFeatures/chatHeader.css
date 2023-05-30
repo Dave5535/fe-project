@@ -91,4 +91,5 @@ box-shadow: 3px 3px 9px rgba(24, 148, 206, 0.577);
   display: flex;
   align-items: center;
   margin-bottom: 10px;
+  justify-content: center;
 }

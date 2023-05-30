@@ -1,4 +1,5 @@
 import  {createSlice} from "@reduxjs/toolkit"
+import { act } from "@testing-library/react";
 
 export const UserSlice = createSlice({
     name: "user",
@@ -16,10 +17,17 @@ export const UserSlice = createSlice({
         updatePhoto: (state, action) => {
             state.user.photo = action.payload;
           },
+          addConversation: (state,action) =>  {
+            state.user.conversations.push(action.payload);
+          },
+          addFriend: (state, action) => {
+            
+            state.user.friends.push(action.payload);
+          },
     },
 });
 
-export const{login,logout,updatePhoto} = UserSlice.actions;
+export const{login,logout,updatePhoto,addConversation,addFriend} = UserSlice.actions;
 
 
 export const selectUser = (state) => state.user.user;

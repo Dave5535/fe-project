@@ -25,9 +25,6 @@ const Login = () => {
         }
     }, [user]);
 
-
-
-
     // pushing to main page 
     const history = useHistory();
 
@@ -86,12 +83,13 @@ const Login = () => {
             role: "admin",
             userName: "Dave 5535",
             password: "pass",
-            photo: null, //"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRUGXkn6Eo8eeiFv7O-1QEaenXwr_EcqmxtnQ&usqp=CAU" 
+            photo: null,
             conversations: [],
-
+            friends: [], 
             events: [],
-        }
-        const testLoginPerson2 = {
+          };
+          
+          const testLoginPerson2 = {
             id: "43573",
             firstName: "Mikael",
             lastName: "Svensson",
@@ -99,10 +97,52 @@ const Login = () => {
             role: "teacher",
             userName: "M,S",
             password: "login",
-            photo: null, //"https://avatars.githubusercontent.com/u/113359307?s=120&v=4"
+            photo: "https://avatars.githubusercontent.com/u/113359307?s=120&v=4", 
             conversations: [],
+            friends: [],
             events: [],
-        }
+          };
+          const testLoginPerson3 = {
+            id: "39172",
+            firstName: "Son",
+            lastName: "Nghiem",
+            email: "email.com",
+            role: "user",
+            userName: "SonNghi3m",
+            password: "123",
+            photo: "https://avatars.githubusercontent.com/u/95278274?v=4",
+            conversations: [],
+            friends: [],
+            events: [],
+          };
+          const c3 = {
+            channelId: "10",
+            channelName: "created Channel",
+            channelType: "vän",
+            channelMessages: {
+              MessageId: Math.random(11),
+              user: { firstName: "System", photo: "https://th.bing.com/th/id/OIP.6rBuDJx97j2yiZ8Bdi9tMwHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
+              timestamp: "formattedTimestamp",
+              message: "Start your conversation today",
+            },
+          }
+      
+          const newChannel = {
+            channelId: c3.channelId,
+            channelName: c3.channelName,
+            channelType: c3.channelType,
+            channelUsers : [{
+              user: {
+                user,
+              },
+            }
+            ],
+            channelMessages: [c3.channelMessages],
+          };
+          
+          testLoginPerson.friends = [...testLoginPerson.friends, testLoginPerson3];
+          
+          testLoginPerson.conversations = [...testLoginPerson.conversations , newChannel];
 
         const email = data.email;
         const password = data.password;

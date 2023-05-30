@@ -4,7 +4,9 @@ import { Provider } from 'react-redux';
 
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.css';
-import 'https://kit.fontawesome.com/a076d05399.js';
+
+
+
 import store from './Store/ConfigureStore.js';
 
 
