@@ -13,7 +13,9 @@ const Settings = () => {
     const dispatch = useDispatch();
     const [showEdit, setShowEdit] = useState(false);
     const handellogout = () => {
-        dispatch(logout());
+        window.location.href = "http://localhost:3000/login"
+        setTimeout(() => {
+        dispatch(logout());}, 2000);
     }
 
     const handeleditbtn = () => {

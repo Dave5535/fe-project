@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link, useHistory, useParams, useLocation, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, NavLink, useHistory, useParams, useLocation, Redirect } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { selectUser } from './Store/userSlice';
 
@@ -7,8 +7,6 @@ import Login from './components/Login';
 import Chat from './components/Chat';
 import Info from './components/Info';
 import Welcome from './components/Welcome';
-import Social from './components/Social';
-import Contacts from './components/Contacts';
 import Settings from './components/Settings';
 import Crud from './components/Crud';
 import Calendar from './components/Calendar';
@@ -26,8 +24,6 @@ const App = () => {
                     <Route path="/chat" component={Chat} />
                     <Route path="/calendar" component={Calendar} />
                     <Route path="/documents" component={Documents} />
-                    <Route path="/social" component={Social} />
-                    <Route path="/contacts" component={Contacts} />
                     <Route path="/settings" component={Settings} />
                     <Route path="/hantera_Anvandare" component={Crud} />
                     <Route path="/login" component={Login} />
@@ -49,47 +45,41 @@ const Header = () => {
         }
     }, [user]);
 
-    if(user !== null)
+    if (user !== null)
 
-    return (
-        <nav className='navbar navbar-expand-sm bg-dark navbar-dark shadow rounded mb-3'>
-            <div className="container-fluid">
-                <Link className="logo navbar-brand text-white d-flex justify-content-center" to="/"><img src="./Image/logo.png" alt="logo" /></Link>
-                <ul className="nav me-auto">
-                    <li className="nav-item">
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link text-white" to="/">Hem</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link text-white" to="/info">Info</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link text-white" to="/chat">Chat</Link>
-                    </li>
-                    <li className="nav item">
-                        <Link className='nav-link text-white' to="/calendar">Kalender</Link>
-                    </li>
-                    <li className="nav item">
-                        <Link className='nav-link text-white' to="/documents">Dokument</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link text-white" to="/social">Socialt</Link>
-                    </li>
-                    <li className="nav-item">
-                        <Link className="nav-link text-white" to="/contacts">Kontakter</Link>
-                    </li>
-                    <li className="nav-item " >
-                        <Link className="nav-link text-white" to="/settings" ><div className='fas fa-cog'></div></Link>
-                    </li>
-                </ul>
-                {admin && <>
-                    <Link type='button' className='btn btn-primary' to="/hantera_Anvandare">Hantera Användare</Link>
-                </>}
+        return (
+            <nav className='navbar navbar-expand-sm bg-dark navbar-dark shadow rounded mb-3'>
+                <div className="container-fluid">
+                    <Link className="logo navbar-brand text-white d-flex justify-content-center" to="/"><img src="./Image/logo.png" alt="logo" /></Link>
+                    <ul className="nav me-auto">
+                        <li className="nav-item">
+                        </li>
+                        <li className="nav-item">
+                            <NavLink activeClassName="selected" className="nav-link text-white" to="/" exact={true}>Hem</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink activeClassName="selected" className="nav-link text-white link" to="/info">Info</NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink activeClassName="selected" className="nav-link text-white link" to="/chat">Chat</NavLink>
+                        </li>
+                        <li className="nav item">
+                            <NavLink activeClassName="selected" className='nav-link text-white link' to="/calendar">Kalender</NavLink>
+                        </li>
+                        <li className="nav item">
+                            <NavLink activeClassName="selected" className='nav-link text-white link' to="/documents">Dokument</NavLink>
+                        </li>
+                        <li className="nav-item" >
+                            <NavLink activeClassName="selected" className="nav-link text-white link" to="/settings" ><div className='fas fa-cog'></div></NavLink>
+                        </li>
+                    </ul>
+                    {admin && <>
+                        <Link type='button' className='btn btn-primary' to="/hantera_Anvandare">Hantera Användare</Link>
+                    </>}
 
-            </div>
-        </nav>
-    );
+                </div>
+            </nav>
+        );
 }
 
 const NotFound = () => {
