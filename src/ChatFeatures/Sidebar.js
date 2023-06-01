@@ -196,185 +196,178 @@ const Sidebar = () => {
   const updateList = () => {
     setReload(!reload);
   }
-  //updating List
-  useEffect(() => {
-    getAllUsers();
 
-    setTimeout(() => {
-      console.log(users);
-    }, []);
+  // Alert
+  const [alert, setAlert] = useState({ type: '', message: '' });
 
-    // Alert
-    const [alert, setAlert] = useState({ type: '', message: '' });
+  const getAllUsers = async () => {
+    await axios.get(API_URL).then(response => {
+      if (response.status === 200) {
+        setUsers(response.data);
+        setAlert({ type: 'success', message: 'Objekt hittad!' })
+      } else {
+        setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+      }
+    }).catch(error => {
+      console.log("ERROR: ", error);
+      setAlert({ type: 'danger', message: error.message })
+    });
+  }
 
-    const getAllUsers = async () => {
-      await axios.get(API_URL).then(response => {
-        if (response.status === 200) {
-          setUsers(response.data);
-          setAlert({ type: 'success', message: 'Objekt hittad!' })
-        } else {
-          setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
-        }
-      }).catch(error => {
-        console.log("ERROR: ", error);
-        setAlert({ type: 'danger', message: error.message })
-      });
-    }
+  return (
+    <div className='sidebar mb-3'>
+      <div className='sidebar_top'>
+        <Dropdown>
+          <Dropdown.Toggle variant="btn btn-primary btn-lg" id="dropdown-basic">
+            {chatHeader}
+          </Dropdown.Toggle>
 
-    return (
-      <div className='sidebar mb-3'>
-        <div className='sidebar_top'>
-          <Dropdown>
-            <Dropdown.Toggle variant="btn btn-primary btn-lg" id="dropdown-basic">
-              {chatHeader}
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              <Dropdown.Item onClick={handleChatHeader}>Vänner</Dropdown.Item>
-              <Dropdown.Item onClick={handleChatHeader}>Chat Rooms</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
-        </div>
-
-        <div className='sidebar_channels shadow'>
-          <div className='sidebar_channelsHeader shadow'>
-            <div className='sidebar_header shadow'></div>
-            <ExpandMoreIcon />
-            <h4>{chatHeader}</h4>
-            <AddIcon type="button" onClick={handelAddIcon} className='sidebar_addchannels' />
-
-            {showAddChannel && <div className='addChannel_form'>
-
-              <div className='addChannel_formContent'>
-                <div className='addChannel_headText'>Lägg till kanal</div>
-
-                <form className='form' onSubmit={addChannel} >
-                  <input value={input} onChange={e => setInput(e.target.value)} className='addChannel_formInput' placeholder='ange kanalnamn ...' />
-                  <button type='submit' className='addChannel_formContent_btn'>submit</button>
-                </form>
-
-
-                <div className='option'>
-
-
-                  <label>
-
-                    <input
-                      type="radio"
-                      name="option"
-                      value="vän"
-                      checked={selectedOption === 'vän'}
-                      onChange={handleOptionChange}
-                    />
-                    {renderTooltip('Vän kanal är till för att skapa en chat med vänner där alla kan lägga till nya chat medlemar', "Vän")}
-                  </label>
-
-                  <label>
-
-                    <input
-                      type="radio"
-                      name="option"
-                      value="Class"
-                      checked={selectedOption === 'Class'}
-                      onChange={handleOptionChange}
-                    />
-                    {renderTooltip('klass kanal är till för Admins och lärare för att skapa en chat där bara Admins och lärare kan lägga till nya chat medlemar', "Klass")}
-                  </label>
-
-                  <button type='button' className='btn btn-danger m-3' onClick={handelAddChannel}>Avbryt</button>
-
-
-
-                </div>
-              </div>
-
-            </div>}
-
-
-          </div>
-        </div>
-        <div className='sidebar_channelList shadow'><>
-
-          {friends.map((friends) => {
-            if (chatHeader === "Vänner") {
-              return (
-                <div className='user' key={friends.id} onClick={() => handleUserInfo(friends)} onContextMenu={(e) => handleUserContextMenu(e, friends)}>
-                  <Avatar src={friends.photo} />
-                  <div className='user_name'>{friends.firstName} {friends.lastName}  </div>
-                </div>
-              )
-            }
-          })}
-
-          {channel.map((channel, index) => {
-            if (chatHeader === "Chat Rum") {
-              return (
-                <div key={index} className='sidebarChannel' onClick={() => dispatch(setChannelInfo({
-                  key: index,
-                  channelId: channel.channelId,
-                  channelName: channel.channelName,
-                  channelType: channel.channelType,
-                  channelUsers: channel.channelUsers,
-                  channelMessages: channel.channelMessages,
-                }))}>
-                  <h5><span className='sidebarChannel_hash'></span>{channel.channelName}</h5>
-                </div>
-              );
-            } else return null;
-
-          })}
-
-
-        </>
-        </div>
-
-        {userPhoto && <div className='sidebar_profile shadow'>
-          <Avatar sx={{ bgcolor: user.photo }}>{user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}</Avatar>
-
-
-          <div className='sidebar_profileInfo'>
-            <h6>{user.firstName + " " + user.lastName}</h6>
-            <p>{user.id}</p>
-          </div>
-        </div>}
-        {!userPhoto && <div className='sidebar_profile'>
-          <Avatar src={user.photo} style={{ position: 'static' }} />
-
-          <div className='sidebar_profileInfo'>
-            <h6>{user.firstName + " " + user.lastName}</h6>
-            <p>{user.id}</p>
-          </div>
-        </div>}
-
-
-        {showUsers && <div className='friend_box'>
-          <div className='friend_content'>
-
-            <div className='friend_headText border-bottom'>Medlemar</div>
-            <div className='friend_List'>
-              {users.sort((a, b) => a.user.firstName.localeCompare(b.user.firstName)).map((user) => {
-                const isFriend = friends.some((friend) => friend.id === user.id);
-
-                return (
-                  <div className="user" key={user.id} onClick={() => handleSelectedMember(user)}>
-                    <Avatar src={user.photo} style={{ position: 'static' }} />
-                    <div className="user_name">
-                      {user.firstName} {user.lastName}
-                    </div>
-                    {isFriend && <div className="friend_status">Already friends</div>}
-                  </div>
-                );
-              })}
-            </div>
-            <div className='border-top btn_style'>
-              <button type='button' className=' btn btn-danger m-3 ' onClick={() => showListOfUsers()}>Avbryt</button>
-            </div>
-          </div>
-        </div>
-        }
+          <Dropdown.Menu>
+            <Dropdown.Item onClick={handleChatHeader}>Vänner</Dropdown.Item>
+            <Dropdown.Item onClick={handleChatHeader}>Chat Rooms</Dropdown.Item>
+          </Dropdown.Menu>
+        </Dropdown>
       </div>
 
-    );
-  }
+      <div className='sidebar_channels shadow'>
+        <div className='sidebar_channelsHeader shadow'>
+          <div className='sidebar_header shadow'></div>
+          <ExpandMoreIcon />
+          <h4>{chatHeader}</h4>
+          <AddIcon type="button" onClick={handelAddIcon} className='sidebar_addchannels' />
+
+          {showAddChannel && <div className='addChannel_form'>
+
+            <div className='addChannel_formContent'>
+              <div className='addChannel_headText'>Lägg till kanal</div>
+
+              <form className='form' onSubmit={addChannel} >
+                <input value={input} onChange={e => setInput(e.target.value)} className='addChannel_formInput' placeholder='ange kanalnamn ...' />
+                <button type='submit' className='addChannel_formContent_btn'>submit</button>
+              </form>
+
+
+              <div className='option'>
+
+
+                <label>
+
+                  <input
+                    type="radio"
+                    name="option"
+                    value="vän"
+                    checked={selectedOption === 'vän'}
+                    onChange={handleOptionChange}
+                  />
+                  {renderTooltip('Vän kanal är till för att skapa en chat med vänner där alla kan lägga till nya chat medlemar', "Vän")}
+                </label>
+
+                <label>
+
+                  <input
+                    type="radio"
+                    name="option"
+                    value="Class"
+                    checked={selectedOption === 'Class'}
+                    onChange={handleOptionChange}
+                  />
+                  {renderTooltip('klass kanal är till för Admins och lärare för att skapa en chat där bara Admins och lärare kan lägga till nya chat medlemar', "Klass")}
+                </label>
+
+                <button type='button' className='btn btn-danger m-3' onClick={handelAddChannel}>Avbryt</button>
+
+
+
+              </div>
+            </div>
+
+          </div>}
+
+
+        </div>
+      </div>
+      <div className='sidebar_channelList shadow'><>
+
+        {friends.map((friends) => {
+          if (chatHeader === "Vänner") {
+            return (
+              <div className='user' key={friends.id} onClick={() => handleUserInfo(friends)} onContextMenu={(e) => handleUserContextMenu(e, friends)}>
+                <Avatar src={friends.photo} />
+                <div className='user_name'>{friends.firstName} {friends.lastName}  </div>
+              </div>
+            )
+          }
+        })}
+
+        {channel.map((channel, index) => {
+          if (chatHeader === "Chat Rum") {
+            return (
+              <div key={index} className='sidebarChannel' onClick={() => dispatch(setChannelInfo({
+                key: index,
+                channelId: channel.channelId,
+                channelName: channel.channelName,
+                channelType: channel.channelType,
+                channelUsers: channel.channelUsers,
+                channelMessages: channel.channelMessages,
+              }))}>
+                <h5><span className='sidebarChannel_hash'></span>{channel.channelName}</h5>
+              </div>
+            );
+          } else return null;
+
+        })}
+
+
+      </>
+      </div>
+
+      {userPhoto && <div className='sidebar_profile shadow'>
+        <Avatar sx={{ bgcolor: user.photo }}>{user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}</Avatar>
+
+
+        <div className='sidebar_profileInfo'>
+          <h6>{user.firstName + " " + user.lastName}</h6>
+          <p>{user.id}</p>
+        </div>
+      </div>}
+      {!userPhoto && <div className='sidebar_profile'>
+        <Avatar src={user.photo} style={{ position: 'static' }} />
+
+        <div className='sidebar_profileInfo'>
+          <h6>{user.firstName + " " + user.lastName}</h6>
+          <p>{user.id}</p>
+        </div>
+      </div>}
+
+
+      {showUsers && <div className='friend_box'>
+        <div className='friend_content'>
+
+          <div className='friend_headText border-bottom'>Medlemar</div>
+          <div className='friend_List'>
+            {users.sort((a, b) => a.user.firstName.localeCompare(b.user.firstName)).map((user) => {
+              const isFriend = friends.some((friend) => friend.id === user.id);
+
+              return (
+                <div className="user" key={user.id} onClick={() => handleSelectedMember(user)}>
+                  <Avatar src={user.photo} style={{ position: 'static' }} />
+                  <div className="user_name">
+                    {user.firstName} {user.lastName}
+                  </div>
+                  {isFriend && <div className="friend_status">Already friends</div>}
+                </div>
+              );
+            })}
+          </div>
+          <div className='border-top btn_style'>
+            <button type='button' className=' btn btn-danger m-3 ' onClick={() => showListOfUsers()}>Avbryt</button>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+
+  );
+}
 
 export default Sidebar
