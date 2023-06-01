@@ -22,13 +22,13 @@ const Sidebar = () => {
   const [userPhoto, setUserPhoto] = useState(true);
   const [friends, setFriends] = useState([]);
   const [alreadyFriends, setAlreadyFriends] = useState(false);
- // All users 
- const [users, setUsers] = useState([]);
-const [showUsers, setShowUsers] = useState(false);
+  // All users 
+  const [users, setUsers] = useState([]);
+  const [showUsers, setShowUsers] = useState(false);
 
-const showListOfUsers = () => {
- setShowUsers(!showUsers);
-}
+  const showListOfUsers = () => {
+    setShowUsers(!showUsers);
+  }
 
   // show from for channels 
   const [showAddChannel, setShowAddChannel] = useState(false);
@@ -36,7 +36,7 @@ const showListOfUsers = () => {
   // input for AddChannel
   const [input, setInput] = useState("");
   const [channel, setChannel] = useState([]);
-  
+
 
   // selection of what chatroom would be created 
 
@@ -53,37 +53,37 @@ const showListOfUsers = () => {
         <span className="tooltip-trigger">{name}</span>
       </Tooltip>
     );
-   
+
   };
 
   // settings if you want to see Chat Rum or Vänner 
   const [chatHeader, setChatHeader] = useState('Vänner');
-  
+
 
   useEffect(() => {
-   setFriends(user.friends);
-   setChannel(user.conversations);
+    setFriends(user.friends);
+    setChannel(user.conversations);
     if (user.photo.charAt(0) !== "#") {
       setUserPhoto(false)
     }
     if (user.photo.charAt(0) === "#") {
       setUserPhoto(true)
     }
-   
+
   }, [user]);
   //  
 
   // adding Channel
   let dateTime = new Date();
   let timeString = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  let dateString = dateTime.toDateString().slice(4); 
+  let dateString = dateTime.toDateString().slice(4);
   let formattedTimestamp = `${timeString} ${dateString}`;
 
 
   const addChannel = (e) => {
     e.preventDefault();
 
- setInput("")
+    setInput("")
     const c3 = {
       channelId: "3",
       channelName: input,
@@ -94,8 +94,8 @@ const showListOfUsers = () => {
         timestamp: formattedTimestamp,
         message: "Start your conversation today",
       },
-    
-}
+
+    }
 
     const newChannel = {
       channelId: c3.channelId,
@@ -109,7 +109,7 @@ const showListOfUsers = () => {
       ],
       channelMessages: [c3.channelMessages],
     };
-   
+
     dispatch(addConversation(newChannel));
     ;
     handelAddChannel();
@@ -122,10 +122,10 @@ const showListOfUsers = () => {
     // Toggle between "Vänner" and "Chat Rum"
     if (chatHeader === 'Vänner') {
       setChatHeader('Chat Rum');
-      
+
     } else {
       setChatHeader('Vänner');
-      
+
     }
   };
 
@@ -140,7 +140,7 @@ const showListOfUsers = () => {
 
     if (chatHeader === "Vänner") { showListOfUsers() }
   };
- 
+
 
   //store it 
   const handleSelectedMember = (friend) => {
@@ -158,77 +158,77 @@ const showListOfUsers = () => {
 
     const newUser = {
 
-      
-        id: "593",
-        firstName: "Mikael",
-        lastName: "Svensson",
-        email: "email",
-        role: "teacher",
-        userName: "M,S",
-        password: "login",
-        photo: "https://avatars.githubusercontent.com/u/113359307?s=120&v=4", 
-        conversations: [],
-        friends: [],
-        events: [],
-      
+
+      id: "593",
+      firstName: "Mikael",
+      lastName: "Svensson",
+      email: "email",
+      role: "teacher",
+      userName: "M,S",
+      password: "login",
+      photo: "https://avatars.githubusercontent.com/u/113359307?s=120&v=4",
+      conversations: [],
+      friends: [],
+      events: [],
+
 
     }
     setUsers(prevUsers => [...prevUsers, newUser]);
-   
+
   };
 
- const handleUserInfo= (friend) => {
-console.log("Open you chat");
-// open the chat you have with that person
+  const handleUserInfo = (friend) => {
+    console.log("Open you chat");
+    // open the chat you have with that person
 
-}
- const handleUserContextMenu= (friend) => {
-  console.log("User info menu");
-// show public user information 
-// abale to create a conerssation with this person direcktly 
-}
+  }
+  const handleUserContextMenu = (friend) => {
+    console.log("User info menu");
+    // show public user information 
+    // abale to create a conerssation with this person direcktly 
+  }
 
-// Stored User from API
+  // Stored User from API
 
-const API_URL = 'http://localhost:8080/api/v1/user/';
-// if a refresch button is needed
-const [reload, setReload] = useState(false);
-const updateList = () => {
-  setReload(!reload);
-}
-//updating List
-useEffect(() => {
- getAllUsers();
+  const API_URL = 'http://localhost:8080/api/v1/user/';
+  // if a refresch button is needed
+  const [reload, setReload] = useState(false);
+  const updateList = () => {
+    setReload(!reload);
+  }
+  //updating List
+  useEffect(() => {
+    getAllUsers();
 
- setTimeout(() => {
-  console.log(users);
+    setTimeout(() => {
+      console.log(users);
 
-  console.log("if you get error with http://localhost:8080/api/v1/user/ then it is no problem it just don't have the right connection with BE")
- }, 1000);
- }, []);
+      console.log("if you get error with http://localhost:8080/api/v1/user/ then it is no problem it just don't have the right connection with BE")
+    }, 1000);
+  }, []);
 
- // Alert
- const [alert, setAlert] = useState({ type: '', message: '' });
+  // Alert
+  const [alert, setAlert] = useState({ type: '', message: '' });
 
-const getAllUsers = async () => { 
-    await axios.get(API_URL).then(response =>{
-        if (response.status === 200) {
-          setUsers(response.data); 
-          setAlert({ type: 'success', message: 'Objekt hittad!' })
-        } else {
-          setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
-        }
-      }).catch(error => {
-        console.log("ERROR: ", error);
-        setAlert({ type: 'danger', message: error.message })
-      });
-}
+  const getAllUsers = async () => {
+    await axios.get(API_URL).then(response => {
+      if (response.status === 200) {
+        setUsers(response.data);
+        setAlert({ type: 'success', message: 'Objekt hittad!' })
+      } else {
+        setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+      }
+    }).catch(error => {
+      console.log("ERROR: ", error);
+      setAlert({ type: 'danger', message: error.message })
+    });
+  }
 
   return (
     <div className='sidebar mb-3'>
       <div className='sidebar_top'>
         <Dropdown>
-          <Dropdown.Toggle variant="btn btn-dark btn-lg" id="dropdown-basic">
+          <Dropdown.Toggle variant="btn btn-primary btn-lg" id="dropdown-basic">
             {chatHeader}
           </Dropdown.Toggle>
 
@@ -239,9 +239,9 @@ const getAllUsers = async () => {
         </Dropdown>
       </div>
 
-      <div className='sidebar_channels'>
-        <div className='sidebar_channelsHeader'>
-          <div className='sidebar_header'></div>
+      <div className='sidebar_channels shadow'>
+        <div className='sidebar_channelsHeader shadow'>
+          <div className='sidebar_header shadow'></div>
           <ExpandMoreIcon />
           <h4>{chatHeader}</h4>
           <AddIcon type="button" onClick={handelAddIcon} className='sidebar_addchannels' />
@@ -260,29 +260,29 @@ const getAllUsers = async () => {
               <div className='option'>
 
 
-              <label>
-  
-  <input
-    type="radio"
-    name="option"
-    value="vän"
-    checked={selectedOption === 'vän'}
-    onChange={handleOptionChange}
-  />
-  {renderTooltip('Vän kanal är till för att skapa en chat med vänner där alla kan lägga till nya chat medlemar',"Vän")}
-</label>
+                <label>
 
-<label>
-  
-  <input
-    type="radio"
-    name="option"
-    value="Class"
-    checked={selectedOption === 'Class'}
-    onChange={handleOptionChange}
-  />
-  {renderTooltip('klass kanal är till för Admins och lärare för att skapa en chat där bara Admins och lärare kan lägga till nya chat medlemar',"Klass")}
-</label>
+                  <input
+                    type="radio"
+                    name="option"
+                    value="vän"
+                    checked={selectedOption === 'vän'}
+                    onChange={handleOptionChange}
+                  />
+                  {renderTooltip('Vän kanal är till för att skapa en chat med vänner där alla kan lägga till nya chat medlemar', "Vän")}
+                </label>
+
+                <label>
+
+                  <input
+                    type="radio"
+                    name="option"
+                    value="Class"
+                    checked={selectedOption === 'Class'}
+                    onChange={handleOptionChange}
+                  />
+                  {renderTooltip('klass kanal är till för Admins och lärare för att skapa en chat där bara Admins och lärare kan lägga till nya chat medlemar', "Klass")}
+                </label>
 
                 <button type='button' className='btn btn-danger m-3' onClick={handelAddChannel}>Avbryt</button>
 
@@ -297,21 +297,21 @@ const getAllUsers = async () => {
         </div>
       </div>
 
-      <div className='sidebar_channelList'><>
-        
-      {friends.map((friends) => {
-        if(chatHeader === "Vänner"){
-          return (
-            <div className='user' key={friends.id} onClick={() => handleUserInfo(friends)} onContextMenu={(e) => handleUserContextMenu(e, friends)}>
-            <Avatar src={friends.photo} />
-            <div className='user_name'>{friends.firstName} {friends.lastName}  </div>
+      <div className='sidebar_channelList shadow'><>
+
+        {friends.map((friends) => {
+          if (chatHeader === "Vänner") {
+            return (
+              <div className='user' key={friends.id} onClick={() => handleUserInfo(friends)} onContextMenu={(e) => handleUserContextMenu(e, friends)}>
+                <Avatar src={friends.photo} />
+                <div className='user_name'>{friends.firstName} {friends.lastName}  </div>
               </div>
-          )
-        }
-      })}
+            )
+          }
+        })}
 
         {channel.map((channel, index) => {
-          if(chatHeader === "Chat Rum"){
+          if (chatHeader === "Chat Rum") {
             return (
               <div key={index} className='sidebarChannel' onClick={() => dispatch(setChannelInfo({
                 key: index,
@@ -323,14 +323,15 @@ const getAllUsers = async () => {
               }))}>
                 <h5><span className='sidebarChannel_hash'></span>{channel.channelName}</h5>
               </div>
-            );}else return null;
-          
+            );
+          } else return null;
+
         })}
 
 
-        </>
+      </>
       </div>
-      {userPhoto && <div className='sidebar_profile'>
+      {userPhoto && <div className='sidebar_profile shadow'>
         <Avatar sx={{ bgcolor: user.photo }}>{user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}</Avatar>
 
         <div className='sidebar_profileInfo'>
@@ -349,31 +350,31 @@ const getAllUsers = async () => {
 
 
       {showUsers && <div className='friend_box'>
-                <div className='friend_content'>
-                        
-                        <div className='friend_headText border-bottom'>Medlemar</div>
-                        <div className='friend_List'>
-                        {users.sort((a, b) => a.user.firstName.localeCompare(b.user.firstName)).map((user) => {
-  const isFriend = friends.some((friend) => friend.id === user.id);
-  
-  return (
-    <div className="user" key={user.id} onClick={() => handleSelectedMember(user)}>
-      <Avatar src={user.photo} />
-      <div className="user_name">
-        {user.firstName} {user.lastName}
-      </div>
-      {isFriend && <div className="friend_status">Already friends</div>}
-    </div>
-  );
-})}
-                        </div>
-                        <div className='border-top btn_style'>
-                        <button type='button' className=' btn btn-danger m-3 ' onClick={() =>showListOfUsers()}>Avbryt</button>
-                        </div>
-                    </div>
+        <div className='friend_content'>
+
+          <div className='friend_headText border-bottom'>Medlemar</div>
+          <div className='friend_List'>
+            {users.sort((a, b) => a.user.firstName.localeCompare(b.user.firstName)).map((user) => {
+              const isFriend = friends.some((friend) => friend.id === user.id);
+
+              return (
+                <div className="user" key={user.id} onClick={() => handleSelectedMember(user)}>
+                  <Avatar src={user.photo} />
+                  <div className="user_name">
+                    {user.firstName} {user.lastName}
+                  </div>
+                  {isFriend && <div className="friend_status">Already friends</div>}
                 </div>
-                }
-            </div>
+              );
+            })}
+          </div>
+          <div className='border-top btn_style'>
+            <button type='button' className=' btn btn-danger m-3 ' onClick={() => showListOfUsers()}>Avbryt</button>
+          </div>
+        </div>
+      </div>
+      }
+    </div>
 
   );
 }
