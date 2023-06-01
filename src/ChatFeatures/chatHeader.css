@@ -62,7 +62,7 @@ box-shadow: 3px 3px 9px rgba(24, 148, 206, 0.577);
   flex: 1;
 }
 .user:hover{
-  background-color: rgb(108, 112, 114);
+  background-color: rgb(113, 108, 114);
 }
 .user img {
    height: 30px;
@@ -87,7 +87,6 @@ box-shadow: 3px 3px 9px rgba(24, 148, 206, 0.577);
 }
 .user{
    height: 50px;
-  width: 200px;
   display: flex;
   align-items: center;
   margin-bottom: 10px;

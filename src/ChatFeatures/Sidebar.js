@@ -303,7 +303,7 @@ const getAllUsers = async () => {
         if(chatHeader === "Vänner"){
           return (
             <div className='user' key={friends.id} onClick={() => handleUserInfo(friends)} onContextMenu={(e) => handleUserContextMenu(e, friends)}>
-            <Avatar src={friends.photo} />
+            <Avatar src={friends.photo} style={{ position: 'static' }}/>
             <div className='user_name'>{friends.firstName} {friends.lastName}  </div>
               </div>
           )
@@ -331,7 +331,7 @@ const getAllUsers = async () => {
         </>
       </div>
       {userPhoto && <div className='sidebar_profile'>
-        <Avatar sx={{ bgcolor: user.photo }}>{user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}</Avatar>
+        <Avatar sx={{ bgcolor: user.photo }} style={{ position: 'static' }}>{user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}</Avatar>
 
         <div className='sidebar_profileInfo'>
           <h6>{user.firstName + " " + user.lastName}</h6>
@@ -339,7 +339,7 @@ const getAllUsers = async () => {
         </div>
       </div>}
       {!userPhoto && <div className='sidebar_profile'>
-        <Avatar src={user.photo} />
+        <Avatar src={user.photo} style={{ position: 'static' }}/>
 
         <div className='sidebar_profileInfo'>
           <h6>{user.firstName + " " + user.lastName}</h6>
@@ -358,7 +358,7 @@ const getAllUsers = async () => {
   
   return (
     <div className="user" key={user.id} onClick={() => handleSelectedMember(user)}>
-      <Avatar src={user.photo} />
+      <Avatar src={user.photo} style={{ position: 'static' }}/>
       <div className="user_name">
         {user.firstName} {user.lastName}
       </div>

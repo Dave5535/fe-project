@@ -31,3 +31,12 @@ cursor: pointer;
   justify-content: center;
   display: flex;
  }
+ .list{
+
+  flex: 1;
+  overflow: scroll;
+ height: 85vh;
+ }
+ .list::-webkit-scrollbar {
+  display: none;
+}
