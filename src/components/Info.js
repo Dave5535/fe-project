@@ -20,7 +20,7 @@ const Info = () => {
 
     const handelAddPlay = () => {
 
- const play = {
+        const play = {
             plays: [{
                 playId: "2",
                 playName: "Möte eller en pjäs ",
@@ -29,15 +29,15 @@ const Info = () => {
                 script: "Hello Everyone and wellcome",
             }],
         }
-        dispatch(setPlaysInfo(play)); 
+        dispatch(setPlaysInfo(play));
     }
 
     const handelswitch = () => {
         setShowForm(!showForm);
         setShowPage(!showPage);
-       
-        if(showPage === true)
-        setTimeout(clearForm, 1);
+
+        if (showPage === true)
+            setTimeout(clearForm, 1);
     }
 
 
@@ -52,24 +52,24 @@ const Info = () => {
 
         const plays = {
             plays: [{
-                  playId:"6" ,
-            playName: playName ,
-            description: description,
-            time: time ,
-            script: script ,
-        }],
-         }
+                playId: "6",
+                playName: playName,
+                description: description,
+                time: time,
+                script: script,
+            }],
+        }
 
-         const play1 = {
+        const play1 = {
             plays: [{
-                 playId: "3",
-                 playName: "PlayName ",
-                 description: "This is the description! It sould have a max and a minimun number of characters",
-                 time: "t,ex 25 / 05 / 2023  ",
-                 script: "Hello Everyone and wellcome",
-             }],
-             
-         }
+                playId: "3",
+                playName: "PlayName ",
+                description: "This is the description! It sould have a max and a minimun number of characters",
+                time: "t,ex 25 / 05 / 2023  ",
+                script: "Hello Everyone and welcome",
+            }],
+
+        }
 
         // Save Play to BE 
         dispatch(addPlays(plays));
@@ -81,7 +81,7 @@ const Info = () => {
         document.getElementById('time').value = '';
         document.getElementById('description').value = '';
         document.getElementById('script').value = '';
-      };
+    };
 
     const user = useSelector(selectUser);
     const [userRole, setUserRole] = useState(false);
@@ -109,7 +109,7 @@ const Info = () => {
             {showPage && <div className='container'>
                 <h4 className='text-center'>Info!</h4>
                 <div className='text-center'> här kan Möten och Event läggas up för att alla ska se. även script till de som ska vara med i pjäser</div>
-                {userRole && <button className="btn btn-success mb-4" onClick={handelswitch}>lägg till event</button>}               
+                {userRole && <button className="btn btn-success mb-4" onClick={handelswitch}>lägg till event</button>}
                 <div className="info_event_list" > <InfoList /> </div>
             </div>}
             {showForm && <div className="form_container">

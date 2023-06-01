@@ -85,11 +85,11 @@ const Login = () => {
             password: "pass",
             photo: null,
             conversations: [],
-            friends: [], 
+            friends: [],
             events: [],
-          };
-          
-          const testLoginPerson2 = {
+        };
+
+        const testLoginPerson2 = {
             id: "43573",
             firstName: "Mikael",
             lastName: "Svensson",
@@ -97,12 +97,12 @@ const Login = () => {
             role: "teacher",
             userName: "M,S",
             password: "login",
-            photo: "https://avatars.githubusercontent.com/u/113359307?s=120&v=4", 
+            photo: "https://avatars.githubusercontent.com/u/113359307?s=120&v=4",
             conversations: [],
             friends: [],
             events: [],
-          };
-          const testLoginPerson3 = {
+        };
+        const testLoginPerson3 = {
             id: "39172",
             firstName: "Son",
             lastName: "Nghiem",
@@ -114,35 +114,35 @@ const Login = () => {
             conversations: [],
             friends: [],
             events: [],
-          };
-          const c3 = {
+        };
+        const c3 = {
             channelId: "10",
             channelName: "created Channel",
             channelType: "vän",
             channelMessages: {
-              MessageId: Math.random(11),
-              user: { firstName: "System", photo: "https://th.bing.com/th/id/OIP.6rBuDJx97j2yiZ8Bdi9tMwHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-              timestamp: "formattedTimestamp",
-              message: "Start your conversation today",
+                MessageId: Math.random(11),
+                user: { firstName: "System", photo: "https://th.bing.com/th/id/OIP.6rBuDJx97j2yiZ8Bdi9tMwHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
+                timestamp: "formattedTimestamp",
+                message: "Start your conversation today",
             },
-          }
-      
-          const newChannel = {
+        }
+
+        const newChannel = {
             channelId: c3.channelId,
             channelName: c3.channelName,
             channelType: c3.channelType,
-            channelUsers : [{
-              user: {
-                user,
-              },
+            channelUsers: [{
+                user: {
+                    user,
+                },
             }
             ],
             channelMessages: [c3.channelMessages],
-          };
-          
-          testLoginPerson.friends = [...testLoginPerson.friends, testLoginPerson3];
-          
-          testLoginPerson.conversations = [...testLoginPerson.conversations , newChannel];
+        };
+
+        testLoginPerson.friends = [...testLoginPerson.friends, testLoginPerson3];
+
+        testLoginPerson.conversations = [...testLoginPerson.conversations, newChannel];
 
         const email = data.email;
         const password = data.password;
@@ -172,7 +172,7 @@ const Login = () => {
     return (
         <div className="container">
 
-            <h4 className='text-center pb-1 mb-5 bg-dark login-title'>Login</h4>
+            <h4 className='text-center pb-1 mb-5 bg-light login-title'>Login</h4>
             <Form className="form_box" />
 
         </div>

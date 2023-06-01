@@ -48,29 +48,29 @@ const Header = () => {
     if (user !== null)
 
         return (
-            <nav className='navbar navbar-expand-sm bg-dark navbar-dark shadow rounded mb-3'>
+            <nav className='navbar navbar-expand-sm bg-light navbar-light shadow rounded mb-3'>
                 <div className="container-fluid">
-                    <Link className="logo navbar-brand text-white d-flex justify-content-center" to="/"><img src="./Image/logo.png" alt="logo" /></Link>
+                    <Link className="logo navbar-brand d-flex justify-content-center" to="/"><img src="./Image/logo.png" alt="logo" /></Link>
                     <ul className="nav me-auto">
                         <li className="nav-item">
                         </li>
                         <li className="nav-item">
-                            <NavLink activeClassName="selected" className="nav-link text-white" to="/" exact={true}>Hem</NavLink>
+                            <NavLink activeClassName="selected" className="nav-link text-black" to="/" exact={true}>Hem</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink activeClassName="selected" className="nav-link text-white link" to="/info">Info</NavLink>
+                            <NavLink activeClassName="selected" className="nav-link text-black link" to="/info">Info</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink activeClassName="selected" className="nav-link text-white link" to="/chat">Chat</NavLink>
+                            <NavLink activeClassName="selected" className="nav-link text-black link" to="/chat">Chat</NavLink>
                         </li>
                         <li className="nav item">
-                            <NavLink activeClassName="selected" className='nav-link text-white link' to="/calendar">Kalender</NavLink>
+                            <NavLink activeClassName="selected" className='nav-link text-black link' to="/calendar">Kalender</NavLink>
                         </li>
                         <li className="nav item">
-                            <NavLink activeClassName="selected" className='nav-link text-white link' to="/documents">Dokument</NavLink>
+                            <NavLink activeClassName="selected" className='nav-link text-black link' to="/documents">Dokument</NavLink>
                         </li>
                         <li className="nav-item" >
-                            <NavLink activeClassName="selected" className="nav-link text-white link" to="/settings" ><div className='fas fa-cog'></div></NavLink>
+                            <NavLink activeClassName="selected" className="nav-link text-black link" to="/settings" ><div className='fas fa-cog'></div></NavLink>
                         </li>
                     </ul>
                     {admin && <>
@@ -86,7 +86,7 @@ const NotFound = () => {
     return (
         <div className='container'>
 
-            <img src="logo.png" className='rounded mx-auto d-block' alt='Teater stickornas loga' width="50" height="50" />
+            <img src="logo.png" className='rounded mx-auto d-block' alt='Teater stickornas logo' width="50" height="50" />
             <br />
             <h4 className='text-center'>Fel 404: Sidan kunde inte hittas!</h4>
         </div>

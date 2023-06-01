@@ -177,7 +177,7 @@ const Crud = () => {
       <>
         {showDetails && (
           <div className='card'>
-            <div className='card-header bg-dark text-white'>
+            <div className='card-header bg-light text-black'>
               Info
               <div className='card-body'>
                 <div className='bm-3'>
@@ -205,7 +205,7 @@ const Crud = () => {
   // Table
   const Table = () => {
     return (
-      <table className="table bg-dark text-white rounded shadow">
+      <table className="table bg-light text-black rounded shadow">
         <TableHeader />
         <TableRow list={personList} />
       </table>
@@ -222,7 +222,7 @@ const Crud = () => {
     return (
       <thead>
         <tr>
-          <th colSpan="4" className="table-dark rounded-top shadow">
+          <th colSpan="4" className="table-light rounded-top shadow">
             <div className="d-flex justify-content-between align-items-center">
               <div>Användarlista <button type="button" className='btn btn-primary ms-2' onClick={togleSearch}>Sök</button></div>
             </div>

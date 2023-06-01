@@ -26,7 +26,6 @@
    border-radius: 15px;
    margin: 20px;
    border-top: 1px solid gray;
-   
 }
 
 .chats_input > form > input {
@@ -34,7 +33,7 @@
    width: 90%;
    border: none;
    outline: 0;
-   color: white;
+   color: black;
    font-size: large;
    cursor: pointer;
 }
@@ -45,10 +44,9 @@
 }
 
 .chats_inputIcons:hover {
-   color: white;
+   color: black;
    padding: 5px;
 }
 .chats_input_btn {
    display: none;
 }
-
