@@ -1,49 +1,47 @@
-.chatHeader{
-    display: flex;
+.chatHeader {
+   display: flex;
    justify-content: space-between;
    align-items: center;
-   color: white;
+   color: black;
    padding: 10px;
 }
-.chatHeader_hash{
+.chatHeader_hash {
    color: gray;
-    font-size: 30px;
+   font-size: 30px;
    padding: 30px;
 }
 .chatHeader_left {
    width: 500px;
- }
-.chatHeader_left > h5{
-    color: white;
-     display: flex;
-    align-items: center;
-    
- }
+}
+.chatHeader_left > h5 {
+   color: black;
+   display: flex;
+   align-items: center;
+}
 
- .chatHeader_right{
-    display: flex;
-   align-items:center;
+.chatHeader_right {
+   display: flex;
+   align-items: center;
    color: gray;
    background-color: var(--divbg);
    border-radius: 3px;
-   padding: 3px; 
+   padding: 3px;
 }
 
- .chatHeader_right:hover{
-cursor: pointer; 
-transition: all 200ms ease;
-box-shadow: 3px 3px 9px rgba(24, 148, 206, 0.577);
+.chatHeader_right:hover {
+   cursor: pointer;
+   transition: all 200ms ease;
+   box-shadow: 3px 3px 9px rgba(24, 148, 206, 0.577);
 }
-.friend_box{
+.friend_box {
    width: 300px;
    height: 400px;
-   position:absolute;
+   position: absolute;
    right: 30%;
-   top: 20%; 
-   
+   top: 20%;
    justify-content: center;
    align-items: center;
-   background-color: #3f474e;
+   background-color: white;
    border-radius: 5px;
 }
 
@@ -53,42 +51,45 @@ box-shadow: 3px 3px 9px rgba(24, 148, 206, 0.577);
    display: flex;
    justify-content: center;
 }
-.friend_List{
+.friend_List {
    display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 300px;
-  overflow: scroll;
-  flex: 1;
+   flex-direction: column;
+   align-items: center;
+   height: 300px;
+   overflow: scroll;
+   flex: 1;
 }
-.user:hover{
-  background-color: rgb(113, 108, 114);
+
+.user:hover {
+   background-color: rgb(93, 165, 201);
 }
 .user img {
    height: 30px;
    width: 30px;
    border-radius: 50%;
    margin-right: 10px;
- }
+}
 .friend_List::-webkit-scrollbar {
    display: none;
 }
-.friend_List{
+.friend_List {
    -ms-overflow-style: none;
    scrollbar-width: none;
 }
 
-.btn_style{
-    border-radius: 5px;
-  width: 100%;
+.btn_style {
+   border-radius: 5px;
+   width: 100%;
    color: rgb(124, 122, 122);
    display: flex;
    justify-content: center;
 }
-.user{
+.user {
    height: 50px;
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-  justify-content: center;
+   width: 200px;
+   display: flex;
+   align-items: center;
+   margin-bottom: 10px;
+   justify-content: center;
 }
+

@@ -20,7 +20,6 @@
 
 .sidebar_channels {
    display: flex;
-   
 }
 
 .sidebar_addchannels {
@@ -53,15 +52,17 @@
    color: gray;
    padding: 0 10px;
    border-top: 1px solid gray;
+   background-color: white;
 }
 
 .sidebar_profileInfo {
    display: 1;
    padding: 0 10px;
+   background-color: white;
 }
 
 .sidebar_profileInfo > h6 {
-   color: #fff;
+   color: black;
 }
 
 .sidebar_channelList {
@@ -77,12 +78,13 @@
 .sidebar_channelList {
    -ms-overflow-style: none;
    scrollbar-width: none;
+   background-color: white;
 }
 
 .addChannel_form {
    width: 90%;
    height: 90%;
-   position:absolute;
+   position: absolute;
    top: 0;
    display: flex;
    justify-content: center;
@@ -92,7 +94,8 @@
 .addChannel_formContent {
    height: 175px;
    width: 300px;
-   background-color: #3f474e;
+   background-color: white;
+   color: black;
    padding: 20px;
    border-radius: 5px;
    position: relative;
@@ -104,47 +107,47 @@
 }
 .addChannel_headText {
    border-radius: 5px;
-   color: white;
+   color: black;
 }
 .addChannel_formInput {
    background-color: transparent;
    border-radius: 6px;
    border: none;
    outline: 0;
-   color: white;
+   color: black;
 }
 .form {
-   background-color: #3f474e;
+   background-color: var(--bgcolor);
 }
-#drop_btn{
+#drop_btn {
    color: #fff;
    border-color: #fff;
 }
-.option{
+.option {
    justify-content: space-between;
-  display: flex;
-  justify-items: center;
+   display: flex;
+   justify-items: center;
 }
 .label-text {
    display: inline-block;
    cursor: pointer;
- }
- .sidebarChannel:hover > h5{
-   color: rgb(91, 103, 139);
-   background-color: gray;
-   
+
+}
+.sidebarChannel:hover > h5 {
+   color: black;
+   background-color: #679dd3;
 }
 
-.sidebarChannel > h5{
- display: flex;
- padding-left: 15px;
- align-items: center;
- background-color: #394047;
- color: gray;
- cursor: pointer;
- 
+.sidebarChannel > h5 {
+   display: flex;
+   padding-left: 15px;
+   align-items: center;
+   background-color: #2a73bd;
+   color: black;
+   cursor: pointer;
 }
-.sidebarChannel_hash{
+.sidebarChannel_hash {
    font-size: 10px;
-   padding: 8px;  
- }
+   padding: 8px;
+}
+

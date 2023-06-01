@@ -1,42 +1,35 @@
-.plays_list{
-  background-color: #212529;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 10px;
+.plays_list {
+   background-color: white;
+   padding: 10px;
+   border-radius: 5px;
+   margin: 10px;
 }
-.plays_time{
-  color: rgb(239, 236, 236);
-margin-left: 10%;
-font-size: small; 
-
+.plays_time {
+   color: rgb(138, 136, 136);
+   margin-left: 10%;
+   font-size: small;
 }
-.plays_description{
+.plays_description {
    font-size: medium;
-  }
-  .form_container{
-    background-color: rgb(35, 34, 34);
-    padding: 10px;
-    border-radius: 5px;
-   }
-.info_input{
-margin: 5px;
-border-radius: 5px;
-border: none;
-outline: 0;
-color: rgb(205, 109, 13);
-font-size: large;
-cursor: pointer;
-   }
-.form_box{
-  justify-content: center;
-  display: flex;
- }
- .list{
 
-  flex: 1;
-  overflow: scroll;
- height: 85vh;
- }
- .list::-webkit-scrollbar {
-  display: none;
 }
+.form_container {
+   background-color: var(--bgcolor);
+   padding: 10px;
+   border-radius: 5px;
+}
+.info_input {
+   background-color: var(--bgcolor);
+   margin: 5px;
+   border-radius: 5px;
+   border: 1px solid black;
+   outline: 0;
+   color: rgb(205, 109, 13);
+   font-size: large;
+   cursor: pointer;
+}
+.form_box {
+   justify-content: center;
+   display: flex;
+}
+
