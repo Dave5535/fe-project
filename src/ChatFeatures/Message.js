@@ -53,7 +53,7 @@ const Message = (props) => {
     return (e) => {
       e.preventDefault();
   
-  if (userInfo.role === "admin" || userInfo.id === messageUser.id) {
+  if (userInfo.role.roleTitle === "admin" || userInfo.id === messageUser.id) {
     setShowButtons(!showButtons);
   }
   
@@ -72,7 +72,7 @@ const Message = (props) => {
         <Avatar className='picture' src={user.photo} />
       ) : (
         <div>
-          <Avatar className='picture' sx={{ bgcolor: user.photo }}>
+          <Avatar className='picture' sx={{ bgcolor: user.photo ,position: 'static'}} >
             {user.firstName && user.firstName.charAt(0).toUpperCase()}
             {user.lastName && user.lastName.charAt(0).toUpperCase()}
           </Avatar>
