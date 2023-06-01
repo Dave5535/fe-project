@@ -68,6 +68,7 @@
 .sidebar_channelList {
    flex: 1;
    overflow: scroll;
+   
 }
 
 .sidebar_channelList::-webkit-scrollbar {
@@ -130,6 +131,7 @@
 .label-text {
    display: inline-block;
    cursor: pointer;
+
 }
 .sidebarChannel:hover > h5 {
    color: black;
@@ -148,3 +150,4 @@
    font-size: 10px;
    padding: 8px;
 }
+

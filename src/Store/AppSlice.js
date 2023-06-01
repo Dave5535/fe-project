@@ -3,24 +3,25 @@ import  {createSlice} from "@reduxjs/toolkit"
 export const AppSlice = createSlice({
     name: 'app',
     initialState : {
-        key: null,
-        channelId: null,
-        channelName: null, 
+        id: null,
+        chatName: null, 
         channelType: null,
-        channelUsers:[] ,
-        channelMessages: [],
+        participants:[] ,
+        messages: [],
+        timestamp:null, 
     },
     reducers:{
         setChannelInfo: (state,action) => {
-            state.key = action.payload.key;
-            state.channelId = action.payload.channelId;
-            state.channelName = action.payload.channelName;
-            state.channelType = action.payload.channelType;
-            state.channelUsers = action.payload.channelUsers;
-            state.channelMessages = action.payload.channelMessages;
+           
+            state.id = action.payload.channelId;
+            state.chatName = action.payload.channelName;
+            state.channelType = action.payload.channelType;  // do not exsist .. remove ?
+            state.participants = action.payload.channelUsers;
+            state.messages = action.payload.channelMessages;
+            state.timestamp = action.payload.channelCreated;
         },
         addChannelMessage: (state, action) => {
-            state.channelMessages.push(action.payload);
+            state.messages.push(action.payload);
           },
           editChannelMessage: (state, action) => {
             const { messageId, content } = action.payload;
@@ -42,12 +43,11 @@ export const AppSlice = createSlice({
 
 export const{setChannelInfo,addChannelMessage,addFriendToChannel,editChannelMessage,deleteMessage} = AppSlice.actions;
 
-export const selectkey = (state) => state.app.key;
-export const selectChannelId = (state) => state.app.channelId;
-export const selectChannelName = (state) => state.app.channelName;
+export const selectChannelId = (state) => state.app.id;
+export const selectChannelName = (state) => state.app.chatName;
 export const selectChannelType = (state) => state.app.channelType;
-export const selectChannelUsers = (state) => state.app.channelUsers;
-export const selectChannelMessages = (state) => state.app.channelMessages;
-
+export const selectChannelUsers = (state) => state.app.participants;
+export const selectChannelMessages = (state) => state.app.messages;
+export const selectchannelCreated = (state) => state.app.timestamp;
 export default AppSlice.reducer;
 

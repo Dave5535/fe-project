@@ -83,13 +83,16 @@ const Login = () => {
             role: "admin",
             userName: "Dave 5535",
             password: "pass",
-            photo: null,
-            conversations: [],
-            friends: [],
-            events: [],
-        };
 
+            photo: null, // do not exsist in BE .. / store in FE in some way 
+            conversations: [], // channel 
+            messages: [],  // messages 
+            friends: [], // do not exsist in BE .. remove ? 
+            events: [],  // do not exsist in BE.. remove ? 
+          };
+   
         const testLoginPerson2 = {
+
             id: "43573",
             firstName: "Mikael",
             lastName: "Svensson",

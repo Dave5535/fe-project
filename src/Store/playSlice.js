@@ -5,18 +5,18 @@ export const PlaySlice = createSlice({
     name: "play",
     initialState: {
       
-        plays: [] // initialize to an empty array
+        plays: []
         
     },
     reducers: {
         setPlayinfo: (state, action) => {
-            state.key = action.payload.key;
-            state.playId = action.payload.playId;
-            state.playName = action.payload.playName;
+            state.id = action.payload.id;
+            state.eventName = action.payload.eventName;
             state.description = action.payload.description;
-            state.time = action.payload.time;
-            state.script = action.payload.script;
-
+            state.startTime = action.payload.startTime;
+            state.endTime = action.payload.endTime;
+            state.organizer = action.payload.organizer;
+            state.script = action.payload.script; // do not exsist in BE .. removed ? 
         },
 
         setPlaysInfo: (state, action) => {
@@ -32,11 +32,13 @@ export const PlaySlice = createSlice({
 export const { setPlayinfo, addPlays, setPlaysInfo } = PlaySlice.actions;
 
 export const selectPlayKey = (state) => state.play.key;
-export const selectPlayId = (state) => state.play.playId;
-export const selectPlayName = (state) => state.play.playName;
+export const selectPlayId = (state) => state.play.id;
+export const selectPlayName = (state) => state.play.eventName;
 export const selectDescription = (state) => state.play.description;
-export const selectTime = (state) => state.play.time;
+export const selectTimeStart = (state) => state.play.startTime;
+export const selectTimeEnd = (state) => state.play.endTime;
 export const selectScript = (state) => state.play.script;
+export const selectOrganizer = (state) => state.play.organizer;
 export const selectPlays = (state) => state.play.plays;
 
 export default PlaySlice.reducer;

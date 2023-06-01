@@ -19,7 +19,7 @@ const InfoList = () => {
     }
 
     return (
-        <div>
+        <div className='list'>
             {allplays.map((play) => (
                 <div key={play.playId} className='plays_list shadow'>
                     <h4>{play.playName} <span className='plays_time'>{play.time}</span> </h4>

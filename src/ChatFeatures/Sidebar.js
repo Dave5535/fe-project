@@ -296,7 +296,6 @@ const Sidebar = () => {
 
         </div>
       </div>
-
       <div className='sidebar_channelList shadow'><>
 
         {friends.map((friends) => {
@@ -331,8 +330,10 @@ const Sidebar = () => {
 
       </>
       </div>
+
       {userPhoto && <div className='sidebar_profile shadow'>
         <Avatar sx={{ bgcolor: user.photo }}>{user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}</Avatar>
+
 
         <div className='sidebar_profileInfo'>
           <h6>{user.firstName + " " + user.lastName}</h6>
@@ -340,7 +341,7 @@ const Sidebar = () => {
         </div>
       </div>}
       {!userPhoto && <div className='sidebar_profile'>
-        <Avatar src={user.photo} />
+        <Avatar src={user.photo} style={{ position: 'static' }}/>
 
         <div className='sidebar_profileInfo'>
           <h6>{user.firstName + " " + user.lastName}</h6>
@@ -349,32 +350,32 @@ const Sidebar = () => {
       </div>}
 
 
-      {showUsers && <div className='friend_box'>
-        <div className='friend_content'>
-
-          <div className='friend_headText border-bottom'>Medlemar</div>
-          <div className='friend_List'>
-            {users.sort((a, b) => a.user.firstName.localeCompare(b.user.firstName)).map((user) => {
-              const isFriend = friends.some((friend) => friend.id === user.id);
-
-              return (
-                <div className="user" key={user.id} onClick={() => handleSelectedMember(user)}>
-                  <Avatar src={user.photo} />
-                  <div className="user_name">
-                    {user.firstName} {user.lastName}
-                  </div>
-                  {isFriend && <div className="friend_status">Already friends</div>}
-                </div>
-              );
-            })}
-          </div>
-          <div className='border-top btn_style'>
-            <button type='button' className=' btn btn-danger m-3 ' onClick={() => showListOfUsers()}>Avbryt</button>
-          </div>
-        </div>
+          {showUsers && <div className='friend_box'>
+                <div className='friend_content'>
+                        
+                        <div className='friend_headText border-bottom'>Medlemar</div>
+                        <div className='friend_List'>
+                        {users.sort((a, b) => a.user.firstName.localeCompare(b.user.firstName)).map((user) => {
+  const isFriend = friends.some((friend) => friend.id === user.id);
+  
+  return (
+    <div className="user" key={user.id} onClick={() => handleSelectedMember(user)}>
+      <Avatar src={user.photo} style={{ position: 'static' }}/>
+      <div className="user_name">
+        {user.firstName} {user.lastName}
       </div>
-      }
+      {isFriend && <div className="friend_status">Already friends</div>}
     </div>
+  );
+})}
+                        </div>
+                        <div className='border-top btn_style'>
+                        <button type='button' className=' btn btn-danger m-3 ' onClick={() =>showListOfUsers()}>Avbryt</button>
+                        </div>
+                    </div>
+                </div>
+                }
+            </div>
 
   );
 }

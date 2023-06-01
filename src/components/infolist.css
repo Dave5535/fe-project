@@ -11,6 +11,7 @@
 }
 .plays_description {
    font-size: medium;
+
 }
 .form_container {
    background-color: var(--bgcolor);
@@ -31,3 +32,4 @@
    justify-content: center;
    display: flex;
 }
+

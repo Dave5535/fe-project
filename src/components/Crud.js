@@ -13,7 +13,7 @@ const Crud = () => {
 
   // define state variablesa
 
-  const API_URL = 'http://localhost:8080/api/v1/person';
+  const API_URL = 'http://localhost:8080/api/v1/user/';
 
   // Alert
   const [alert, setAlert] = useState({ type: '', message: '' });
@@ -127,7 +127,7 @@ const Crud = () => {
                 document.getElementById('firstName').value = '';
                 document.getElementById('lastName').value = '';
                 document.getElementById('email').value = '';
-                document.getElementById('title').value = 'user';
+                document.getElementById('title').value = 'Member';
               }}
             >
               Återställ
@@ -175,7 +175,7 @@ const Crud = () => {
   const PersonDetails = () => {
     return (
       <>
-        {showDetails && (
+        {showDetails &&  (
           <div className='card'>
             <div className='card-header bg-light text-black'>
               Info
@@ -190,7 +190,7 @@ const Crud = () => {
                   <span>Email : {person.email}</span>
                 </div>
                 <div className='bm-3'>
-                  <span>Titel : {person.title}</span>
+                  <span>Role : {person.role.roleTitle}</span>
                 </div>
               </div>
               <button type='button' className='btn btn-danger' onClick={updateList}>Göm</button>
@@ -274,7 +274,7 @@ const Crud = () => {
     const handleDetailsClick = async () => {
       console.log("PERSON:", props.person.id);
 
-      await axios.get(API_URL + '/' + props.person.id).then(response => {
+      await axios.get(API_URL + "id/" + props.person.id).then(response => {
         if (response.status === 200) {
           setPerson(response.data);
           setShowDetails(true);
@@ -332,9 +332,9 @@ const Crud = () => {
     const firstName = data.firstName;
     const lastName = data.lastName;
     const email = data.email;
-    const title = data.title;
+    const role = data.role;
 
-    const updatedPerson = { id, firstName, lastName, email, title }
+    const updatedPerson = { id, firstName, lastName, email, role }
     console.log(updatedPerson);
 
     // Call the API ( for all buttons

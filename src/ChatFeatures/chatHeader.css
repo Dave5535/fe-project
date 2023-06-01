@@ -59,6 +59,7 @@
    overflow: scroll;
    flex: 1;
 }
+
 .user:hover {
    background-color: rgb(93, 165, 201);
 }
@@ -91,3 +92,4 @@
    margin-bottom: 10px;
    justify-content: center;
 }
+

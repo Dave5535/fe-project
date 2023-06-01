@@ -65,6 +65,10 @@ ul li:hover {
    border: 2px solid rgb(0, 162, 255);
    border-radius: 6px;
 }
+.selected {
+   background-color: var(--bgcolor);
+   border-radius: 6px;
+}
 
 input.calendarInput {
    background-color: var(--input);
@@ -92,4 +96,20 @@ input.calendarInput {
    width: 10rem;
    border-radius: 0 0 6px 6px;
    box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.3);
+}
+.home-Page{
+  text-align: center;
+  border-bottom: 1px solid rgb(255, 255, 255);
+}
+.home-About{
+   text-align: center;
+   border-bottom: 1px solid rgb(255, 255, 255);
+}
+.home-Social{
+   text-align: center;
+   border-bottom: 1px solid rgb(255, 255, 255);
+}
+.home-Contacts{
+   text-align: center;
+   
 }
