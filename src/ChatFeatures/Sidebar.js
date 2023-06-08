@@ -6,33 +6,44 @@ import AddIcon from '@mui/icons-material/Add';
 import { Avatar } from '@mui/material';
 import { Dropdown } from 'react-bootstrap';
 import "./sidebar.css"
-
 import { addConversation, addFriend, selectUser } from '../Store/userSlice';
-import { addChannelMessage, setChannelInfo, selectChannelType } from '../Store/AppSlice';
+import { addChatMessage, setChatInfo} from '../Store/AppSlice';
 import { Tooltip } from '@mui/material';
 import { set } from 'date-fns';
 
 
+
 const Sidebar = () => {
-  // used to store things
+  // used to store things redux
   const dispatch = useDispatch();
 
   // info about User
   const user = useSelector(selectUser);
-  const [userPhoto, setUserPhoto] = useState(true);
   const [friends, setFriends] = useState([]);
   const [alreadyFriends, setAlreadyFriends] = useState(false);
   // All users 
   const [users, setUsers] = useState([]);
   const [showUsers, setShowUsers] = useState(false);
-
+  
   const showListOfUsers = () => {
     setShowUsers(!showUsers);
   }
 
   // show from for channels 
   const [showAddChannel, setShowAddChannel] = useState(false);
-
+  const [allChat, setAllChat] = useState([]);
+  
+  useEffect(() => { 
+    getAllchats();
+    
+    setTimeout(() => {
+      console.log(" All Chats :  ",allChat);
+     
+    }, 2000);
+  }, []);
+  
+  const [chatName, setChatName] = useState("");
+  
   // input for AddChannel
   const [input, setInput] = useState("");
   const [channel, setChannel] = useState([]);
@@ -47,74 +58,93 @@ const Sidebar = () => {
     setSelectedOption(e.target.value);
 
   };
-  const renderTooltip = (text, name) => {
-    return (
-      <Tooltip title={text} placement="bottom" arrow>
-        <span className="tooltip-trigger">{name}</span>
-      </Tooltip>
-    );
-
-  };
+ 
 
   // settings if you want to see Chat Rum or Vänner 
   const [chatHeader, setChatHeader] = useState('Vänner');
 
 
   useEffect(() => {
-    setFriends(user.friends);
-    setChannel(user.conversations);
-    if (user.photo.charAt(0) !== "#") {
-      setUserPhoto(false)
-    }
-    if (user.photo.charAt(0) === "#") {
-      setUserPhoto(true)
-    }
-
+    getAllUsers();//updating Member List
+    
   }, [user]);
-  //  
-
-  // adding Channel
+  useEffect(() => { 
+    setChannel();
+  }, []);
+  // timeStamp
   let dateTime = new Date();
   let timeString = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
   let dateString = dateTime.toDateString().slice(4);
   let formattedTimestamp = `${timeString} ${dateString}`;
 
+ // intruduction of API 
+  const API_URL_User = 'http://localhost:8080/api/v1/user/';
+  const API_URL_Conversations = "http://localhost:8080/api/v1/conversation/";
+  // if a refresch button is needed
+  const [reload, setReload] = useState(false);
+  const updateList = () => {
+    setReload(!reload);
+  }
+  
 
-  const addChannel = (e) => {
+  // Alert
+  const [alert, setAlert] = useState({ type: '', message: '' });
+
+
+  const getAllchats = async() => {
+
+    await axios.get(API_URL_Conversations).then(response => {
+      if (response.status === 200) {
+        setAllChat(response.data);
+        setAlert({ type: 'success', message: 'Objekt tillagd!' });
+      } else {
+        setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+      }
+    
+    }).catch(error => {
+      console.log("ERROR: ", error);
+      setAlert({ type: 'danger', message: error.message });
+    });
+   
+    
+    };
+
+ // for adding a channel
+  const addChannel = async (e) => {
     e.preventDefault();
 
     setInput("")
     const c3 = {
-      channelId: "3",
-      channelName: input,
+      
+      chatName: input,
       channelType: selectedOption,
       channelMessages: {
-        MessageId: Math.random(11),
         user: { firstName: "System", photo: "https://th.bing.com/th/id/OIP.6rBuDJx97j2yiZ8Bdi9tMwHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
         timestamp: formattedTimestamp,
         message: "Start your conversation today",
       },
 
     }
+ // added laiter channelMessages: [c3.channelMessages]; 
+ const newChannel = {
+  chatName: c3.chatName,
+}
+setChatName(newChannel.chatName);
+ 
+await axios.post(API_URL_Conversations,newChannel).then(response => {
+  if (response.status === 201) {
+    console.log("Response: "+ response.data  );
+    setAlert({ type: 'success', message: 'Objekt tillagd!' });
+  } else {
+    setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+  }
 
-    const newChannel = {
-      channelId: c3.channelId,
-      channelName: c3.channelName,
-      channelType: c3.channelType,
-      channelUsers: [{
-        user: {
-          user,
-        },
-      }
-      ],
-      channelMessages: [c3.channelMessages],
-    };
-
-    dispatch(addConversation(newChannel));
-    ;
-    handelAddChannel();
-
-    console.log(newChannel);
+}).catch(error => {
+  console.log("ERROR: ", error);
+  setAlert({ type: 'danger', message: error.message });
+});
+handelAddChannelForm();
+   
 
   }
 
@@ -129,14 +159,14 @@ const Sidebar = () => {
     }
   };
 
-  const handelAddChannel = () => {
+  const handelAddChannelForm = () => {
     setShowAddChannel(!showAddChannel);
     setInput("");
   }
 
 
   const handelAddIcon = () => {
-    if (chatHeader === "Chat Rum") { handelAddChannel() }
+    if (chatHeader === "Chat Rum") { handelAddChannelForm() }
 
     if (chatHeader === "Vänner") { showListOfUsers() }
   };
@@ -147,36 +177,11 @@ const Sidebar = () => {
 
     const isFriend = friends.some((existingFriend) => existingFriend.id === friend.id);
     if (!isFriend) {
+      
       dispatch(addFriend(friend));
     }
 
   }
-
-  // should be replaced whit friends from BE 
-  const handelAddFriend = () => {
-
-
-    const newUser = {
-
-
-      id: "593",
-      firstName: "Mikael",
-      lastName: "Svensson",
-      email: "email",
-      role: "teacher",
-      userName: "M,S",
-      password: "login",
-      photo: "https://avatars.githubusercontent.com/u/113359307?s=120&v=4",
-      conversations: [],
-      friends: [],
-      events: [],
-
-
-    }
-    setUsers(prevUsers => [...prevUsers, newUser]);
-
-  };
-
   const handleUserInfo = (friend) => {
     console.log("Open you chat");
     // open the chat you have with that person
@@ -189,31 +194,11 @@ const Sidebar = () => {
   }
 
   // Stored User from API
-
-  const API_URL = 'http://localhost:8080/api/v1/user/';
-  // if a refresch button is needed
-  const [reload, setReload] = useState(false);
-  const updateList = () => {
-    setReload(!reload);
-  }
-  //updating List
-  useEffect(() => {
-    getAllUsers();
-
-    setTimeout(() => {
-      console.log(users);
-
-      console.log("if you get error with http://localhost:8080/api/v1/user/ then it is no problem it just don't have the right connection with BE")
-    }, 1000);
-  }, []);
-
-  // Alert
-  const [alert, setAlert] = useState({ type: '', message: '' });
-
   const getAllUsers = async () => {
-    await axios.get(API_URL).then(response => {
+    await axios.get(API_URL_User).then(response => {
       if (response.status === 200) {
         setUsers(response.data);
+        console.log(" All Users :  ",users);
         setAlert({ type: 'success', message: 'Objekt hittad!' })
       } else {
         setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
@@ -222,7 +207,11 @@ const Sidebar = () => {
       console.log("ERROR: ", error);
       setAlert({ type: 'danger', message: error.message })
     });
+    
   }
+
+
+
 
   return (
     <div className='sidebar mb-3'>
@@ -256,39 +245,7 @@ const Sidebar = () => {
                 <button type='submit' className='addChannel_formContent_btn'>submit</button>
               </form>
 
-
-              <div className='option'>
-
-
-                <label>
-
-                  <input
-                    type="radio"
-                    name="option"
-                    value="vän"
-                    checked={selectedOption === 'vän'}
-                    onChange={handleOptionChange}
-                  />
-                  {renderTooltip('Vän kanal är till för att skapa en chat med vänner där alla kan lägga till nya chat medlemar', "Vän")}
-                </label>
-
-                <label>
-
-                  <input
-                    type="radio"
-                    name="option"
-                    value="Class"
-                    checked={selectedOption === 'Class'}
-                    onChange={handleOptionChange}
-                  />
-                  {renderTooltip('klass kanal är till för Admins och lärare för att skapa en chat där bara Admins och lärare kan lägga till nya chat medlemar', "Klass")}
-                </label>
-
-                <button type='button' className='btn btn-danger m-3' onClick={handelAddChannel}>Avbryt</button>
-
-
-
-              </div>
+              <button type='button' className='btn btn-danger m-3' onClick={handelAddChannelForm}>Avbryt</button>
             </div>
 
           </div>}
@@ -296,58 +253,49 @@ const Sidebar = () => {
 
         </div>
       </div>
-      <div className='sidebar_channelList shadow'><>
-
-        {friends.map((friends) => {
-          if (chatHeader === "Vänner") {
-            return (
-              <div className='user' key={friends.id} onClick={() => handleUserInfo(friends)} onContextMenu={(e) => handleUserContextMenu(e, friends)}>
-                <Avatar src={friends.photo} />
-                <div className='user_name'>{friends.firstName} {friends.lastName}  </div>
-              </div>
-            )
-          }
-        })}
-
-        {channel.map((channel, index) => {
-          if (chatHeader === "Chat Rum") {
-            return (
-              <div key={index} className='sidebarChannel' onClick={() => dispatch(setChannelInfo({
-                key: index,
-                channelId: channel.channelId,
-                channelName: channel.channelName,
-                channelType: channel.channelType,
-                channelUsers: channel.channelUsers,
-                channelMessages: channel.channelMessages,
-              }))}>
-                <h5><span className='sidebarChannel_hash'></span>{channel.channelName}</h5>
-              </div>
-            );
-          } else return null;
-
-        })}
-
-
-      </>
-      </div>
-
-      {userPhoto && <div className='sidebar_profile shadow'>
+      <div className='sidebar_channelList shadow'>
+      {users && users.map((user) => {
+  if (chatHeader === "Vänner") {
+    return (
+      <div className='user' key={user.id} onClick={() => handleUserInfo(user)} onContextMenu={(e) => handleUserContextMenu(e, user)}>
         <Avatar sx={{ bgcolor: user.photo }}>{user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}</Avatar>
+        <div className='user_name'>{user.firstName} {user.lastName}</div>
+      </div>
+    );
+  }
+  return null;
+})}
+  
+  {allChat.map((allChat, index) => {
+      const isParticipant = allChat.participants.some(participant => participant.id === user.id);
+      
+      if (chatHeader === "Chat Rum" && isParticipant) {
+      return (
+        <div key={index} className='sidebarChannel' onClick={() => dispatch(setChatInfo({
+          key: index,
+          id: allChat.id,
+          chatName: allChat.chatName,
+          participants: allChat.participants,
+          messages: allChat.messages,
+          timestamp: allChat.timestamp,
+        }))}>
+          <h5><span className='sidebarChannel_hash'></span>{allChat.chatName}</h5>
+        </div>
+      );
+    }
+    return null;
+  })}
+</div>
+       <div className='sidebar_profile shadow'>
+        <Avatar >{user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}</Avatar>
 
 
         <div className='sidebar_profileInfo'>
           <h6>{user.firstName + " " + user.lastName}</h6>
           <p>{user.id}</p>
         </div>
-      </div>}
-      {!userPhoto && <div className='sidebar_profile'>
-        <Avatar src={user.photo} style={{ position: 'static' }}/>
-
-        <div className='sidebar_profileInfo'>
-          <h6>{user.firstName + " " + user.lastName}</h6>
-          <p>{user.id}</p>
-        </div>
-      </div>}
+      </div>
+      
 
 
           {showUsers && <div className='friend_box'>
@@ -355,20 +303,20 @@ const Sidebar = () => {
                         
                         <div className='friend_headText border-bottom'>Medlemar</div>
                         <div className='friend_List'>
-                        {users.sort((a, b) => a.user.firstName.localeCompare(b.user.firstName)).map((user) => {
-  const isFriend = friends.some((friend) => friend.id === user.id);
+    {users && users.sort((a, b) => (a.firstName || '').localeCompare(b.firstname || '')).map((user) => {
+    const isFriend = friends.some((friend) => friend.id === user.id);
   
-  return (
-    <div className="user" key={user.id} onClick={() => handleSelectedMember(user)}>
-      <Avatar src={user.photo} style={{ position: 'static' }}/>
-      <div className="user_name">
-        {user.firstName} {user.lastName}
+    return (
+      <div className="user" key={user.id} onClick={() => handleSelectedMember(user)}>
+        <Avatar sx={{ bgcolor: user.photo }}>{user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}</Avatar>
+        <div className="user_name">
+          {user.firstName} {user.lastName}
+        </div>
+        {isFriend && <div className="friend_status ps-1" >Already friends</div>}
       </div>
-      {isFriend && <div className="friend_status">Already friends</div>}
-    </div>
-  );
-})}
-                        </div>
+    );
+  })}
+</div>
                         <div className='border-top btn_style'>
                         <button type='button' className=' btn btn-danger m-3 ' onClick={() =>showListOfUsers()}>Avbryt</button>
                         </div>

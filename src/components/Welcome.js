@@ -68,7 +68,7 @@ const Welcome = () => {
    <h4>Constacts information</h4> 
     <div className="m-3">hello</div>
 </div>
-              <button className='btn btn-info' onClick={() => findAllusers()}>FindAll users</button>
+           
             </div>
         );
 
