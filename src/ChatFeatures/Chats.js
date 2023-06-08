@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { selectChannelId, selectChannelName, selectChannelMessages, setChannelInfo } from '../Store/AppSlice';
+import axios from 'axios';
+import { selectChatId, selectChatName, selectChatMessages, selectChat } from '../Store/AppSlice';
 import { selectUser } from '../Store/userSlice';
-import { addChannelMessage, } from '../Store/AppSlice';
+import { addChatMessage, } from '../Store/AppSlice';
 import ChatHeader from './ChatHeader'
 
 import Message from './Message';
@@ -10,12 +11,15 @@ import "./chats.css";
 
 const Chats = () => {
 
-    // user / channel info
+    // Api 
+    const API_URL_Messages = "http://localhost:8080/api/v1/message/";
+    const [alert, setAlert] = useState({ type: '', message: '' });
+    // user / Chat info
     const user = useSelector(selectUser);
-    const channelId = useSelector(selectChannelId);
-    const channelName = useSelector(selectChannelName);
-    const channelMessages = useSelector(selectChannelMessages);
-    
+    const chatId = useSelector(selectChatId);
+    const chatName = useSelector(selectChatName);
+    const chatMessages = useSelector(selectChatMessages); 
+    const conversation = useSelector(selectChat);
     
     const dispatch = useDispatch();
 
@@ -24,9 +28,11 @@ const Chats = () => {
     const [messages, setMessages] = useState([]);
     
     useEffect(() => {
-        // get messages from BE 
-        setMessages(channelMessages);
-    }, [channelMessages]);
+       
+        console.log(chatId +"  :  "+ chatName + "  :   " ,chatMessages)
+        setMessages(chatMessages);
+        
+    }, [chatMessages]);
 
    // local timeStamp
     let dateTime = new Date();
@@ -48,18 +54,32 @@ const Chats = () => {
         // Perform any necessary cleanup or store the user's preference to dismiss the tutorial in the future
       };
 
-    const sendMessage = e => {
+    const sendMessage = async e => {
         e.preventDefault();
         const newMessage = {
-            MessageId: Math.random(11),
-            user: user,
-            timestamp: formattedTimestamp,
-            message: input,
-
-        };
-
+          sender: user ,
+          textContent: input,
+          emojis : [],
+          attachments: [],
+          conversation: conversation,
+          editedStatus:false,
+          deletedStatus:false,
+        }
+        console.log(newMessage);
         // send to BE for storing 
-        dispatch(addChannelMessage(newMessage));
+        await axios.post(API_URL_Messages,newMessage).then(response => {
+          if (response.status === 201) {
+            console.log(response.data);
+            setAlert({ type: 'success', message: 'Objekt tillagd!' });
+          } else {
+            setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+          }
+    
+        }).catch(error => {
+          console.log("ERROR: ", error);
+          setAlert({ type: 'danger', message: error.message });
+        });
+
         setInput("");
     }
 
@@ -76,19 +96,20 @@ const Chats = () => {
         </div>
       )}
 
-            <ChatHeader channelName={channelName} />
-            <div className='chats_messages'>{messages.map((message, index) => (<Message
+            <ChatHeader chatName={chatName} />
+            <div className='chats_messages'>
+              {messages.map((message, index) => (<Message
                 key={index}
-                id={message.user.id}
+                id={message.id}
                 timestamp={message.timestamp}
-                messages={message.message}
-                userprop={message.user}
+                messages={message.textContent}
+                userprop={message.sender}
             />))}</div>
  
 
             <div className='chats_input'>
                 <form>
-                    <input type="text" value={input} onChange={e => setInput(e.target.value)} disabled={!channelId} placeholder={'Message  #' + channelName} />
+                    <input type="text" value={input} onChange={e => setInput(e.target.value)} disabled={!chatId} placeholder={'Message  #' + chatName} />
                     <button className='chats_input_btn' type='submit' onClick={sendMessage} >Send message</button>
                 </form>
 

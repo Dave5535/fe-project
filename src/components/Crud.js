@@ -3,6 +3,7 @@ import axios from 'axios';
 import { set, useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../Store/userSlice';
+import { Description } from '@mui/icons-material';
 
 const Crud = () => {
   // to chek if user is loged in
@@ -27,9 +28,19 @@ const Crud = () => {
     firstName: "",
     lastName: "",
     email: "",
-    title: "",
+    username:"",
+    password:"",
+    role: "",
   });
-
+  const [roleInfo, setRoleInfo] = useState({
+    id:0,
+    roleTitle:"",
+    permissions:[{
+      id:0,
+      permissionName:"",
+      description:"",
+    }]
+  });
 
   // useEfect
 
@@ -104,11 +115,11 @@ const Crud = () => {
               Role
               <select
                 className='form-control'
-                id='title'
-                {...register('title', { required: true })}
+                id='role'
+                {...register('role', { required: true })}
                 defaultValue='user'
                 placeholder='user'>
-                <option value='user'>Användare</option>
+                <option value='Member'>Användare</option>
                 <option value='teacher'>Lärare</option>
                 <option value='admin'>Admin</option>
               </select>
@@ -127,7 +138,7 @@ const Crud = () => {
                 document.getElementById('firstName').value = '';
                 document.getElementById('lastName').value = '';
                 document.getElementById('email').value = '';
-                document.getElementById('title').value = 'Member';
+                document.getElementById('role').value = 'Member';
               }}
             >
               Återställ
@@ -139,16 +150,48 @@ const Crud = () => {
     )
   };
 
+
+  const generateRandomUsername = (length) => {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+  
+    for (let i = 0; i < length; i++) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+  
+    return result;
+  };
+
+    
   // Save Form Data for adding
-  const saveData = async (data) => {
+ 
+
+ const saveData = async (data) => {
     const firstName = data.firstName;
     const lastName = data.lastName;
     const email = data.email;
-    const title = data.title;
+    const role = data.role;
 
-    const newPerson = { firstName, lastName, email, title }
+getRoleByTitel(role);
+const newPerson = {
+ 
+  firstName: firstName,
+  lastName: lastName,
+  email: email,
+  username: firstName+generateRandomUsername(4),
+  password: "password",
+  role: roleInfo,
 
-    await axios.post(API_URL, newPerson).then(response => {
+}
+ // set value of username / password so could be used for laiter 
+ setPerson(newPerson); // set the new person so the page will know password and userName
+setTimeout(() => {
+  console.log(newPerson);
+  console.log(roleInfo);
+}, 2000);
+
+    await axios.post(API_URL,newPerson).then(response => {
       if (response.status === 201) {
         updateList();
         setAlert({ type: 'success', message: 'Objekt tillagd!' });
@@ -161,6 +204,22 @@ const Crud = () => {
       setAlert({ type: 'danger', message: error.message });
     });
   };
+
+ const getRoleByTitel = async (roleTitle) => {
+
+await axios.get("http://localhost:8080/api/v1/role/title/"+roleTitle).then(response => {
+  if (response.status === 200) {
+    setRoleInfo(response.data);
+    setAlert({ type: 'success', message: 'Objekt tillagd!' });
+  } else {
+    setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+  }
+
+}).catch(error => {
+  console.log("ERROR: ", error);
+  setAlert({ type: 'danger', message: error.message });
+});
+}
 
   //useEfect
   useEffect(() => {
@@ -185,6 +244,9 @@ const Crud = () => {
                 </div>
                 <div className='bm-3'>
                   <span>Namn : {person.firstName + " " + person.lastName}</span>
+                </div>
+                <div className='bm-3'>
+                  <span>Användarnamn : {person.username}</span>
                 </div>
                 <div className='bm-3'>
                   <span>Email : {person.email}</span>
@@ -288,10 +350,10 @@ const Crud = () => {
       });
 
     }
-    const handleDeleteClick = async () => {
+    const handleDeleteClick = async () => { //Todo
       console.log("PERSON: Deleted ", props.person.id);
       // Call the API ( for all buttons )
-      await axios.delete(API_URL + '/' + props.person.id).then(response => {
+      await axios.delete(API_URL +"id/"+ props.person.id).then(response => {
         updateList();
         if (response.status === 204) {
           setAlert({ type: 'success', message: 'Objekt updaterad!' });
@@ -328,18 +390,29 @@ const Crud = () => {
   // update / save Data 
   const upDate = async (data) => {
     const id = personId;
-    console.log(id);
     const firstName = data.firstName;
     const lastName = data.lastName;
     const email = data.email;
     const role = data.role;
+    getRoleByTitel(role);
 
-    const updatedPerson = { id, firstName, lastName, email, role }
-    console.log(updatedPerson);
-
+    const updatedPerson = {
+      id: id,
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      username:person.username, // dont get it
+      password: person.password, // dont get it
+      role: roleInfo,
+    
+    }
+    setTimeout(() => {
+      console.log(updatedPerson);
+    }, 2000);
+    
     // Call the API ( for all buttons
     await axios.put(API_URL, updatedPerson).then(response => {
-      updateList();
+      getRequestAction();
 
       if (response.status === 204) {
         setAlert({ type: 'success', message: 'Objekt ändrad!' });

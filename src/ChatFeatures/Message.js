@@ -2,10 +2,11 @@ import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import "./message.css";
 import { Avatar } from '@mui/material';
-import { editChannelMessage, deleteMessage, selectChannelId, selectChannelMessages } from '../Store/AppSlice';
+import { editChatMessage, deleteMessage, selectChatId, selectChatMessages } from '../Store/AppSlice';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { selectUser } from '../Store/userSlice';
+import { blue } from '@mui/material/colors';
 
 
 const Message = (props) => {
@@ -14,10 +15,14 @@ const Message = (props) => {
 
   const dispatch = useDispatch();
 
-  const channelId = useSelector(selectChannelId);
-  const channelMessages = useSelector(selectChannelMessages);
+  const ChatId = useSelector(selectChatId);
+  const ChatMessages = useSelector(selectChatMessages);
   const userInfo = useSelector(selectUser);
-
+  
+  useEffect(() => { 
+    console.log(ChatMessages);
+    console.log(userprop);
+  }, [ChatMessages]);
 
   const [user, setUser] = useState("");
 
@@ -67,26 +72,22 @@ const Message = (props) => {
       ref={messageRef}
       onContextMenu={handleContextMenu(userprop)}
     >
-      
-      {channelId !== null && typeof user.photo === 'string' && user.photo.charAt(0) !== "#" ? (
-        <Avatar className='picture' src={user.photo} />
-      ) : (
+      {ChatId !== null && userprop && ( // Add a null check for userprop
         <div>
-          <Avatar className='picture' sx={{ bgcolor: user.photo ,position: 'static'}} >
-            {user.firstName && user.firstName.charAt(0).toUpperCase()}
-            {user.lastName && user.lastName.charAt(0).toUpperCase()}
+          <Avatar sx={{ bgcolor: user.photo }}>
+            {userprop.firstName.charAt(0).toUpperCase() + userprop.lastName.charAt(0).toUpperCase()}
           </Avatar>
         </div>
       )}
       <div className='message_info'>
         <h6>
-          {user.firstName}
+          {userprop && userprop.firstName} {/* Add a null check for userprop */}
           <span className='message_timestamp'>{timestamp}</span>
         </h6>
         <p>{messages}</p>
       </div>
-      
-      {showButtons &&   (
+  
+      {showButtons && userprop && ( // Add a null check for userprop
         <div className="message_buttons">
           <button onClick={() => handleEditMessage(messages.id, 'New Content')}><EditIcon/></button>
           <button onClick={() => handleDeleteMessage(messages.id)}><DeleteIcon/></button>

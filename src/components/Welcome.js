@@ -6,41 +6,11 @@ const Welcome = () => {
 
   const API_URL = 'http://localhost:8080/api/v1/user/';
   const [alert, setAlert] = useState({ type: '', message: '' });
-  const persons = [];
-  const [personList, setPersonList] = useState(persons);
   const [showDetails, setShowDetails] = useState(false);
-  const [person, setPerson] = useState({
-    id: 0,
-    firstName: "",
-    lastName: "",
-    email: "",
-    title: "",
-  });
+  
   const user = useSelector(selectUser);
   if (user === null) window.location.href = "http://localhost:3000/login";
 
-
-
-  const findAllusers = async () => {
-
-
-    await axios.get(API_URL).then(response => {
-      if (response.status === 200) {
-        setPersonList(response.data);
-        setAlert({ type: 'success', message: 'Objekt hittad!' })
-      } else {
-        setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
-      }
-    }).catch(error => {
-      console.log("ERROR: ", error);
-      setAlert({ type: 'danger', message: error.message })
-    });
-
-
-    setTimeout(() => {
-      console.log(personList);
-    }, 2000);
-  }
 
 
   if (user !== null)
@@ -78,6 +48,7 @@ const Welcome = () => {
         <button className='btn btn-info' onClick={() => findAllusers()}>FindAll users</button>
       </div>
     );
+
 
 }
 

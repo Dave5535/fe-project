@@ -8,6 +8,8 @@ import "./infolist.css";
 
 
 const Login = () => {
+    // list of all users 
+    const [userList, setUserList] = useState([]);
 
     const { register, handleSubmit, formState: { errors }, reset } = useForm();
     // user info 
@@ -15,18 +17,71 @@ const Login = () => {
     // redux
     const dispatch = useDispatch();
     // calling Api
-    const API_URL = "http://localhost:8080/api/v1/person";
+    const API_URL = "http://localhost:8080/api/v1/user/";
     const [alert, setAlert] = useState({ type: '', message: '' });
 
-    // needed if user need a update
+    // give a random color to  a user 
     useEffect(() => {
         if (user && user.photo === null) {
             giveDefaultProfilePic();
         }
     }, [user]);
+    // get ListOfUsers
+    useEffect(() => {
+        GetData();
+    }, []);
 
     // pushing to main page 
     const history = useHistory();
+
+
+    // giva a profile pic if you new 
+    const giveDefaultProfilePic = () => {
+        const color = getRandomColor();
+        dispatch(updatePhoto(color));
+    };
+    const getRandomColor = () => {
+        const colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#00BCD4', '#009688', '#4CAF50', '#FFC107', '#FF5722', '#795548', '#607D8B'];
+        const randomIndex = Math.floor(Math.random() * colors.length);
+        return colors[randomIndex];
+    };
+
+    // before login
+    const GetData = async () => {
+        await axios.get(API_URL).then(response => {
+            if (response.status === 200) {
+                setUserList(response.data);
+                setAlert({ type: 'success', message: 'Objekt hittad!' })
+            } else {
+                setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+            }
+        }).catch(error => {
+            console.log("ERROR: ", error);
+            setAlert({ type: 'danger', message: error.message })
+        });
+
+    }
+    // while login
+    const checkData = async (data) => {
+        // davidsvantesson@mail.com
+        //  password2
+
+        // data from loginform
+        const email = data.email;
+        const password = data.password;
+
+        const loginPerson = { email, password }
+
+        // if loginperson matches a person from userList then that user will be loged in
+        const matchedUser = userList.find(user => user.email === loginPerson.email && user.password === loginPerson.password);
+
+        if (matchedUser) {
+            dispatch(login(matchedUser));
+        } else return console.log("Wrong password or email ");
+        setTimeout(() => {
+            history.push('/');
+        }, 10);
+    }
 
     const Form = () => {
         return (
@@ -58,113 +113,6 @@ const Login = () => {
             </>
         )
     };
-    // giva a profile pic if you new 
-    const giveDefaultProfilePic = () => {
-        const color = getRandomColor();
-        dispatch(updatePhoto(color));
-
-
-
-    };
-
-    const getRandomColor = () => {
-        const colors = ['#F44336', '#E91E63', '#9C27B0', '#673AB7', '#3F51B5', '#2196F3', '#00BCD4', '#009688', '#4CAF50', '#FFC107', '#FF5722', '#795548', '#607D8B'];
-        const randomIndex = Math.floor(Math.random() * colors.length);
-        return colors[randomIndex];
-    };
-
-    const checkData = async (data) => {
-
-        const testLoginPerson = {
-            id: "12345",
-            firstName: "David",
-            lastName: "Svantesson",
-            email: "easy",
-            role: "admin",
-            userName: "Dave 5535",
-            password: "pass",
-
-            photo: null, // do not exsist in BE .. / store in FE in some way 
-            conversations: [], // channel 
-            messages: [],  // messages 
-            friends: [], // do not exsist in BE .. remove ? 
-            events: [],  // do not exsist in BE.. remove ? 
-          };
-   
-        const testLoginPerson2 = {
-
-            id: "43573",
-            firstName: "Mikael",
-            lastName: "Svensson",
-            email: "email",
-            role: "teacher",
-            userName: "M,S",
-            password: "login",
-            photo: "https://avatars.githubusercontent.com/u/113359307?s=120&v=4",
-            conversations: [],
-            friends: [],
-            events: [],
-        };
-        const testLoginPerson3 = {
-            id: "39172",
-            firstName: "Son",
-            lastName: "Nghiem",
-            email: "email.com",
-            role: "user",
-            userName: "SonNghi3m",
-            password: "123",
-            photo: "https://avatars.githubusercontent.com/u/95278274?v=4",
-            conversations: [],
-            friends: [],
-            events: [],
-        };
-        const c3 = {
-            channelId: "10",
-            channelName: "created Channel",
-            channelType: "vän",
-            channelMessages: {
-                MessageId: Math.random(11),
-                user: { firstName: "System", photo: "https://th.bing.com/th/id/OIP.6rBuDJx97j2yiZ8Bdi9tMwHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-                timestamp: "formattedTimestamp",
-                message: "Start your conversation today",
-            },
-        }
-
-        const newChannel = {
-            channelId: c3.channelId,
-            channelName: c3.channelName,
-            channelType: c3.channelType,
-            channelUsers: [{
-                user: {
-                    user,
-                },
-            }
-            ],
-            channelMessages: [c3.channelMessages],
-        };
-
-        testLoginPerson.friends = [...testLoginPerson.friends, testLoginPerson3];
-
-        testLoginPerson.conversations = [...testLoginPerson.conversations, newChannel];
-
-        const email = data.email;
-        const password = data.password;
-
-        const loginPerson = { email, password }
-
-        // send a login request for BE to check if Email and Password is simular ( AND SEND BACK USER DATA )
-        if (loginPerson.email === testLoginPerson.email) {
-            if (loginPerson.password === testLoginPerson.password) {
-                dispatch(login(testLoginPerson))
-
-            };
-
-        } else return console.log("Wrong password or email ");
-        setTimeout(() => {
-            history.push('/');
-        }, 10);
-    }
-
 
     if (user !== null)
         return (

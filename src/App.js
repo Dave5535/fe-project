@@ -11,6 +11,7 @@ import Settings from './components/Settings';
 import Crud from './components/Crud';
 import Calendar from './components/Calendar';
 import Documents from './components/Documents';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const App = () => {
 
@@ -70,7 +71,7 @@ const Header = () => {
                             <NavLink activeClassName="selected" className='nav-link text-black link' to="/documents">Dokument</NavLink>
                         </li>
                         <li className="nav-item" >
-                            <NavLink activeClassName="selected" className="nav-link text-black link" to="/settings" ><div className='fas fa-cog'></div></NavLink>
+                            <NavLink activeClassName="selected" className="nav-link text-black link" to="/settings" ><SettingsIcon/></NavLink>
                         </li>
                     </ul>
                     {admin && <>
