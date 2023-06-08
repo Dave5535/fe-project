@@ -45,7 +45,6 @@ const Welcome = () => {
             553 32 Jonköping
           </div>
         </div>
-        <button className='btn btn-info' onClick={() => findAllusers()}>FindAll users</button>
       </div>
     );
 
