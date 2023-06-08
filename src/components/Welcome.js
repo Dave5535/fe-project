@@ -7,7 +7,7 @@ const Welcome = () => {
   const API_URL = 'http://localhost:8080/api/v1/user/';
   const [alert, setAlert] = useState({ type: '', message: '' });
   const [showDetails, setShowDetails] = useState(false);
-  
+
   const user = useSelector(selectUser);
   if (user === null) window.location.href = "http://localhost:3000/login";
 
@@ -45,7 +45,6 @@ const Welcome = () => {
             553 32 Jonköping
           </div>
         </div>
-        <button className='btn btn-info' onClick={() => findAllusers()}>FindAll users</button>
       </div>
     );
 
