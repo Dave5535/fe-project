@@ -25,8 +25,8 @@ const Info = () => {
                 playId: "2",
                 playName: "Möte eller en pjäs ",
                 description: "Här går det att beskriva lite kort vad det är för något event ",
-                time: "t,ex 20 / 05 / 2023 ",
-                script: "Hello Everyone and wellcome",
+                time: "tex 20 / 05 / 2023 ",
+                script: "Hej och Välkomna!",
             }],
         }
         dispatch(setPlaysInfo(play));
@@ -64,9 +64,9 @@ const Info = () => {
             plays: [{
                 playId: "3",
                 playName: "PlayName ",
-                description: "This is the description! It sould have a max and a minimun number of characters",
-                time: "t,ex 25 / 05 / 2023  ",
-                script: "Hello Everyone and welcome",
+                description: "Beskrivning! It sould have a max and a minimun number of characters",
+                time: "tex 25 / 05 / 2023  ",
+                script: "Hej och Välkomna!",
             }],
 
         }
@@ -108,8 +108,8 @@ const Info = () => {
         return (<>
             {showPage && <div className='container'>
                 <h4 className='text-center'>Info!</h4>
-                <div className='text-center'> här kan Möten och Event läggas up för att alla ska se. även script till de som ska vara med i pjäser</div>
-                {userRole && <button className="btn btn-success mb-4" onClick={handelswitch}>lägg till event</button>}
+                <div className='text-center'> här kan Möten och Event läggas up för att alla ska se. även manus till de som ska vara med i pjäser</div>
+                {userRole && <button className="btn btn-success mb-4" onClick={handelswitch}>Lägg till event</button>}
                 <div className="info_event_list" > <InfoList /> </div>
             </div>}
             {showForm && <div className="form_container">

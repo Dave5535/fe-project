@@ -289,15 +289,12 @@ handelAddChannelForm();
        <div className='sidebar_profile shadow'>
         <Avatar >{user.firstName.charAt(0).toUpperCase() + user.lastName.charAt(0).toUpperCase()}</Avatar>
 
-
         <div className='sidebar_profileInfo'>
           <h6>{user.firstName + " " + user.lastName}</h6>
           <p>{user.id}</p>
         </div>
       </div>
-      
-
-
+  
           {showUsers && <div className='friend_box'>
                 <div className='friend_content'>
                         
@@ -324,7 +321,6 @@ handelAddChannelForm();
                 </div>
                 }
             </div>
-
   );
 }
 
