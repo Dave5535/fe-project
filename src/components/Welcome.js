@@ -28,14 +28,14 @@ const Welcome = () => {
         <div className="home-About mb-5">
           <h4>Om Oss</h4>
           <div className="m-3">Teaterstickorna är en amatörteaterförening i Jönköping. <br />
-            Vill du veta <b><a href="https://www.teaterstickorna.se/om-oss-41141837">mer om oss</a></b> och vad vi gör?</div>
+            Vill du veta <b><a href="https://www.teaterstickorna.se/om-oss-41141837" target='_blank'>mer om oss</a></b> och vad vi gör?</div>
         </div>
 
         <div className="home-Social mb-5">
           <h4>Socialmedia</h4>
-          <div className="m-3"><a href="https://www.facebook.com/teaterstickorna/">facebook</a></div>
-          <div className="m-3"><a href="https://www.instagram.com/teaterstickorna/">Instagram</a></div>
-          <div className="m-3"><a href="https://www.youtube.com/channel/UCXcx6Sxs50K0_6Jz6hE26KQ">Youtube</a></div>
+          <div className="m-3"><a href="https://www.facebook.com/teaterstickorna/" target='_blank'>facebook</a></div>
+          <div className="m-3"><a href="https://www.instagram.com/teaterstickorna/" target='_blank'>Instagram</a></div>
+          <div className="m-3"><a href="https://www.youtube.com/channel/UCXcx6Sxs50K0_6Jz6hE26KQ" target='_blank'>Youtube</a></div>
         </div>
 
         <div className="home-Contacts">
