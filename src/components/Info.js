@@ -109,7 +109,7 @@ const Info = () => {
             {showPage && <div className='container'>
                 <h4 className='text-center'>Info!</h4>
                 <div className='text-center'> här kan Möten och Event läggas up för att alla ska se. även script till de som ska vara med i pjäser</div>
-                {userRole && <button className="btn btn-success mb-4" onClick={handelswitch}>lägg till event</button>}
+                {userRole && <button className="btn btn-success mb-4" onClick={handelswitch}>Lägg till event</button>}
                 <div className="info_event_list" > <InfoList /> </div>
             </div>}
             {showForm && <div className="form_container">
