@@ -68,7 +68,6 @@
 .sidebar_channelList {
    flex: 1;
    overflow: scroll;
-   
 }
 
 .sidebar_channelList::-webkit-scrollbar {
@@ -96,7 +95,7 @@
    width: 300px;
    background-color: white;
    color: black;
-   padding: 20px;
+   padding: 10px;
    border-radius: 5px;
    position: relative;
    border: solid var(--divbg);
@@ -131,7 +130,6 @@
 .label-text {
    display: inline-block;
    cursor: pointer;
-
 }
 .sidebarChannel:hover > h5 {
    color: black;
@@ -140,19 +138,18 @@
 
 .sidebarChannel > h5 {
    display: flex;
-   padding-left: 15px;
    align-items: center;
+   justify-content: center;
    background-color: #a1d0ff;
    color: black;
    cursor: pointer;
+   margin: 0 50px;
 }
 .sidebarChannel_hash {
    font-size: 10px;
    padding: 8px;
 }
-.friend_status{
+.friend_status {
    font-size: 1rem;
    color: #d60303;
-   
- }
- 
+}

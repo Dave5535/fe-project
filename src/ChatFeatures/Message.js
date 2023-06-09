@@ -18,8 +18,8 @@ const Message = (props) => {
   const ChatId = useSelector(selectChatId);
   const ChatMessages = useSelector(selectChatMessages);
   const userInfo = useSelector(selectUser);
-  
-  useEffect(() => { 
+
+  useEffect(() => {
     console.log(ChatMessages);
     console.log(userprop);
   }, [ChatMessages]);
@@ -31,7 +31,7 @@ const Message = (props) => {
 
   useEffect(() => {
     setUser(userprop);
-    
+
   }, [userprop]);
 
   useEffect(() => {
@@ -47,21 +47,21 @@ const Message = (props) => {
   }, []);
 
 
-  const handleEditMessage = (messageId, newContent) => { 
-      // edit message from API whit messageId
+  const handleEditMessage = (messageId, newContent) => {
+    // edit message from API whit messageId
   };
   const handleDeleteMessage = (messageId) => {
-     // delete message from API whit messageId
+    // delete message from API whit messageId
   };
 
   const handleContextMenu = (messageUser) => {
     return (e) => {
       e.preventDefault();
-  
-  if (userInfo.role.roleTitle === "admin" || userInfo.id === messageUser.id) {
-    setShowButtons(!showButtons);
-  }
-  
+
+      if (userInfo.role.roleTitle === "admin" || userInfo.id === messageUser.id) {
+        setShowButtons(!showButtons);
+      }
+
 
     };
   };
@@ -73,7 +73,7 @@ const Message = (props) => {
       onContextMenu={handleContextMenu(userprop)}
     >
       {ChatId !== null && userprop && ( // Add a null check for userprop
-        <div>
+        <div className='me-2'>
           <Avatar sx={{ bgcolor: user.photo }}>
             {userprop.firstName.charAt(0).toUpperCase() + userprop.lastName.charAt(0).toUpperCase()}
           </Avatar>
@@ -86,11 +86,11 @@ const Message = (props) => {
         </h6>
         <p>{messages}</p>
       </div>
-  
+
       {showButtons && userprop && ( // Add a null check for userprop
         <div className="message_buttons">
-          <button onClick={() => handleEditMessage(messages.id, 'New Content')}><EditIcon/></button>
-          <button onClick={() => handleDeleteMessage(messages.id)}><DeleteIcon/></button>
+          <button onClick={() => handleEditMessage(messages.id, 'New Content')}><EditIcon /></button>
+          <button onClick={() => handleDeleteMessage(messages.id)}><DeleteIcon /></button>
         </div>
       )}
     </div>
