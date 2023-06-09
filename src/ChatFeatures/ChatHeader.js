@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import "./chatHeader.css"
 import axios from 'axios';
-import { addFriendToChat, addChatMessage } from '../Store/AppSlice';
+import { selectChatId } from '../Store/AppSlice';
 import { Avatar } from '@mui/material';
 import { selectUser } from '../Store/userSlice';
 
@@ -15,19 +15,20 @@ import { selectUser } from '../Store/userSlice';
 const ChatHeader = ({ chatName }) => {
 
     const API_URL = "http://localhost:8080/api/v1/user/"; 
+    const API_URL_CONVERSATION = "http://localhost:8080/api/v1/conversation/";
     const [alert, setAlert] = useState({ type: '', message: '' });
-
+    const chatId = useSelector(selectChatId);
     const [userList, setUserList] = useState([]);
     const [searchQuery, setSearchQuery] = useState('');
    
     const searchQueries = searchQuery.trim().toLowerCase().split(/\s+/); // Split the search query into individual queries
 
-const filteredUsers = searchQueries.reduce((result, query) => {
-  return result.filter(user =>
-    user.firstName.toLowerCase().includes(query) ||
-    user.lastName.toLowerCase().includes(query)
-  );
-}, userList);
+    const filteredUsers = searchQueries.reduce((result, query) => {
+      return result.filter(user =>
+        user.firstName.toLowerCase().includes(query) ||
+        user.lastName.toLowerCase().includes(query)
+      );
+    }, userList.slice());
 
 
      // get ListOfUsers
@@ -72,22 +73,37 @@ setTimeout(() => {
         
         setShowUsers(!showUsers);
     }
-    const handelUserClicked = (user) => {
-        // add the person to the channelUserList
-       console.log("user clicked ");
-
-        // send a message from system that the person is added and by who? 
-        const message = {
-            MessageId: Math.random(11),
-            user: { firstName: "System", photo: "https://th.bing.com/th/id/OIP.6rBuDJx97j2yiZ8Bdi9tMwHaHa?w=164&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7" },
-            timestamp: formattedTimestamp,
-            message: user.firstName + " " + user.lastName + " have been added by " + channelUser.firstName + " " + channelUser.lastName,
-        }
-        
+    const handelUserClicked = async (user) => {
+       await axios.post(API_URL_CONVERSATION+chatId+"/participant/"+user.id).then(response => {
+       if (response.status === 201){
+        console.log(response.data);
+        setAlert({ type: 'success', message: 'Objekt Tillagt!' })
+    } else {
+        setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+    }
+}).catch(error => {
+    console.log("ERROR: ", error);
+    setAlert({ type: 'danger', message: error.message })
+});    
         setShowUsers(!showUsers)
         setSearchQuery("");
     } ;
-
+// delete a user from conversation 
+const handelDeleteOfUserInConversation = async (user) =>{
+  await axios.delete(API_URL_CONVERSATION+chatId+"/participant/"+user.id).then(response => {
+  if (response.status === 201){
+   console.log(response.data);
+   setAlert({ type: 'success', message: 'Objekt Tillagt!' })
+} else {
+   setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+}
+}).catch(error => {
+console.log("ERROR: ", error);
+setAlert({ type: 'danger', message: error.message })
+});    
+   setShowUsers(!showUsers)
+   setSearchQuery("");
+} ;
 
 
     if (chatName !== null)

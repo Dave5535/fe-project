@@ -13,6 +13,7 @@ const Chats = () => {
 
     // Api 
     const API_URL_Messages = "http://localhost:8080/api/v1/message/";
+    const API_URL_Conversation = "http://localhost:8080/api/v1/conversation/";
     const [alert, setAlert] = useState({ type: '', message: '' });
     // user / Chat info
     const user = useSelector(selectUser);
@@ -26,7 +27,7 @@ const Chats = () => {
     // for message and input
     const [input, setInput] = useState("");
     const [messages, setMessages] = useState([]);
-    
+    const [message, setMessage] = useState([]);
     useEffect(() => {
        
         console.log(chatId +"  :  "+ chatName + "  :   " ,chatMessages)
@@ -59,17 +60,13 @@ const Chats = () => {
         const newMessage = {
           sender: user ,
           textContent: input,
-          emojis : [],
-          attachments: [],
-          conversation: conversation,
-          editedStatus:false,
-          deletedStatus:false,
         }
         console.log(newMessage);
         // send to BE for storing 
         await axios.post(API_URL_Messages,newMessage).then(response => {
           if (response.status === 201) {
             console.log(response.data);
+            setMessage(response.data);
             setAlert({ type: 'success', message: 'Objekt tillagd!' });
           } else {
             setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
@@ -81,9 +78,35 @@ const Chats = () => {
         });
 
         setInput("");
+setTimeout(() => {
+  messageToConversation();
+}, 30);
+
     }
 
 
+    //add the message to Conversation 
+   const messageToConversation = async () => {
+    
+    await axios.post(API_URL_Conversation + chatId + "/message/"+ message.id).then(response => {
+      if (response.status === 201) {
+        console.log(response.data);
+ const addedmessage = response.data;
+ setMessages(addedmessage.messages);
+
+        setAlert({ type: 'success', message: 'Objekt tillagd!' });
+      } else {
+        setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+      }
+
+    }).catch(error => {
+      console.log("ERROR: ", error);
+      setAlert({ type: 'danger', message: error.message });
+    });
+    
+    }
+      
+   
     return (
 
         <div className='chats'>
