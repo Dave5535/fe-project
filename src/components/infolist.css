@@ -1,5 +1,5 @@
 .plays_list {
-   background-color: white;
+   background-color: rgb(240, 223, 202);
    padding: 10px;
    border-radius: 5px;
    margin: 10px;
@@ -31,3 +31,26 @@
    justify-content: center;
    display: flex;
 }
+.info_event_list{
+  padding: 15px;
+  background-color: rgb(255, 255, 255);
+  flex: 1;
+   overflow: scroll;
+   height: 75vh;
+   border-radius: 5px;
+
+}
+.info_event_list::-webkit-scrollbar{
+ display: none;
+ }
+ .info_event_list{
+  -ms-overflow-style: none;
+   scrollbar-width: none;
+ 
+ }
+.play_input{
+  margin-left: 9px;
+ }
+
+
+

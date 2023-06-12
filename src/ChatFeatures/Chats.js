@@ -29,8 +29,6 @@ const Chats = () => {
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState([]);
   useEffect(() => {
-
-    console.log(chatId + "  :  " + chatName + "  :   ", chatMessages)
     setMessages(chatMessages);
 
   }, [chatMessages]);
@@ -121,8 +119,8 @@ const Chats = () => {
 
       <ChatHeader chatName={chatName} />
       <div className='chats_messages'>
-        {messages.map((message, index) => (<Message
-          key={index}
+        {messages.map((message) => (<Message
+          key={message.id}
           id={message.id}
           timestamp={message.timestamp}
           messages={message.textContent}
