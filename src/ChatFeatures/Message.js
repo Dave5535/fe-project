@@ -11,7 +11,7 @@ import { blue } from '@mui/material/colors';
 
 const Message = (props) => {
 
-  const { timestamp, messages, userprop } = props;
+  const {id, timestamp, messages, userprop } = props;
 
   const dispatch = useDispatch();
 
@@ -19,11 +19,7 @@ const Message = (props) => {
   const ChatMessages = useSelector(selectChatMessages);
   const userInfo = useSelector(selectUser);
 
-  useEffect(() => {
-    console.log(ChatMessages);
-    console.log(userprop);
-  }, [ChatMessages]);
-
+ 
   const [user, setUser] = useState("");
 
   const [showButtons, setShowButtons] = useState(false);
@@ -31,7 +27,7 @@ const Message = (props) => {
 
   useEffect(() => {
     setUser(userprop);
-
+    console.log(id)
   }, [userprop]);
 
   useEffect(() => {
@@ -49,9 +45,11 @@ const Message = (props) => {
 
   const handleEditMessage = (messageId, newContent) => {
     // edit message from API whit messageId
+    console.log(messageId + " : " + newContent )
   };
   const handleDeleteMessage = (messageId) => {
     // delete message from API whit messageId
+    console.log(messageId);
   };
 
   const handleContextMenu = (messageUser) => {
@@ -89,8 +87,8 @@ const Message = (props) => {
 
       {showButtons && userprop && ( // Add a null check for userprop
         <div className="message_buttons">
-          <button onClick={() => handleEditMessage(messages.id, 'New Content')}><EditIcon /></button>
-          <button onClick={() => handleDeleteMessage(messages.id)}><DeleteIcon /></button>
+          <button onClick={() => handleEditMessage(id, 'New Content')}><EditIcon /></button>
+          <button onClick={() => handleDeleteMessage(id)}><DeleteIcon /></button>
         </div>
       )}
     </div>

@@ -34,13 +34,7 @@ const Sidebar = () => {
   const [allChat, setAllChat] = useState([]);
 
   useEffect(() => {
-    getAllchats();
-
-    setTimeout(() => {
-      console.log(" All Chats :  ", allChat);
-
-    }, 2000);
-  }, []);
+    getAllchats();  }, []);
 
   const [chatName, setChatName] = useState("");
 
@@ -198,7 +192,6 @@ const Sidebar = () => {
     await axios.get(API_URL_User).then(response => {
       if (response.status === 200) {
         setUsers(response.data);
-        console.log(" All Users :  ", users);
         setAlert({ type: 'success', message: 'Objekt hittad!' })
       } else {
         setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });

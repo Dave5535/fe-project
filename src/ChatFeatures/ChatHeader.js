@@ -34,10 +34,7 @@ const ChatHeader = ({ chatName }) => {
   // get ListOfUsers
   useEffect(() => {
     GetData();
-    setTimeout(() => {
-
-      console.log(userList)
-    }, 2000);
+   
   }, [chatName]);
 
   const GetData = async () => {
