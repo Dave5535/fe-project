@@ -1,5 +1,5 @@
 .plays_list {
-   background-color: rgb(240, 223, 202);
+   background-color: rgb(240, 235, 220);
    padding: 10px;
    border-radius: 5px;
    margin: 10px;
@@ -23,7 +23,7 @@
    border-radius: 5px;
    border: 1px solid black;
    outline: 0;
-   color: rgb(205, 109, 13);
+   color: rgb(240, 235, 220);
    font-size: large;
    cursor: pointer;
 }
@@ -31,26 +31,21 @@
    justify-content: center;
    display: flex;
 }
-.info_event_list{
-  padding: 15px;
-  background-color: rgb(255, 255, 255);
-  flex: 1;
+.info_event_list {
+   padding: 15px;
+   background-color: rgb(255, 255, 255);
+   flex: 1;
    overflow: scroll;
    height: 75vh;
    border-radius: 5px;
-
 }
-.info_event_list::-webkit-scrollbar{
- display: none;
- }
- .info_event_list{
-  -ms-overflow-style: none;
+.info_event_list::-webkit-scrollbar {
+   display: none;
+}
+.info_event_list {
+   -ms-overflow-style: none;
    scrollbar-width: none;
- 
- }
-.play_input{
-  margin-left: 9px;
- }
-
-
-
+}
+.play_input {
+   margin-left: 9px;
+}
