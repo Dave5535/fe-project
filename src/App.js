@@ -41,7 +41,8 @@ const Header = () => {
     const user = useSelector(selectUser);
 
     useEffect(() => {
-        if (user !== null && user.role === "admin") {
+       
+        if (user !== null && user.role.roleTitle === "Admin") {
             setAdmin(true);
         }
     }, [user]);

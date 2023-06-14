@@ -91,10 +91,10 @@ const Info = () => {
 
     useEffect(() => {
         handelAddPlay();
-        if (user !== null && user.role === "admin") {
+        if (user !== null && user.role.roleTitle === "Admin") {
             setUserRole(true);
         }
-        if (user !== null && user.role === "teacher") {
+        if (user !== null && user.role.roleTitle === "Teacher") {
             setUserRole(true);
         }
 
