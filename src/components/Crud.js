@@ -97,7 +97,22 @@ const Crud = () => {
           </div>
 
           <br />
-
+          <div className='row'>
+            <div className='col'>
+              Användarnamn
+              <input
+                type='text'
+                className='form-control'
+                id='Användarnamn'
+                {...register('Användarnamn', { required: true })}
+                placeholder='Ange Användarnamn...'
+              />
+              {errors.Användarnamn && errors.Användarnamn.type === 'required' && (
+                <span className='text-danger'>Användarnamn krävs!</span>
+              )}
+            </div>
+          </div>
+          <br/>
           <div className='row'>
             <div className='col'>
               Email
@@ -139,6 +154,7 @@ const Crud = () => {
                 document.getElementById('lastName').value = '';
                 document.getElementById('email').value = '';
                 document.getElementById('role').value = 'Member';
+                document.getElementById('Användarnamn').value= '';
               }}
             >
               Återställ
@@ -151,7 +167,7 @@ const Crud = () => {
   };
 
 
-  const generateRandomUsername = (length) => {
+  const generateRandomUsercode = (length) => {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const charactersLength = characters.length;
@@ -164,12 +180,13 @@ const Crud = () => {
   };
 
     
-  // Save Form Data for adding
+  // Save Form Data from from
  
 
  const saveData = async (data) => {
     const firstName = data.firstName;
     const lastName = data.lastName;
+    const userName = data.Användarnamn;
     const email = data.email;
     const role = data.role;
 
@@ -179,12 +196,12 @@ const newPerson = {
   firstName: firstName,
   lastName: lastName,
   email: email,
-  username: firstName+generateRandomUsername(4),
+  username: userName + generateRandomUsercode(4),
   password: "password",
   role: roleInfo,
 
 }
- // set value of username / password so could be used for laiter 
+ // set value of password ? send email to user and make them fill it in ? 
  setPerson(newPerson); // set the new person so the page will know password and userName
 setTimeout(() => {
   console.log(newPerson);
