@@ -110,7 +110,7 @@ const Info = () => {
                 <h4 className='text-center'>Info!</h4>
                 <div className='text-center'> här kan Möten och Event läggas up för att alla ska se. även manus till de som ska vara med i pjäser</div>
                 {userRole && <button className="btn btn-success mb-4" onClick={handelswitch}>Lägg till event</button>}
-                <div className="info_event_list" > <InfoList /> </div>
+                <div className="info_event_list shadow" > <InfoList /> </div>
             </div>}
             {showForm && <div className="form_container">
                 <form onSubmit={handleSubmit(savePlay)}> <h4>Lägg till ett event</h4>
