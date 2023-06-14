@@ -10,7 +10,7 @@ const Settings = () => {
 
     const user = useSelector(selectUser);
     if (user === null) window.location.href = "http://localhost:3000/login";
-    console.log(user);
+    
     const dispatch = useDispatch();
     const [showEdit, setShowEdit] = useState(false);
 
@@ -41,7 +41,7 @@ const Settings = () => {
                 <h1>{user.firstName} {user.lastName}</h1>
                 <h3>{user.role.roleTitle}</h3>
                 <h6>ID: {user.id} </h6>
-                <div className="mb-3">change password (send a request, user get an email and then change the password) ? <br /> change email (only admin can do if user needs to) ?</div>
+               
                 <button type="button" className="btn btn-danger" onClick={handellogout} >logout</button>
             </div>
         </div>
