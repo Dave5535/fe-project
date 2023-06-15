@@ -8,34 +8,25 @@ import "./infolist.css";
 
 
 const Login = () => {
-    // list of all users 
-    const [userList, setUserList] = useState([]);
-
-    const { register, handleSubmit, formState: { errors }, reset } = useForm();
-    // user info 
+    const history = useHistory();
     const user = useSelector(selectUser);
-    // redux
+    const [userList, setUserList] = useState([]);
     const dispatch = useDispatch();
-    // calling Api
+    const { register, handleSubmit, formState: { errors }, reset } = useForm();
+
     const API_URL = "http://localhost:8080/api/v1/user/";
     const [alert, setAlert] = useState({ type: '', message: '' });
 
-    // give a random color to  a user 
     useEffect(() => {
         if (user && user.photo === null) {
             giveDefaultProfilePic();
         }
     }, [user]);
-    // get ListOfUsers
+
     useEffect(() => {
         GetData();
     }, []);
 
-    // pushing to main page 
-    const history = useHistory();
-
-
-    // giva a profile pic if you new 
     const giveDefaultProfilePic = () => {
         const color = getRandomColor();
         dispatch(updatePhoto(color));
@@ -46,7 +37,6 @@ const Login = () => {
         return colors[randomIndex];
     };
 
-    // before login
     const GetData = async () => {
         await axios.get(API_URL).then(response => {
             if (response.status === 200) {
@@ -61,20 +51,12 @@ const Login = () => {
         });
 
     }
-    // while login
-    const checkData = async (data) => {
-        // davidsvantesson@mail.com
-        //  password2
 
-        // data from loginform
+    const checkData = async (data) => {
         const email = data.email;
         const password = data.password;
-
         const loginPerson = { email, password }
-
-        // if loginperson matches a person from userList then that user will be loged in
         const matchedUser = userList.find(user => user.email === loginPerson.email && user.password === loginPerson.password);
-
         if (matchedUser) {
             dispatch(login(matchedUser));
         } else return console.log("Wrong password or email ");
@@ -89,7 +71,6 @@ const Login = () => {
                 <br />
                 <div className='login'>
                     <form className='rounded-4 p-3 m-2' style={{ maxWidth: "500px" }} onSubmit={handleSubmit(checkData)}>
-
                         <div className='row'>
                             <div className='col'>Email
                                 <input type='text' className='form-control' id='email' {...register("email", { required: true })} placeholder='Ange email...' />
@@ -101,35 +82,25 @@ const Login = () => {
                             </div>
                             <a href='/#'>Glömt lösenordet?</a>
                         </div>
-
                         <br />
                         <div className='col'>
                             <button type='submit' className='btn btn-success m-2' >Login</button>
                         </div>
-
                     </form>
                 </div>
-
             </>
         )
     };
-
     if (user !== null)
         return (
             <div className="text-success">Du har loggat in</div>
-
         );
-
     return (
         <div className="container">
-
             <h4 className='text-center pb-1 mb-5 bg-light login-title'>Login</h4>
             <Form className="form_box" />
-
         </div>
     );
 }
-
-
 
 export default Login;

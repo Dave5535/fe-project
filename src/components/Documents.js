@@ -6,14 +6,10 @@ import ControlPointIcon from '@mui/icons-material/ControlPoint';
 
 const Documents = () => {
 
-   const user = useSelector(selectUser);
-
-   if (user === null) window.location.href = "http://localhost:3000/login";
-
+   const user = useSelector(selectUser);if (user === null) window.location.href = "http://localhost:3000/login";
    const fileInputRef = useRef(null);
 
    const handleFileSelect = (e) => {
-      // Handle the selected file(s) here
       const selectedFile = e.target.files[0];
       console.log(selectedFile);
    };
@@ -23,16 +19,15 @@ const Documents = () => {
          <div className='container'>
             <h3 className='text-center'>Dokument</h3><br />
 
-            {/* Card */}
             <div className="card bg-light shadow text-center me-3" style={{ width: "15rem", display: "inline-block" }}>
                <div className="card-body">
-                  <a href="#">    {/* Remember to change the "#" */}
+                  <a href="#">    
                      <h5 className="card-title text-info"> Öppna PDF </h5>
                   </a>
-                  <a href="/File/Test.pdf" download>Ladda ner</a>     {/* Remember to change the "#" How to make it custom? */}
+                  <a href="/File/Test.pdf" download>Ladda ner</a>   
                </div>
 
-            </div>             {/* Add */}
+            </div>             
             <div className="card bg-dark shadow text-center me-3" style={{ width: "15rem", display: "none" }}>
                <div className="card-body">
                   <input

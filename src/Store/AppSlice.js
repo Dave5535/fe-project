@@ -35,10 +35,8 @@ export const AppSlice = createSlice({
         addFriendToChat: (state,action) =>  {
             state.channelUsers.push(action.payload);
           },
-      
     },
 });
-
 export const{setChatInfo,addChatMessage,addFriendToChat,editChatMessage,deleteMessage} = AppSlice.actions;
 
 export const selectChat = (state) => state.app;

@@ -35,7 +35,6 @@ const events = [
         end: new Date(2023, 5, 10)
     }
 ]
-
 const CalendarApp = () => {
 
     const user = useSelector(selectUser);

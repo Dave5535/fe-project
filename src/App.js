@@ -33,7 +33,6 @@ const App = () => {
 
         </div>
     )
-
 }
 const Header = () => {
     const [admin, setAdmin] = useState(false);
@@ -77,12 +76,10 @@ const Header = () => {
                     {admin && <>
                         <Link type='button' className='btn btn-primary' to="/hantera_Anvandare">Hantera Användare</Link>
                     </>}
-
                 </div>
             </nav>
         );
 }
-
 const NotFound = () => {
     return (
         <div className='container'>
@@ -93,6 +90,4 @@ const NotFound = () => {
         </div>
     );
 }
-
-
 export default App;

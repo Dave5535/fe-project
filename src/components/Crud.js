@@ -229,7 +229,7 @@ const Crud = () => {
                   placeholder="Sök användare..."
                   value={searchQuery}
                   onChange={e => setSearchQuery(e.target.value)}
-                  className='mb-1 rounded'
+                  className='mb-1 rounded m-2'
                 />
               </div>
             </div>
