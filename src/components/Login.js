@@ -6,7 +6,6 @@ import axios from 'axios';
 import { login, selectUser, updatePhoto } from '../Store/userSlice';
 import "./infolist.css";
 
-
 const Login = () => {
     const history = useHistory();
     const user = useSelector(selectUser);

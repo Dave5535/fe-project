@@ -1,11 +1,10 @@
-import React, {  useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { selectUser } from "../Store/userSlice";
 import { addPlays, setPlaysInfo } from "../Store/playSlice";
 import InfoList from "./InfoList";
 import "./infolist.css"
-
 
 const Info = () => {
 

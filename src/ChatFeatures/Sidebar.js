@@ -9,7 +9,6 @@ import "./sidebar.css"
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import AddIcon from '@mui/icons-material/Add';
 
-
 const Sidebar = () => {
   const dispatch = useDispatch();
 
@@ -28,7 +27,7 @@ const Sidebar = () => {
   const [allChat, setAllChat] = useState([]);
 
   const [input, setInput] = useState("");
-  
+
   const [chatHeader, setChatHeader] = useState('Vänner');
 
   let dateTime = new Date();
@@ -108,10 +107,10 @@ const Sidebar = () => {
   };
 
   const handleUserInfo = (friend) => {
-    console.log("Open you chat with",friend.firstName);
+    console.log("Open you chat with", friend.firstName);
   }
   const handleUserContextMenu = (friend) => {
-    console.log("User info menu on",friend.firstName);
+    console.log("User info menu on", friend.firstName);
   }
 
   const getAllUsers = async () => {

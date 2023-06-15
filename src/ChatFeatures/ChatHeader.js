@@ -6,11 +6,6 @@ import axios from 'axios';
 import { selectChatId } from '../Store/AppSlice';
 import { Avatar } from '@mui/material';
 
-
-
-
-
-
 const ChatHeader = ({ chatName }) => {
   const chatId = useSelector(selectChatId);
   const [userList, setUserList] = useState([]);
@@ -19,7 +14,6 @@ const ChatHeader = ({ chatName }) => {
   const API_URL = "http://localhost:8080/api/v1/user/";
   const API_URL_CONVERSATION = "http://localhost:8080/api/v1/conversation/";
   const [alert, setAlert] = useState({ type: '', message: '' });
-
 
   const [searchQuery, setSearchQuery] = useState('');
   const searchQueries = searchQuery.trim().toLowerCase().split(/\s+/);
@@ -88,7 +82,6 @@ const ChatHeader = ({ chatName }) => {
     setShowUsers(!showUsers)
     setSearchQuery("");
   };
-
 
   if (chatName !== null)
     return (

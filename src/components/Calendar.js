@@ -40,7 +40,6 @@ const CalendarApp = () => {
     const user = useSelector(selectUser);
     if (user === null) window.location.href = "http://localhost:3000/login";
 
-
     const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" })
     const [allEvents, setAllEvents] = useState(events)
 

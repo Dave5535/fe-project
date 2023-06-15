@@ -10,7 +10,6 @@ const Crud = () => {
   const [personId, setPersonId] = useState(null);
   const [personList, setPersonList] = useState(persons);
 
-
   const API_URL = 'http://localhost:8080/api/v1/user/';
   const [alert, setAlert] = useState({ type: '', message: '' });
   const { register, handleSubmit, watch, formState: { errors } } = useForm();

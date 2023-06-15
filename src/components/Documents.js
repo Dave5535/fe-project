@@ -3,10 +3,9 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../Store/userSlice';
 import ControlPointIcon from '@mui/icons-material/ControlPoint';
 
-
 const Documents = () => {
 
-   const user = useSelector(selectUser);if (user === null) window.location.href = "http://localhost:3000/login";
+   const user = useSelector(selectUser); if (user === null) window.location.href = "http://localhost:3000/login";
    const fileInputRef = useRef(null);
 
    const handleFileSelect = (e) => {
@@ -21,13 +20,13 @@ const Documents = () => {
 
             <div className="card bg-light shadow text-center me-3" style={{ width: "15rem", display: "inline-block" }}>
                <div className="card-body">
-                  <a href="#">    
+                  <a href="#">
                      <h5 className="card-title text-info"> Öppna PDF </h5>
                   </a>
-                  <a href="/File/Test.pdf" download>Ladda ner</a>   
+                  <a href="/File/Test.pdf" download>Ladda ner</a>
                </div>
 
-            </div>             
+            </div>
             <div className="card bg-dark shadow text-center me-3" style={{ width: "15rem", display: "none" }}>
                <div className="card-body">
                   <input
