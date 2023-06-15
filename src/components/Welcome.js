@@ -1,10 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react';
 import { useSelector } from "react-redux";
 import { selectUser } from "../Store/userSlice";
 
 const Welcome = () => {
   const user = useSelector(selectUser); if (user === null) window.location.href = "http://localhost:3000/login";
-  
+
   if (user !== null)
     return (
 
