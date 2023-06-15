@@ -5,23 +5,17 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../Store/userSlice';
 
 const Crud = () => {
-  // to chek if user is loged in
-  const user = useSelector(selectUser);
-  if (user === null) window.location.href = "http://localhost:3000/login";
-  // initializ js variables
+  const user = useSelector(selectUser); if (user === null) window.location.href = "http://localhost:3000/login";
   const persons = [];
+  const [personId, setPersonId] = useState(null);
+  const [personList, setPersonList] = useState(persons);
 
-  // define state variablesa
 
   const API_URL = 'http://localhost:8080/api/v1/user/';
-
-  // Alert
   const [alert, setAlert] = useState({ type: '', message: '' });
-
-  // person
-
-  const [personList, setPersonList] = useState(persons);
+  const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const [showDetails, setShowDetails] = useState(false);
+
   const [person, setPerson] = useState({
     id: 0,
     firstName: "",
@@ -31,31 +25,20 @@ const Crud = () => {
     password: "",
     role: "",
   });
-  const [roleInfo, setRoleInfo] = useState({
-    id: 0,
-    roleTitle: "",
-    permissions: [{
-      id: 0,
-      permissionName: "",
-      description: "",
-    }]
-  });
-
-  // useEfect
 
   const [reload, setReload] = useState(false);
-  // useForm
+  useEffect(() => {
+    getRequestAction();
+    setShowDetails(false)
+  }, [reload]);
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const updateList = () => {
+    setReload(!reload);
+  }
 
-  // hide when editing
-  const [personId, setPersonId] = useState(null);
   const [showForm, setShowForm] = useState(true);
   const [showTable, setShowTable] = useState(true);
   const [showEdit, setShowEdit] = useState(false);
-  // search bar
-  const [email, setshowEmail] = useState(true);
-  const [hideseacrh, setHideSeacrh] = useState(false);
 
   const Form = () => {
 
@@ -131,11 +114,12 @@ const Crud = () => {
                 className='form-control'
                 id='role'
                 {...register('role', { required: true })}
-                defaultValue='user'
-                placeholder='user'>
+                value={watch('role')}
+                placeholder='user'
+              >
                 <option value='Member'>Användare</option>
-                <option value='teacher'>Lärare</option>
-                <option value='admin'>Admin</option>
+                <option value='Teacher'>Lärare</option>
+                <option value='Admin'>Admin</option>
               </select>
             </div>
           </div>
@@ -148,7 +132,6 @@ const Crud = () => {
               type='button'
               className='btn btn-danger m-2'
               onClick={() => {
-                console.log('RESET:');
                 document.getElementById('firstName').value = '';
                 document.getElementById('lastName').value = '';
                 document.getElementById('email').value = '';
@@ -177,76 +160,6 @@ const Crud = () => {
 
     return result;
   };
-
-
-  // Save Form Data from from
-
-
-  const saveData = async (data) => {
-    const firstName = data.firstName;
-    const lastName = data.lastName;
-    const userName = data.Användarnamn;
-    const email = data.email;
-    const role = data.role;
-
-    getRoleByTitel(role);
-    const newPerson = {
-
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      username: userName + generateRandomUsercode(4),
-      password: "password",
-      role: roleInfo,
-
-    }
-    // set value of password ? send email to user and make them fill it in ? 
-    setPerson(newPerson); // set the new person so the page will know password and userName
-    setTimeout(() => {
-      console.log(newPerson);
-      console.log(roleInfo);
-    }, 2000);
-
-    await axios.post(API_URL, newPerson).then(response => {
-      if (response.status === 201) {
-        updateList();
-        setAlert({ type: 'success', message: 'Objekt tillagd!' });
-      } else {
-        setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
-      }
-
-    }).catch(error => {
-      console.log("ERROR: ", error);
-      setAlert({ type: 'danger', message: error.message });
-    });
-  };
-
-  const getRoleByTitel = async (roleTitle) => {
-
-    await axios.get("http://localhost:8080/api/v1/role/title/" + roleTitle).then(response => {
-      if (response.status === 200) {
-        setRoleInfo(response.data);
-        setAlert({ type: 'success', message: 'Objekt tillagd!' });
-      } else {
-        setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
-      }
-
-    }).catch(error => {
-      console.log("ERROR: ", error);
-      setAlert({ type: 'danger', message: error.message });
-    });
-  }
-
-  //useEfect
-  useEffect(() => {
-    getRequestAction();
-    setShowDetails(false)
-  }, [reload]);
-
-  const updateList = () => {
-    setReload(!reload);
-  }
-  // Details for person
   const PersonDetails = () => {
     return (
       <>
@@ -279,79 +192,89 @@ const Crud = () => {
       </>
     );
   }
-
-  // Table
   const Table = () => {
+    const [searchQuery, setSearchQuery] = useState('');
+
+
+    const searchQueries = searchQuery.trim().toLowerCase().split(/\s+/);
+
+    const filteredUsers = searchQueries.reduce((result, query) => {
+      return result.filter(user =>
+        user.firstName.toLowerCase().includes(query) ||
+        user.lastName.toLowerCase().includes(query)
+      );
+    }, personList.slice());
+
     return (
-      <table className="table bg-light text-black rounded shadow">
-        <TableHeader />
-        <TableRow list={personList} />
+
+      <table className="table bg-light text-black rounded shadow table-wrapper">
+        <TableHeader setSearchQuery={setSearchQuery} searchQuery={searchQuery} />
+
+        <TableRow list={filteredUsers} className="table-body" />
+
       </table>
+
     );
-  }
+  };
 
-  const TableHeader = () => {
-
-    const togleSearch = () => {
-      setHideSeacrh(!hideseacrh);
-      setShowForm(!showForm);
-    }
-
+  const TableHeader = ({ setSearchQuery, searchQuery }) => {
     return (
       <thead>
         <tr>
           <th colSpan="4" className="table-light rounded-top shadow">
             <div className="d-flex justify-content-between align-items-center">
-              <div>Användarlista <button type="button" className='btn btn-primary ms-2' onClick={togleSearch}>Sök</button></div>
+              <div>Användarlista
+                <input
+                  type="text"
+                  placeholder="Sök användare..."
+                  value={searchQuery}
+                  onChange={e => setSearchQuery(e.target.value)}
+                  className='mb-1 rounded'
+                />
+              </div>
             </div>
           </th>
         </tr>
         <tr>
-          <th>ID</th>
-          <th>Namn</th>
-          <th>Email</th>
-          <th>Åtgärd</th>
+          <th className="table-header-cell">ID</th>
+          <th className="table-header-cell">Namn</th>
+          <th className="table-header-cell">Email</th>
+          <th className="table-header-cell">Åtgärd</th>
         </tr>
       </thead>
     );
-  }
+  };
 
   const TableRow = (props) => {
-
-    if (!props.list && props.list.length === 0) {
+    if (!props.list || props.list.length === 0) {
       return (
         <tbody>
           <tr>
-            <td colSpan="5">Data ej funnen</td>
+            <td colSpan="4">Data ej funnen</td>
           </tr>
         </tbody>
       );
     }
+
     return (
       <tbody>
-        {props.list.map((person) => {
-          const row = (
-            <tr key={person.id}>
-              <td>{person.id}</td>
-              <td>{person.firstName + " "} {person.lastName} </td>
-              <td>{person.email}</td>
-              <td>
-                <TableAction person={person} />
-              </td>
-            </tr>
-          );
-          return row;
-        })}
+        {props.list.map((person) => (
+          <tr key={person.id}>
+            <td>{person.id}</td>
+            <td>{person.firstName} {person.lastName}</td>
+            <td>{person.email}</td>
+            <td>
+              <TableAction person={person} />
+            </td>
+          </tr>
+        ))}
       </tbody>
     );
-
-  }
+  };
 
   const TableAction = (props) => {
 
     const handleDetailsClick = async () => {
-      console.log("PERSON:", props.person.id);
-
       await axios.get(API_URL + "id/" + props.person.id).then(response => {
         if (response.status === 200) {
           setPerson(response.data);
@@ -366,9 +289,8 @@ const Crud = () => {
       });
 
     }
-    const handleDeleteClick = async () => { //Todo
+    const handleDeleteClick = async () => {
       console.log("PERSON: Deleted ", props.person.id);
-      // Call the API ( for all buttons )
       await axios.delete(API_URL + "id/" + props.person.id).then(response => {
         updateList();
         if (response.status === 204) {
@@ -380,16 +302,15 @@ const Crud = () => {
         console.log("ERROR: ", error);
         setAlert({ type: 'danger', message: error.message });
       });
-
-
     };
+
     const enableEdit = () => {
       setShowForm(false);
       setShowTable(false);
 
       setShowEdit(true);
+    };
 
-    }
     const handleEditClick = async () => {
       enableEdit();
       setPersonId(props.person.id);
@@ -403,62 +324,112 @@ const Crud = () => {
       </div>
     )
   }
-  // update / save Data 
+
+  const getRoleByTitel = async (roleTitle) => {
+    try {
+      const response = await axios.get("http://localhost:8080/api/v1/role/title/" + roleTitle);
+      if (response.status === 200) {
+        setAlert({ type: 'success', message: 'Objekt tillagd!' });
+        return response.data;
+      } else {
+        setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+        return null;
+      }
+    } catch (error) {
+      console.log("ERROR: ", error);
+      setAlert({ type: 'danger', message: error.message });
+      return null;
+    }
+  };
+
+
+  const saveData = async (data) => {
+    const firstName = data.firstName;
+    const lastName = data.lastName;
+    const userName = data.Användarnamn;
+    const email = data.email;
+    const role = await getRoleByTitel(data.role);
+
+    const handleAddPerson = async () => {
+      const newPerson = {
+
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        username: userName + generateRandomUsercode(4),
+        password: "password",
+        role: getRoleByTitel(role),
+
+      }
+      setPerson(newPerson);
+      await axios.post(API_URL, newPerson).then(response => {
+        if (response.status === 201) {
+          updateList();
+          setAlert({ type: 'success', message: 'Objekt tillagd!' });
+        } else {
+          setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+        }
+      }).catch(error => {
+        console.log("ERROR: ", error);
+        setAlert({ type: 'danger', message: error.message });
+      });
+    }
+    handleAddPerson();
+  };
+
+
   const upDate = async (data) => {
     const id = personId;
     const firstName = data.firstName;
     const lastName = data.lastName;
     const email = data.email;
-    const role = data.role;
-    getRoleByTitel(role);
+    const role = await getRoleByTitel(data.role);
 
-    const updatedPerson = {
-      id: id,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      username: person.username, // dont get it
-      password: person.password, // dont get it
-      role: roleInfo,
-
+    const handleUpdate = async () => {
+      const updatedPerson = {
+        id: id,
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        username: person.username,
+        password: person.password,
+        role: role,
+      };
+      await axios.put(API_URL, updatedPerson).then(response => {
+        getRequestAction();
+        if (response.status === 204) {
+          setAlert({ type: 'success', message: 'Objekt ändrad!' });
+        } else {
+          setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+        }
+      }).catch(error => {
+        console.log("ERROR: ", error);
+        setAlert({ type: 'danger', message: error.message });
+      });
+      setPersonId(null);
+      goBack();
     }
-    setTimeout(() => {
-      console.log(updatedPerson);
-    }, 2000);
 
-    // Call the API ( for all buttons
-    await axios.put(API_URL, updatedPerson).then(response => {
-      getRequestAction();
+    handleUpdate();
 
-      if (response.status === 204) {
-        setAlert({ type: 'success', message: 'Objekt ändrad!' });
-      } else {
-        setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
-      }
-    }).catch(error => {
-      console.log("ERROR: ", error);
-      setAlert({ type: 'danger', message: error.message });
-    });
-    setPersonId(null);
-    goBack();
-  }
-  // after edeting you go back to list
+
+  };
+
   const goBack = () => {
-    console.log('GOBACK');
+
     setShowForm(true);
     setShowTable(true);
     setShowEdit(false);
+
   }
-  // empty the fields after ussage
   const empty = () => {
     console.log('EMPTY');
     document.getElementById('editfirstName').value = '';
     document.getElementById('editlastName').value = '';
     document.getElementById('editemail').value = '';
     document.getElementById('edittitle').value = '';
-
   }
-  // to update / get the new list
+
   const getRequestAction = async () => {
     await axios.get(API_URL).then(response => {
       if (response.status === 200) {
@@ -472,46 +443,7 @@ const Crud = () => {
       setAlert({ type: 'danger', message: error.message })
     });
   }
-  // Search bar 
-  const Search = () => {
 
-    const handleinput = () => {
-      setshowEmail(!email);
-
-    }
-
-
-    if (email === true) return (
-      <>
-        <form className='rounded' onSubmit={handleSubmit(findbyname)}>
-          <button className='btn btn-primary' onClick={handleinput}>Ändra till Email</button>
-          <button type='submit' className='btn btn-success m-2' >Sök</button>
-          <input type='text' className='form-control' id='Email' {...register("name")} placeholder='Ange Namn...' /></form>
-
-      </>
-    ); else
-      return (<>
-        <form className='rounded' onSubmit={handleSubmit(findbyemail)}>
-          <button className='btn btn-primary' onClick={handleinput}>Ändra till Namn</button>
-          <button type='submit' className='btn btn-success m-2' >Sök</button>
-          <input type='text' className='form-control' id='Name' {...register("email")} placeholder='Ange Email...' /></form>
-
-      </>)
-
-  }
-  const findbyname = async (data) => {
-    const name = data.name;
-    console.log(name)
-
-  }
-  const findbyemail = async (data) => {
-    const email = data.email;
-    console.log(email)
-
-  }
-
-
-  // what is seen on the page
   if (user !== null)
     return (
       <>
@@ -525,7 +457,7 @@ const Crud = () => {
         <div>
           {showTable &&
             <div>
-              {hideseacrh && <Search />}
+
               <Table />
             </div>}
         </div>
@@ -591,13 +523,14 @@ const Crud = () => {
                   Role
                   <select
                     className='form-control'
-                    id='title'
-                    {...register('title', { required: true })}
-                    defaultValue='user'
-                    placeholder='user'>
-                    <option value='user'>Användare</option>
-                    <option value='teacher'>Lärare</option>
-                    <option value='admin'>Admin</option>
+                    id='role'
+                    {...register('role', { required: true })}
+                    value={watch('role')}
+                    placeholder='user'
+                  >
+                    <option value='Member'>Användare</option>
+                    <option value='Teacher'>Lärare</option>
+                    <option value='Admin'>Admin</option>
                   </select>
                 </div>
 
