@@ -119,3 +119,16 @@ input.calendarInput {
 .home-Contacts {
    text-align: center;
 }
+.table-wrapper {
+   height: 400px; /* Adjust the desired height */
+   overflow-y: auto;
+ }
+ .table-wrapper::-webkit-scrollbar {
+   display: none;
+ }
+ .table-body {
+   height: 100%;
+ }
+ .table-header-cell {
+   width: 25%;
+ }
