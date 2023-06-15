@@ -16,7 +16,7 @@ export const PlaySlice = createSlice({
             state.startTime = action.payload.startTime;
             state.endTime = action.payload.endTime;
             state.organizer = action.payload.organizer;
-            state.script = action.payload.script; // do not exsist in BE .. removed ? 
+            state.script = action.payload.script; 
         },
 
         setPlaysInfo: (state, action) => {

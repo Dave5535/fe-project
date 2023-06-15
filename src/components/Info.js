@@ -1,21 +1,34 @@
-import React, { useEffect } from "react";
+import React, {  useState,useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useForm } from "react-hook-form";
 import { selectUser } from "../Store/userSlice";
 import { addPlays, setPlaysInfo } from "../Store/playSlice";
 import InfoList from "./InfoList";
-import { useState } from "react";
 import "./infolist.css"
-import { useForm } from "react-hook-form";
+
 
 const Info = () => {
 
+    const user = useSelector(selectUser); if (user === null) window.location.href = "http://localhost:3000/login";
+    const [userRole, setUserRole] = useState(false);
+    const { register, handleSubmit, formState } = useForm();
+    const errors = formState?.errors || {};
 
     const [showForm, setShowForm] = useState(false);
     const [showPage, setShowPage] = useState(true);
     const dispatch = useDispatch();
 
-    const handelSetPlay = () => { // maybe good for kalender
-    };
+
+    useEffect(() => {
+        handelAddPlay();
+        if (user !== null && user.role.roleTitle === "Admin") {
+            setUserRole(true);
+        }
+        if (user !== null && user.role.roleTitle === "Teacher") {
+            setUserRole(true);
+        }
+
+    }, []);
 
     const handelAddPlay = () => {
 
@@ -41,14 +54,10 @@ const Info = () => {
 
 
     const savePlay = async (data) => {
-
         const playName = data.playName;
         const description = data.description;
         const time = data.time;
         const script = data.script;
-
-        console.log(script);
-
         const plays = {
             plays: [{
                 playId: "6",
@@ -58,7 +67,6 @@ const Info = () => {
                 script: script,
             }],
         }
-
         const play1 = {
             plays: [{
                 playId: "3",
@@ -67,41 +75,16 @@ const Info = () => {
                 time: "tex 25 / 05 / 2023  ",
                 script: "Hej och Välkomna!",
             }],
-
         }
-
-        // Save Play to BE 
         dispatch(addPlays(plays));
         handelswitch();
     }
-
     const clearForm = () => {
         document.getElementById('playName').value = '';
         document.getElementById('time').value = '';
         document.getElementById('description').value = '';
         document.getElementById('script').value = '';
     };
-
-    const user = useSelector(selectUser);
-    const [userRole, setUserRole] = useState(false);
-    const { register, handleSubmit, formState } = useForm();
-    const errors = formState?.errors || {};
-
-
-    useEffect(() => {
-        handelAddPlay();
-        if (user !== null && user.role.roleTitle === "Admin") {
-            setUserRole(true);
-        }
-        if (user !== null && user.role.roleTitle === "Teacher") {
-            setUserRole(true);
-        }
-
-    }, []);
-
-
-    if (user === null) window.location.href = "http://localhost:3000/login";
-
 
     if (user !== null)
         return (<>

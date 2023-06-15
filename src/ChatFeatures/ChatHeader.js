@@ -1,27 +1,28 @@
 import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import "./chatHeader.css"
 import axios from 'axios';
 import { selectChatId } from '../Store/AppSlice';
 import { Avatar } from '@mui/material';
-import { selectUser } from '../Store/userSlice';
+
 
 
 
 
 
 const ChatHeader = ({ chatName }) => {
+  const chatId = useSelector(selectChatId);
+  const [userList, setUserList] = useState([]);
+  const [showUsers, setShowUsers] = useState(false);
 
   const API_URL = "http://localhost:8080/api/v1/user/";
   const API_URL_CONVERSATION = "http://localhost:8080/api/v1/conversation/";
   const [alert, setAlert] = useState({ type: '', message: '' });
-  const chatId = useSelector(selectChatId);
-  const [userList, setUserList] = useState([]);
+
+
   const [searchQuery, setSearchQuery] = useState('');
-
-  const searchQueries = searchQuery.trim().toLowerCase().split(/\s+/); // Split the search query into individual queries
-
+  const searchQueries = searchQuery.trim().toLowerCase().split(/\s+/);
   const filteredUsers = searchQueries.reduce((result, query) => {
     return result.filter(user =>
       user.firstName.toLowerCase().includes(query) ||
@@ -29,11 +30,13 @@ const ChatHeader = ({ chatName }) => {
     );
   }, userList.slice());
 
+  let dateTime = new Date();
+  let timeString = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  let dateString = dateTime.toDateString().slice(4);
+  let formattedTimestamp = `${timeString} ${dateString}`;
 
-  // get ListOfUsers
   useEffect(() => {
     GetData();
-
   }, [chatName]);
 
   const GetData = async () => {
@@ -50,21 +53,6 @@ const ChatHeader = ({ chatName }) => {
     });
 
   }
-
-  // const dispatch = useDispatch();
-  const [showUsers, setShowUsers] = useState(false);
-  const dispatch = useDispatch();
-
-
-
-  const channelUser = useSelector(selectUser);
-
-
-  let dateTime = new Date();
-  let timeString = dateTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-  let dateString = dateTime.toDateString().slice(4); // Remove the day of the week
-  let formattedTimestamp = `${timeString} ${dateString}`;
-
   const showListOfUsers = () => {
 
     setShowUsers(!showUsers);
@@ -84,7 +72,7 @@ const ChatHeader = ({ chatName }) => {
     setShowUsers(!showUsers)
     setSearchQuery("");
   };
-  // delete a user from conversation 
+
   const handelDeleteOfUserInConversation = async (user) => {
     await axios.delete(API_URL_CONVERSATION + chatId + "/participant/" + user.id).then(response => {
       if (response.status === 201) {

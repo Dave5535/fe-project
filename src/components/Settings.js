@@ -7,11 +7,8 @@ import { green } from "@mui/material/colors";
 
 const Settings = () => {
 
-    const user = useSelector(selectUser);
-    if (user === null) window.location.href = "http://localhost:3000/login";
-
+    const user = useSelector(selectUser); if (user === null) window.location.href = "http://localhost:3000/login";
     const dispatch = useDispatch();
-    const [showEdit, setShowEdit] = useState(false);
 
     const handellogout = () => {
         window.location.href = "http://localhost:3000/login"
@@ -19,15 +16,6 @@ const Settings = () => {
             dispatch(logout());
         }, 2000);
     }
-
-    const handeleditbtn = () => {
-        setShowEdit(!showEdit);
-    }
-    const editSubmit = () => {
-        // send request about to change the profile pic 
-    }
-
-
     return (
 
         <div className='container'>

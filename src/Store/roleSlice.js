@@ -8,10 +8,9 @@ export const Roleslice = createSlice({
         admin: "admin",
     },
     reducers:{
-       // No reducers pga is not needed no need to change role
     },
 });
-// no need to call reducers 
+
 export const{} = Roleslice.actions;
 
 

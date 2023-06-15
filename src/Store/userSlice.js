@@ -29,7 +29,6 @@ export const UserSlice = createSlice({
 
 export const{login,logout,updatePhoto,addConversation,addFriend} = UserSlice.actions;
 
-
 export const selectUser = (state) => state.user.user;
 
 export default UserSlice.reducer;

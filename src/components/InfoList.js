@@ -1,35 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { selectPlays } from '../Store/playSlice';
 import "./infolist.css";
 
 const InfoList = () => {
-  const [allplays, setAllPlays] = useState([]);
+  
   const plays = useSelector(selectPlays);
   const history = useHistory();
 
   const [searchQuery, setSearchQuery] = useState('');
-
   const searchQueries = searchQuery.trim().toLowerCase().split(/\s+/); // Split the search query into individual queries
-
   const filteredPlays = searchQueries.length
     ? plays.filter(play => searchQueries.every(query => play.playName.toLowerCase().includes(query)))
     : plays;
-
-  useEffect(() => {
-    setAllPlays(plays);
-  }, [plays]);
 
   const handelClickOnDocumentBtn = () => {
     history.push('/documents');
   }
 
   return (
-
     <div className='play_info'>
       <input
-
         type="text"
         placeholder="Sök pjäs..."
         value={searchQuery}

@@ -120,7 +120,7 @@ input.calendarInput {
    text-align: center;
 }
 .table-wrapper {
-   height: 400px; /* Adjust the desired height */
+   height: 400px; 
    overflow-y: auto;
  }
  .table-wrapper::-webkit-scrollbar {

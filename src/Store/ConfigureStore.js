@@ -2,7 +2,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import UserSlice from "./userSlice";
 import AppSlice from "./AppSlice";
 import PlaySlice from "./playSlice";
-
+import roleSlice from "./roleSlice";
 
 
 export default configureStore({
@@ -10,6 +10,7 @@ export default configureStore({
       app: AppSlice,
       play: PlaySlice,
       user: UserSlice,
+      role: roleSlice,
    },
    devTools: true,
 });
