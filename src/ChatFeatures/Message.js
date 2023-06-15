@@ -2,16 +2,15 @@ import { useEffect, useState, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import "./message.css";
 import { Avatar } from '@mui/material';
-import { editChatMessage, deleteMessage, selectChatId, selectChatMessages } from '../Store/AppSlice';
+import { selectChatId, selectChatMessages } from '../Store/AppSlice';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { selectUser } from '../Store/userSlice';
-import { blue } from '@mui/material/colors';
 
 
 const Message = (props) => {
 
-  const {id, timestamp, messages, userprop } = props;
+  const { id, timestamp, messages, userprop } = props;
 
   const dispatch = useDispatch();
 
@@ -19,7 +18,7 @@ const Message = (props) => {
   const ChatMessages = useSelector(selectChatMessages);
   const userInfo = useSelector(selectUser);
 
- 
+
   const [user, setUser] = useState("");
 
   const [showButtons, setShowButtons] = useState(false);
@@ -45,7 +44,7 @@ const Message = (props) => {
 
   const handleEditMessage = (messageId, newContent) => {
     // edit message from API whit messageId
-    console.log(messageId + " : " + newContent )
+    console.log(messageId + " : " + newContent)
   };
   const handleDeleteMessage = (messageId) => {
     // delete message from API whit messageId

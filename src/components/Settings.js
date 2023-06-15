@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { logout, selectUser } from "../Store/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { Avatar } from '@mui/material';
-import EditIcon from '@mui/icons-material/Edit';
 import "./settings.css";
 import { green } from "@mui/material/colors";
 
@@ -10,7 +9,7 @@ const Settings = () => {
 
     const user = useSelector(selectUser);
     if (user === null) window.location.href = "http://localhost:3000/login";
-    
+
     const dispatch = useDispatch();
     const [showEdit, setShowEdit] = useState(false);
 
@@ -41,7 +40,7 @@ const Settings = () => {
                 <h1>{user.firstName} {user.lastName}</h1>
                 <h3>{user.role.roleTitle}</h3>
                 <h6>ID: {user.id} </h6>
-               
+
                 <button type="button" className="btn btn-danger" onClick={handellogout} >logout</button>
             </div>
         </div>

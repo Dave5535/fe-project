@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link, NavLink, useHistory, useParams, useLocation, Redirect } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, NavLink } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import { selectUser } from './Store/userSlice';
-
 import Login from './components/Login';
 import Chat from './components/Chat';
 import Info from './components/Info';
@@ -41,7 +40,7 @@ const Header = () => {
     const user = useSelector(selectUser);
 
     useEffect(() => {
-       
+
         if (user !== null && user.role.roleTitle === "Admin") {
             setAdmin(true);
         }
@@ -72,7 +71,7 @@ const Header = () => {
                             <NavLink activeClassName="selected" className='nav-link text-black link' to="/documents">Dokument</NavLink>
                         </li>
                         <li className="nav-item" >
-                            <NavLink activeClassName="selected" className="nav-link text-black link" to="/settings" ><SettingsIcon/></NavLink>
+                            <NavLink activeClassName="selected" className="nav-link text-black link" to="/settings" ><SettingsIcon /></NavLink>
                         </li>
                     </ul>
                     {admin && <>

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useSelector } from "react-redux";
 import { selectUser } from "../Store/userSlice";
-import axios from 'axios';
+
 const Welcome = () => {
 
   const API_URL = 'http://localhost:8080/api/v1/user/';

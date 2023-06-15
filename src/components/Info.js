@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import axios from 'axios';
 import { selectUser } from "../Store/userSlice";
-import { addPlays, setPlayinfo, setPlaysInfo } from "../Store/playSlice";
+import { addPlays, setPlaysInfo } from "../Store/playSlice";
 import InfoList from "./InfoList";
 import { useState } from "react";
 import "./infolist.css"

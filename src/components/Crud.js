@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-import { set, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../Store/userSlice';
-import { Description } from '@mui/icons-material';
 
 const Crud = () => {
   // to chek if user is loged in
@@ -28,17 +27,17 @@ const Crud = () => {
     firstName: "",
     lastName: "",
     email: "",
-    username:"",
-    password:"",
+    username: "",
+    password: "",
     role: "",
   });
   const [roleInfo, setRoleInfo] = useState({
-    id:0,
-    roleTitle:"",
-    permissions:[{
-      id:0,
-      permissionName:"",
-      description:"",
+    id: 0,
+    roleTitle: "",
+    permissions: [{
+      id: 0,
+      permissionName: "",
+      description: "",
     }]
   });
 
@@ -112,7 +111,7 @@ const Crud = () => {
               )}
             </div>
           </div>
-          <br/>
+          <br />
           <div className='row'>
             <div className='col'>
               Email
@@ -154,7 +153,7 @@ const Crud = () => {
                 document.getElementById('lastName').value = '';
                 document.getElementById('email').value = '';
                 document.getElementById('role').value = 'Member';
-                document.getElementById('Användarnamn').value= '';
+                document.getElementById('Användarnamn').value = '';
               }}
             >
               Återställ
@@ -171,44 +170,44 @@ const Crud = () => {
     let result = '';
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
     const charactersLength = characters.length;
-  
+
     for (let i = 0; i < length; i++) {
       result += characters.charAt(Math.floor(Math.random() * charactersLength));
     }
-  
+
     return result;
   };
 
-    
-  // Save Form Data from from
- 
 
- const saveData = async (data) => {
+  // Save Form Data from from
+
+
+  const saveData = async (data) => {
     const firstName = data.firstName;
     const lastName = data.lastName;
     const userName = data.Användarnamn;
     const email = data.email;
     const role = data.role;
 
-getRoleByTitel(role);
-const newPerson = {
- 
-  firstName: firstName,
-  lastName: lastName,
-  email: email,
-  username: userName + generateRandomUsercode(4),
-  password: "password",
-  role: roleInfo,
+    getRoleByTitel(role);
+    const newPerson = {
 
-}
- // set value of password ? send email to user and make them fill it in ? 
- setPerson(newPerson); // set the new person so the page will know password and userName
-setTimeout(() => {
-  console.log(newPerson);
-  console.log(roleInfo);
-}, 2000);
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      username: userName + generateRandomUsercode(4),
+      password: "password",
+      role: roleInfo,
 
-    await axios.post(API_URL,newPerson).then(response => {
+    }
+    // set value of password ? send email to user and make them fill it in ? 
+    setPerson(newPerson); // set the new person so the page will know password and userName
+    setTimeout(() => {
+      console.log(newPerson);
+      console.log(roleInfo);
+    }, 2000);
+
+    await axios.post(API_URL, newPerson).then(response => {
       if (response.status === 201) {
         updateList();
         setAlert({ type: 'success', message: 'Objekt tillagd!' });
@@ -222,21 +221,21 @@ setTimeout(() => {
     });
   };
 
- const getRoleByTitel = async (roleTitle) => {
+  const getRoleByTitel = async (roleTitle) => {
 
-await axios.get("http://localhost:8080/api/v1/role/title/"+roleTitle).then(response => {
-  if (response.status === 200) {
-    setRoleInfo(response.data);
-    setAlert({ type: 'success', message: 'Objekt tillagd!' });
-  } else {
-    setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+    await axios.get("http://localhost:8080/api/v1/role/title/" + roleTitle).then(response => {
+      if (response.status === 200) {
+        setRoleInfo(response.data);
+        setAlert({ type: 'success', message: 'Objekt tillagd!' });
+      } else {
+        setAlert({ type: 'warning', message: 'Visa API Felmeddelande...' });
+      }
+
+    }).catch(error => {
+      console.log("ERROR: ", error);
+      setAlert({ type: 'danger', message: error.message });
+    });
   }
-
-}).catch(error => {
-  console.log("ERROR: ", error);
-  setAlert({ type: 'danger', message: error.message });
-});
-}
 
   //useEfect
   useEffect(() => {
@@ -251,7 +250,7 @@ await axios.get("http://localhost:8080/api/v1/role/title/"+roleTitle).then(respo
   const PersonDetails = () => {
     return (
       <>
-        {showDetails &&  (
+        {showDetails && (
           <div className='card'>
             <div className='card-header bg-light text-black'>
               Info
@@ -370,7 +369,7 @@ await axios.get("http://localhost:8080/api/v1/role/title/"+roleTitle).then(respo
     const handleDeleteClick = async () => { //Todo
       console.log("PERSON: Deleted ", props.person.id);
       // Call the API ( for all buttons )
-      await axios.delete(API_URL +"id/"+ props.person.id).then(response => {
+      await axios.delete(API_URL + "id/" + props.person.id).then(response => {
         updateList();
         if (response.status === 204) {
           setAlert({ type: 'success', message: 'Objekt updaterad!' });
@@ -418,15 +417,15 @@ await axios.get("http://localhost:8080/api/v1/role/title/"+roleTitle).then(respo
       firstName: firstName,
       lastName: lastName,
       email: email,
-      username:person.username, // dont get it
+      username: person.username, // dont get it
       password: person.password, // dont get it
       role: roleInfo,
-    
+
     }
     setTimeout(() => {
       console.log(updatedPerson);
     }, 2000);
-    
+
     // Call the API ( for all buttons
     await axios.put(API_URL, updatedPerson).then(response => {
       getRequestAction();

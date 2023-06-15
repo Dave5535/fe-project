@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import { selectChatId, selectChatName, selectChatMessages, selectChat } from '../Store/AppSlice';
 import { selectUser } from '../Store/userSlice';
-import { addChatMessage, } from '../Store/AppSlice';
 import ChatHeader from './ChatHeader'
-
 import Message from './Message';
 import "./chats.css";
 

@@ -6,10 +6,8 @@ import AddIcon from '@mui/icons-material/Add';
 import { Avatar } from '@mui/material';
 import { Dropdown } from 'react-bootstrap';
 import "./sidebar.css"
-import { addConversation, addFriend, selectUser } from '../Store/userSlice';
-import { addChatMessage, setChatInfo } from '../Store/AppSlice';
-import { Tooltip } from '@mui/material';
-import { set } from 'date-fns';
+import { addFriend, selectUser } from '../Store/userSlice';
+import { setChatInfo } from '../Store/AppSlice';
 
 
 
@@ -34,7 +32,8 @@ const Sidebar = () => {
   const [allChat, setAllChat] = useState([]);
 
   useEffect(() => {
-    getAllchats();  }, []);
+    getAllchats();
+  }, []);
 
   const [chatName, setChatName] = useState("");
 

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-
 import ChatBubbleOutlineIcon from '@mui/icons-material/ChatBubbleOutline';
 import "./chatHeader.css"
 import axios from 'axios';
@@ -34,7 +33,7 @@ const ChatHeader = ({ chatName }) => {
   // get ListOfUsers
   useEffect(() => {
     GetData();
-   
+
   }, [chatName]);
 
   const GetData = async () => {
