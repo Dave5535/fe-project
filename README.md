@@ -33,7 +33,7 @@ For Admins (Hantera Användare) also.
 It have a about us, Social and Contact section. 
 
 <b>Info:<b/> Is where you can find all events and plays that would take place.
-Admins / Teachers could create a new event. created events should be displayed in a list that could be s
+Admins / Teachers could create a new event. created events should be displayed in a list that could be searched and found in dokuments.
 
   <b>Chat:</b> Here you could find all your firends and users and start a chat with them. 
 
