@@ -25,7 +25,7 @@ Congrats you have loged in.
 
 ## NavBar (Navigation) 
 
-The navbar utilizes react-router
+The navbar utilizes react-router found inside App.js
 The user would see the landing page with a navbar that display all places you can go to, (home : Info : Chat : Kalendar: Dokument : Settings ).
 For Admins (Hantera Användare) also.
 
