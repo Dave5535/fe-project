@@ -47,7 +47,7 @@ Created events should be displayed in a list that could be searched and found in
 
 # where is what
 
-###Structured code as follows.
+### Structured code as follows.
 
 Public : File, Image , Index.html, style.css  
 
