@@ -29,13 +29,13 @@ The navbar utilizes <b>react-router</b> found inside <b>App.js</b>
 The user would see the landing page with a navbar that display all places you can go to, (home : Info : Chat : Kalendar: Dokument : Settings ).
 For Admins (Hantera Användare) also.
 
-home : Is the landing page when you have logged in to an account.
+<b>Home:</b> Is the landing page when you have logged in to an account.
 It have a about us, Social and Contact section. 
 
-Info : Is where you can find all events and plays that would take place.
+<b>Info:<b/> Is where you can find all events and plays that would take place.
 Admins / Teachers could create a new event. created events should be displayed in a list that could be s
 
-Chat : Here you could find all your firends and users and start a chat with them. 
+  <b>Chat:</b> Here you could find all your firends and users and start a chat with them. 
 
 
 
