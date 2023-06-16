@@ -11,9 +11,9 @@ The back-end uses Java with springboot
 The front-end uses React with Redux
 
 
-# instructions 
+# Instructions 
 
-## login
+## Login
 
 <b>Step 1:</b> Start upp the FE and go to the login page ( should be default on startup) use npm start.
 
