@@ -40,7 +40,7 @@ Created events should be displayed in a list that could be searched and found in
 
 **Kalendar:** You could put upp personal things that you want to remember. 
 
-**Dokument:**  Here you find the script ( if you have any) to a play you are in.
+**Dokument:**  Here you find the script (if you have any) to a play you are in.
 
 **Settings:** Is where you could change you profile. 
 
