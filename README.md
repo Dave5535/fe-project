@@ -15,11 +15,11 @@ The front-end uses React with Redux
 
 ## login
 
-Step 1 : Start upp the FE and go to the login page ( should be default on startup) use npm start.
+<b>Step 1:</b> Start upp the FE and go to the login page ( should be default on startup) use npm start.
 
-Step 2 : Have The BE runing (You will need some sort of user to login with).
+<b>Step 2:</b> Have The BE runing (You will need some sort of user to login with).
 
-Step 3 : login with Email and password from a user that exsist in BE.
+<b>Step 3:</b> login with Email and password from a user that exsist in BE.
 
 Congrats you have loged in.
 
