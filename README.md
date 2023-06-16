@@ -24,7 +24,7 @@ Congrats you have logged in.
 ## NavBar (Navigation)
 
 The navbar utilizes **react-router** found inside **App.js**  
-The user would see the landing page with a navbar that display all places you can go to, ( Home | Info | Chat | Kalendar | Dokument | Settings ).  
+The user would see the landing page with a navbar that display all places you can go to, ( Home | Info | Chat | Kalender | Dokument | Settings ).  
 For Admins (Hantera Användare) also.
 
 **Home:** Is the landing page when you have logged in to an account.  
@@ -47,7 +47,7 @@ Created events should be displayed in a list that could be searched and found in
 
 # where is what
 
-Structured code as follows.
+**Structured code as follows.**
 
 Public : File, Image , Index.html, style.css  
 
@@ -58,24 +58,24 @@ App.js
 index.js 
 
 
-What page referring to what file ( Could also be seen in App.js (src/App.js)).
+**What page referring to what file ( Could also be seen in App.js (src/App.js)).**
 
-Login : src/components/Login.js
+**Login** : src/components/Login.js
 
-Home  : src/components/Welcome.js
+**Home**  : src/components/Welcome.js
 
-Info : src/components/Info.js , src/components/InfoList.js
+**Info** : src/components/Info.js , src/components/InfoList.js
 
-Chat : src/components/Chat.js , and from components To Chatfeatures and there is the rest of the code for all chatfunctions.
+**Chat**: src/components/Chat.js , and from components To Chatfeatures and there is the rest of the code for all chatfunctions.
 
-kalender : src/components/Calendar.js
+**kalender** : src/components/Calendar.js
 
-Document : src/components/Documents.js
+**Document** : src/components/Documents.js
 
-Settings : src/components/settings.css
+**Settings** : src/components/settings.css
 
 
-Redux Store Construction.
+**Redux Store Construction.**
 
 chat / conversations : src/Store/AppSlice.js
 
