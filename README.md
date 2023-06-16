@@ -30,7 +30,7 @@ The user would see the landing page with a navbar that display all places you ca
 For Admins (Hantera Användare) also.
 
 **Home:** Is the landing page when you have logged in to an account.  
-It have a about us, Social and Contact section. 
+It have an **about us**, **Social** and **Contact** section. 
 
 **Info:** Is where you can find all events and plays that would take place.  
 Admins / Teachers could create a new event.  
