@@ -21,7 +21,7 @@ The front-end uses React with Redux
 
 **Step 3:** login with Email and password from a user that exsist in BE.
 
-Congrats you have loged in.
+Congrats you have logged in.
 
 ## NavBar (Navigation) 
 
