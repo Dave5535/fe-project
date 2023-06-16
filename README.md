@@ -34,7 +34,7 @@ It have a about us, Social and Contact section.
 
 **Info:** Is where you can find all events and plays that would take place.  
 Admins / Teachers could create a new event.  
-Created events should be displayed in a list that could be searched and found in dokuments.
+Created events should be displayed in a list that could be searched and found in **Dokument**.
 
  **Chat:** Here you could find all your firends and users and start a chat with them. 
 
