@@ -49,26 +49,42 @@ Created events should be displayed in a list that could be searched and found in
 
 Structured code as follows.
 
-Public : File, Image , Index.html, style.css
+Public : File, Image , Index.html, style.css  
+
 src : Chatfeatures , components , store 
+
 App.js
+
 index.js 
 
 
 What page referring to what file ( Could also be seen in App.js (src/App.js)).
+
 Login : src/components/Login.js
+
 Home  : src/components/Welcome.js
+
 Info : src/components/Info.js , src/components/InfoList.js
+
 Chat : src/components/Chat.js , and from components To Chatfeatures and there is the rest of the code for all chatfunctions.
+
 kalender : src/components/Calendar.js
+
 Document : src/components/Documents.js
+
 Settings : src/components/settings.css
 
+
 Redux Store Construction.
+
 chat / conversations : src/Store/AppSlice.js
+
 play / event : src/Store/playSlice.js
+
 role : src/Store/roleSlice.js
+
 users : src/Store/userSlice.js
+
 config : src/Store/ConfigureStore.js
 
 
