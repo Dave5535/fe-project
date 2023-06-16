@@ -2,11 +2,11 @@
 
 The webapplication allows for users to log in, chat and plan in the calendar.
 
-Admins will further have access to add, edit or remove users as the ysee fit.
-
+Admins will further have access to add, edit or remove users as they see fit.
 
 
 # Framework
+
 The back-end uses Java with springboot
 The back-end uses React with Redux
 
@@ -35,4 +35,7 @@ Info : Is where you can find all events and plays that would take place.
 Admins / Teachers could create a new event. created events should be displayed in a list that could be s
 
 Chat : Here you could find all your firends and users and start a chat with them. 
+
+
+
 
