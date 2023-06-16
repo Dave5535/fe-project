@@ -15,34 +15,34 @@ The front-end uses React with Redux
 
 ## Login
 
-<b>Step 1:</b> Start upp the FE and go to the login page (should be default on startup) use npm start.
+**Step 1:** Start upp the FE and go to the login page (should be default on startup) use npm start.
 
-<b>Step 2:</b> Have The BE runing (You will need some sort of user to login with).
+**Step 2:** Have The BE runing (You will need some sort of user to login with).
 
-<b>Step 3:</b> login with Email and password from a user that exsist in BE.
+**Step 3:** login with Email and password from a user that exsist in BE.
 
 Congrats you have loged in.
 
 ## NavBar (Navigation) 
 
-The navbar utilizes <b>react-router</b> found inside <b>App.js</b>  
+The navbar utilizes **react-router** found inside **App.js**  
 The user would see the landing page with a navbar that display all places you can go to, (home : Info : Chat : Kalendar: Dokument : Settings ).  
 For Admins (Hantera Användare) also.
 
-<b>Home:</b> Is the landing page when you have logged in to an account.  
+**Home:** Is the landing page when you have logged in to an account.  
 It have a about us, Social and Contact section. 
 
-<b>Info:</b> Is where you can find all events and plays that would take place.  
+**Info:** Is where you can find all events and plays that would take place.  
 Admins / Teachers could create a new event.  
 Created events should be displayed in a list that could be searched and found in dokuments.
 
-  <b>Chat:</b> Here you could find all your firends and users and start a chat with them. 
+ **Chat:** Here you could find all your firends and users and start a chat with them. 
 
-<b>Kalendar:</b> You could put upp personal things that you want to remember. 
+**Kalendar:** You could put upp personal things that you want to remember. 
 
-<b>Dokument:</b>  Here you find the script ( if you have any) to a play you are in.
+**Dokument:**  Here you find the script ( if you have any) to a play you are in.
 
-<b>Settings:</b> Is where you could change you profile. 
+**Settings:** Is where you could change you profile. 
 
-<b>Hantera Användare:</b> Is where Admins could create / edit / remove and se details of users.
+**Hantera Användare:** Is where Admins could create / edit / remove and se details of users.
 
