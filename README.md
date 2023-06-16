@@ -47,7 +47,7 @@ Created events should be displayed in a list that could be searched and found in
 
 # where is what
 
-**Structured code as follows.**
+###Structured code as follows.
 
 Public : File, Image , Index.html, style.css  
 
@@ -58,7 +58,7 @@ App.js
 index.js 
 
 
-**What page referring to what file ( Could also be seen in App.js (src/App.js)).**
+### What page referring to what file ( Could also be seen in App.js (src/App.js)).
 
 **Login** : src/components/Login.js
 
@@ -75,7 +75,7 @@ index.js
 **Settings** : src/components/settings.css
 
 
-**Redux Store Construction.**
+### Redux Store Construction.
 
 chat / conversations : src/Store/AppSlice.js
 
