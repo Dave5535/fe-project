@@ -82,4 +82,4 @@ index.js
 
 **users:** src/Store/userSlice.js
 
-config : src/Store/ConfigureStore.js
+**config:** src/Store/ConfigureStore.js
