@@ -44,5 +44,5 @@ Created events should be displayed in a list that could be searched and found in
 
 <b>Settings:</b> Is where you could change you profile. 
 
-
+<b>Hantera Användare:</b> Is where Admins could create / edit / remove and se details of users.
 
