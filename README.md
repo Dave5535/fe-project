@@ -15,7 +15,7 @@ The front-end uses React with Redux
 
 ## Login
 
-<b>Step 1:</b> Start upp the FE and go to the login page ( should be default on startup) use npm start.
+<b>Step 1:</b> Start upp the FE and go to the login page (should be default on startup) use npm start.
 
 <b>Step 2:</b> Have The BE runing (You will need some sort of user to login with).
 
