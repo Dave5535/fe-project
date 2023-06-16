@@ -6,4 +6,4 @@ Admins will further have access to add, edit or remove users as they see fit.
 
 # Framework
 The back-end uses Java with springboot.
-The back-end uses React with Redux
+The front-end uses React with Redux
